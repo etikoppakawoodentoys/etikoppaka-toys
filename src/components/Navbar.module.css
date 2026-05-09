@@ -1,0 +1,429 @@
+/* ============================================
+   DESKTOP NAVBAR STYLES
+   ============================================ */
+
+.navbar {
+  background: rgba(255, 249, 241, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(216, 179, 106, 0.3);
+}
+
+.navbar.scrolled {
+  background: rgba(255, 249, 241, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.navContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo Styles - Rectangle Shape */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.logoImage {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+/* Hide text styles */
+.logoText, .logoName, .logoSubtitle {
+  display: none;
+}
+
+/* Desktop Navigation Links */
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #3E2A1F;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.navLink .icon {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.navLink:hover {
+  color: #9E1B1B;
+}
+
+.navLink:hover .icon {
+  transform: translateY(-2px);
+}
+
+.navLink.active {
+  color: #9E1B1B;
+}
+
+.navLink.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #9E1B1B, #C89B3C);
+  border-radius: 2px;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: #9E1B1B;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Auth Buttons */
+.authButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.loginBtn, .signupBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.loginBtn {
+  background: transparent;
+  color: #1F5B3A;
+  border: 2px solid #1F5B3A;
+}
+
+.loginBtn:hover {
+  background: #1F5B3A;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.signupBtn {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+}
+
+.signupBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(31, 91, 58, 0.3);
+}
+
+/* User Menu */
+.userMenu {
+  position: relative;
+}
+
+.profileBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #D9B382, #C89B3C);
+  color: #3E2A1F;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.profileBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(201, 155, 60, 0.3);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #9E1B1B, #C89B3C);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.userName {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron {
+  font-size: 0.8rem;
+  transition: transform 0.3s;
+}
+
+.profileBtn:hover .chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.userMenu:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown a, .dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #3E2A1F;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.dropdown a:hover, .dropdown button:hover {
+  background: linear-gradient(90deg, #F8F2E8, #FFF9F1);
+  color: #9E1B1B;
+}
+
+/* ============================================
+   MOBILE BOTTOM NAVIGATION BAR
+   ============================================ */
+
+.bottomBar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 249, 241, 0.98);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(216, 179, 106, 0.3);
+  padding: 0.6rem 1rem;
+  justify-content: space-around;
+  z-index: 999;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.bottomBar a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: #7A6B5A;
+  font-size: 0.7rem;
+  transition: all 0.3s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  position: relative;
+}
+
+.bottomBar a svg {
+  font-size: 1.2rem;
+}
+
+.bottomBar a:hover {
+  color: #C89B3C;
+}
+
+.bottomBar .active {
+  color: #9E1B1B;
+}
+
+.bottomCartBadge {
+  position: absolute;
+  top: -5px;
+  right: 5px;
+  background: #9E1B1B;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 5px;
+  font-size: 9px;
+  font-weight: bold;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Hide desktop nav links */
+  .navLinks {
+    display: none;
+  }
+  
+  /* Show bottom bar */
+  .bottomBar {
+    display: flex;
+  }
+  
+  /* Adjust body padding for bottom bar */
+  body {
+    padding-bottom: 70px;
+  }
+  
+  /* Logo size on mobile */
+  .logoImage {
+    height: 40px;
+  }
+  
+  .navContainer {
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .logoImage {
+    height: 35px;
+  }
+  
+  .bottomBar a {
+    font-size: 0.6rem;
+  }
+  
+  .bottomBar a svg {
+    font-size: 1rem;
+  }
+}
+/* ============================================
+   MOBILE ONLY STYLES - Add at the end of file
+   ============================================ */
+
+/* Mobile Bottom Navigation Bar */
+@media (max-width: 768px) {
+  /* Hide desktop navbar on mobile */
+  .navbar {
+    display: none !important;
+  }
+  
+  /* Show bottom bar */
+  .bottomBar {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 249, 241, 0.98);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(216, 179, 106, 0.3);
+    padding: 0.6rem 1rem;
+    justify-content: space-around;
+    z-index: 999;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .bottomBar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    text-decoration: none;
+    color: #7A6B5A;
+    font-size: 0.7rem;
+    transition: all 0.3s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  .bottomBar a svg {
+    font-size: 1.2rem;
+  }
+  
+  .bottomBar a:hover {
+    color: #C89B3C;
+  }
+  
+  .bottomBar .active {
+    color: #9E1B1B;
+  }
+  
+  .bottomCartBadge {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    background: #9E1B1B;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 9px;
+    font-weight: bold;
+    min-width: 16px;
+    text-align: center;
+  }
+  
+  /* Add padding to body to account for bottom bar */
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+/* Hide bottom bar on desktop */
+@media (min-width: 769px) {
+  .bottomBar {
+    display: none !important;
+  }
+}

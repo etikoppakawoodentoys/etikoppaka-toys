@@ -1,0 +1,926 @@
+/* ============================================
+   FOOTER STYLES
+   ============================================ */
+
+.footer {
+  background: #3E2A1F;
+  color: #F8F2E8;
+  position: relative;
+  margin-top: 4rem;
+}
+
+/* Newsletter Section */
+.newsletterSection {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(216, 179, 106, 0.3);
+}
+
+.newsletterContent {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletterContent h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Georgia', serif;
+}
+
+.newsletterContent p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.newsletterForm {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.newsletterForm input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.newsletterForm input:focus {
+  outline: none;
+  background: white;
+}
+
+.newsletterForm button {
+  padding: 0.75rem 1.5rem;
+  background: #D9B382;
+  color: #3E2A1F;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.newsletterForm button:hover {
+  background: #C89B3C;
+  transform: translateY(-2px);
+}
+
+/* Main Footer Content */
+.footerContent {
+  padding: 3rem 0 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.footerSection {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Brand Section */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.logoImage {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #FFF9F1;
+  padding: 6px;
+}
+
+.brandName {
+  font-size: 1.2rem;
+  font-family: 'Georgia', serif;
+  color: #D9B382;
+}
+
+.brandDesc {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: #E8DCC8;
+}
+
+.certification {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.certification span {
+  background: rgba(216, 179, 106, 0.15);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  color: #D9B382;
+}
+
+/* Section Title */
+.sectionTitle {
+  color: #D9B382;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 35px;
+  height: 2px;
+  background: #C89B3C;
+}
+
+/* Link Lists */
+.linkList {
+  list-style: none;
+}
+
+.linkList li {
+  margin-bottom: 0.6rem;
+}
+
+.linkList a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #E8DCC8;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+}
+
+.linkList a:hover {
+  color: #D9B382;
+  transform: translateX(5px);
+}
+
+.linkIcon {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* Contact Info */
+.contactInfo p {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  color: #E8DCC8;
+  line-height: 1.5;
+}
+
+.contactIcon {
+  font-size: 0.9rem;
+  color: #D9B382;
+  min-width: 20px;
+}
+
+/* Social Links */
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.socialLink {
+  width: 36px;
+  height: 36px;
+  background: rgba(216, 179, 106, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #D9B382;
+  font-size: 1.1rem;
+}
+
+.socialLink:hover {
+  background: #D9B382;
+  color: #3E2A1F;
+  transform: translateY(-3px);
+}
+
+/* Footer Bottom */
+.footerBottom {
+  border-top: 1px solid rgba(216, 179, 106, 0.2);
+  padding: 1.5rem 0;
+}
+
+.bottomContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.bottomContent p {
+  font-size: 0.75rem;
+  color: #B8A88A;
+}
+
+.paymentMethods {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.paymentMethods span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  color: #D9B382;
+  background: rgba(216, 179, 106, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .footerGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .newsletterContent h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footerContent {
+    padding: 2rem 0 1.5rem;
+  }
+  
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  /* Brand Section - Center on Mobile */
+  .brand {
+    justify-content: center;
+  }
+  
+  .sectionTitle::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Center Links on Mobile */
+  .linkList a {
+    justify-content: center;
+  }
+  
+  .linkList a:hover {
+    transform: translateX(0);
+  }
+  
+  /* Contact Info - Center on Mobile */
+  .contactInfo p {
+    justify-content: center;
+  }
+  
+  .socialLinks {
+    justify-content: center;
+  }
+  
+  .certification {
+    justify-content: center;
+  }
+  
+  /* Bottom Content */
+  .bottomContent {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .paymentMethods {
+    justify-content: center;
+  }
+  
+  /* Newsletter */
+  .newsletterSection {
+    padding: 2rem 0;
+  }
+  
+  .newsletterForm {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+  
+  .newsletterForm button {
+    width: 100%;
+  }
+  
+  .newsletterContent h3 {
+    font-size: 1.2rem;
+  }
+  
+  .newsletterContent p {
+    font-size: 0.8rem;
+    padding: 0 1rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .logoImage {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .brandName {
+    font-size: 1rem;
+  }
+  
+  .brandDesc {
+    font-size: 0.8rem;
+  }
+  
+  .sectionTitle {
+    font-size: 0.9rem;
+  }
+  
+  .contactInfo p {
+    font-size: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .linkList a {
+    font-size: 0.8rem;
+  }
+  
+  .bottomContent p {
+    font-size: 0.65rem;
+  }
+  
+  .paymentMethods span {
+    font-size: 0.6rem;
+  }
+}
+/* Subscription Message Styles */
+.subscriptionMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  animation: slideIn 0.3s ease;
+}
+
+.subscriptionMessage.success {
+  background: #D1FAE5;
+  color: #1F5B3A;
+  border: 1px solid #A7F3D0;
+}
+
+.subscriptionMessage.error {
+  background: #FEE2E2;
+  color: #9E1B1B;
+  border: 1px solid #FECACA;
+}
+
+.subscriptionMessage.warning {
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FDE68A;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.newsletterNote {
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Newsletter Form Disabled State */
+.newsletterForm input:disabled,
+.newsletterForm button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+/* ============================================
+   MOBILE FOOTER (Zepto/Blinkit Style)
+   ============================================ */
+
+.mobileFooter {
+  background: #FFF9F1;
+  border-top: 1px solid #E8DCC8;
+  padding: 20px 16px 30px;
+}
+
+/* Mobile Newsletter */
+.mobileNewsletter {
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #E8DCC8;
+  margin-bottom: 20px;
+}
+
+.mobileNewsletterIcon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.mobileNewsletter h3 {
+  font-size: 1rem;
+  color: #3E2A1F;
+  margin-bottom: 4px;
+}
+
+.mobileNewsletter p {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin-bottom: 12px;
+}
+
+.mobileNewsletterForm {
+  display: flex;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.mobileNewsletterForm input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #E8DCC8;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  background: white;
+}
+
+.mobileNewsletterForm input:focus {
+  outline: none;
+  border-color: #D9B382;
+}
+
+.mobileNewsletterForm button {
+  padding: 10px 16px;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.mobileSubMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  margin-top: 10px;
+}
+
+.mobileSubMessage.success {
+  background: #D1FAE5;
+  color: #1F5B3A;
+}
+
+.mobileSubMessage.error {
+  background: #FEE2E2;
+  color: #9E1B1B;
+}
+
+.mobileSubMessage.warning {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+/* Mobile Links Grid */
+.mobileLinksGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileLinksGrid a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  background: #F8F2E8;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #3E2A1F;
+  font-size: 0.75rem;
+  transition: all 0.2s;
+}
+
+.mobileLinksGrid a:active {
+  transform: scale(0.96);
+  background: #E8DCC8;
+}
+
+.mobileLinksGrid a svg {
+  font-size: 0.85rem;
+  color: #C89B3C;
+}
+
+/* Mobile Contact */
+.mobileContact {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileContactItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 0.75rem;
+  color: #5C4B3A;
+}
+
+.mobileContactItem svg {
+  color: #C89B3C;
+  font-size: 0.9rem;
+  min-width: 20px;
+}
+
+/* Mobile Social */
+.mobileSocial {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileSocialLink {
+  width: 40px;
+  height: 40px;
+  background: #F8F2E8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3E2A1F;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+}
+
+.mobileSocialLink:active {
+  transform: scale(0.95);
+  background: #C89B3C;
+  color: white;
+}
+
+/* Mobile Brand */
+/* Mobile Brand - Larger Logo */
+.mobileBrand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #F8F2E8;
+  border-radius: 16px;
+}
+
+.mobileLogo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  background: #FFF9F1;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.mobileBrandInfo {
+  text-align: left;
+  flex: 1;
+}
+
+.mobileBrandInfo h4 {
+  font-size: 1rem;
+  color: #9E1B1B;
+  margin-bottom: 4px;
+  font-family: 'Georgia', serif;
+}
+
+.mobileBrandInfo p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin: 2px 0;
+}
+
+.mobileTagline {
+  font-size: 0.6rem;
+  color: #C89B3C;
+  margin-top: 4px;
+}
+/* Full Width Logo Styles */
+.mobileLogoContainer {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.mobileLogoLarge {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  background: #FFF9F1;
+  border-radius: 20px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.mobileBrandInfoCenter {
+  text-align: center;
+}
+
+.mobileBrandInfoCenter h4 {
+  font-size: 1.1rem;
+  color: #9E1B1B;
+  margin-bottom: 4px;
+  font-family: 'Georgia', serif;
+}
+
+.mobileBrandInfoCenter p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin-bottom: 8px;
+}
+
+.mobileCertification {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mobileCertification span {
+  font-size: 0.6rem;
+  color: #C89B3C;
+  background: rgba(200, 155, 60, 0.1);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* Mobile Copyright */
+.mobileCopyright {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 0.65rem;
+  color: #7A6B5A;
+}
+
+.mobileCopyright p {
+  margin: 4px 0;
+}
+
+.mobileCopyright svg {
+  color: #9E1B1B;
+  font-size: 0.7rem;
+}
+
+/* Mobile Payment */
+.mobilePayment {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mobilePayment span {
+  font-size: 0.65rem;
+  color: #D9B382;
+  background: rgba(216, 179, 130, 0.1);
+  padding: 4px 10px;
+  border-radius: 30px;
+}
+
+/* ============================================
+   DESKTOP FOOTER STYLES (Existing - Keep as is)
+   ============================================ */
+
+/* Your existing desktop footer styles remain here */
+/* .footer, .newsletterSection, .footerGrid, etc. */
+
+@media (max-width: 768px) {
+  /* Hide desktop footer on mobile */
+  .footer {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Hide mobile footer on desktop */
+  .mobileFooter {
+    display: none;
+  }
+}
+/* Mobile Links Grid - 4 columns */
+.mobileLinksGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 16px;
+  background: #FFF9F1;
+  border-radius: 20px;
+  margin: 0 12px 16px;
+}
+
+.mobileLinksGrid a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  background: #F8F2E8;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #3E2A1F;
+  font-size: 0.7rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.mobileLinksGrid a svg {
+  font-size: 1.1rem;
+  color: #C89B3C;
+}
+
+.mobileLinksGrid a:active {
+  transform: scale(0.97);
+  background: #E8DCC8;
+}
+/* Add to Footer.module.css */
+
+/* Developer Credit - Desktop */
+.developerCredit {
+  text-align: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(216, 179, 106, 0.2);
+}
+
+.developerCredit p {
+  font-size: 0.7rem;
+  color: #B8A88A;
+  letter-spacing: 0.5px;
+}
+
+.developerCredit p:hover {
+  color: #C89B3C;
+}
+/* Add to Footer.module.css */
+
+/* Desktop Developer Credit */
+.developerCredit {
+  text-align: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(216, 179, 106, 0.2);
+}
+
+.developerCredit p {
+  font-size: 0.7rem;
+  color: #B8A88A;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.developerLink {
+  color: #C89B3C;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.developerLink:hover {
+  color: #D9B382;
+  text-decoration: underline;
+}
+
+.externalIcon {
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
+/* Mobile Developer Link */
+.mobileDeveloperLink {
+  color: #C89B3C;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.mobileDeveloperLink:active {
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+.mobileExternalIcon {
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
+/* Update mobile copyright section */
+.mobileCopyright {
+  text-align: center;
+  padding: 0.75rem;
+  background: #2A1F15;
+  color: #B8A88A;
+  font-size: 0.7rem;
+}
+
+.mobileCopyright p {
+  margin: 0.25rem 0;
+}
+
+.mobileCopyright p:first-child {
+  font-size: 0.65rem;
+}
+
+.mobileCopyright p:last-child {
+  font-size: 0.6rem;
+}

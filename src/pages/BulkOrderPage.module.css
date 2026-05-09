@@ -1,0 +1,780 @@
+/* ============================================
+   DESKTOP BULK ORDER PAGE
+   ============================================ */
+
+.desktopBulkPage {
+  min-height: 100vh;
+  background: #F8F2E8;
+}
+
+/* Hero Section - Desktop */
+.desktopHero {
+  background: linear-gradient(135deg, #1F5B3A 0%, #15452B 100%);
+  padding: 5rem 2rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.desktopHero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.desktopHeroContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.desktopHeroBadge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1.25rem;
+  border-radius: 60px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #D9B382;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.desktopHero h1 {
+  font-size: 3.5rem;
+  color: white;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.desktopHero p {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.desktopHeroStats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.heroStat {
+  text-align: center;
+}
+
+.heroStat span {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #D9B382;
+}
+
+.heroStat p {
+  font-size: 0.8rem;
+  margin: 0;
+  color: rgba(255,255,255,0.8);
+}
+
+/* Desktop Container */
+.desktopContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Features Grid - Desktop */
+.desktopFeatures {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+  margin-top: -2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.feature {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.featureIcon {
+  font-size: 2.5rem;
+  color: #1F5B3A;
+  margin-bottom: 0.75rem;
+}
+
+.feature h3 {
+  font-size: 1.1rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+.feature p {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+}
+
+/* Bulk Products Section - Desktop */
+.desktopBulkProducts {
+  margin-bottom: 4rem;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.sectionHeader h2 {
+  font-size: 2rem;
+  color: #3E2A1F;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  margin-bottom: 0.5rem;
+}
+
+.sectionHeader p {
+  color: #7A6B5A;
+}
+
+.desktopProductGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.desktopProductCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.desktopProductCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.desktopProductCard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.desktopProductCard h3 {
+  font-size: 0.95rem;
+  color: #3E2A1F;
+  padding: 0.75rem 0.75rem 0.25rem;
+  font-weight: 600;
+}
+
+.bulkPriceText {
+  font-size: 0.85rem;
+  color: #9E1B1B;
+  font-weight: 700;
+  padding: 0 0.75rem 0.75rem;
+}
+
+.productEnquireBtn {
+  width: calc(100% - 1.5rem);
+  margin: 0 0.75rem 1rem;
+  padding: 0.5rem;
+  background: #F8F2E8;
+  border: 1px solid #E8DCC8;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1F5B3A;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.productEnquireBtn:hover {
+  background: #1F5B3A;
+  color: white;
+}
+
+/* Desktop Form Section */
+.desktopFormSection {
+  background: white;
+  border-radius: 24px;
+  padding: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.formContainer {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+}
+
+.formInfo h2 {
+  font-size: 1.8rem;
+  color: #3E2A1F;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', 'Georgia', serif;
+}
+
+.formInfo p {
+  color: #7A6B5A;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.formInfoList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.formInfoList div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #3E2A1F;
+}
+
+.formInfoList div svg {
+  color: #1F5B3A;
+}
+
+.desktopForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: 0.75rem 1rem;
+  border: 2px solid #E8DCC8;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  transition: all 0.2s;
+  background: white;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #D9B382;
+  box-shadow: 0 0 0 3px rgba(216, 179, 130, 0.2);
+}
+
+.formGroup input.error,
+.formGroup select.error,
+.formGroup textarea.error {
+  border-color: #9E1B1B;
+}
+
+.errorMsg {
+  color: #9E1B1B;
+  font-size: 0.7rem;
+  margin-top: 0.25rem;
+}
+
+.submitBtn {
+  padding: 1rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.5rem;
+}
+
+.submitBtn:hover {
+  background: #15452B;
+  transform: translateY(-2px);
+}
+
+.submitBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Desktop WhatsApp Section */
+.desktopWhatsappSection {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.whatsappContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.whatsappContent h3 {
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.whatsappContent p {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+}
+
+.whatsappBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #25D366;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.whatsappBtn:hover {
+  transform: scale(1.05);
+}
+
+/* Success Modal - Desktop */
+.successModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.successModalContent {
+  background: white;
+  border-radius: 24px;
+  padding: 2rem;
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+  animation: slideUp 0.3s ease;
+}
+
+.successIcon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.successModalContent h3 {
+  font-size: 1.3rem;
+  color: #1F5B3A;
+  margin-bottom: 0.5rem;
+}
+
+.successModalContent p {
+  color: #7A6B5A;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.successDetails {
+  background: #F8F2E8;
+  padding: 1rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.successDetails p {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.successCloseBtn {
+  padding: 0.75rem 2rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   MOBILE BULK ORDER PAGE
+   ============================================ */
+
+.mobileBulkPage {
+  min-height: 100vh;
+  background: #F8F2E8;
+  padding-bottom: 80px;
+}
+
+/* Mobile Hero */
+.mobileHero {
+  background: linear-gradient(135deg, #1F5B3A 0%, #15452B 100%);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.mobileHeroIcon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.mobileHero h1 {
+  font-size: 1.8rem;
+  color: white;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  margin-bottom: 0.5rem;
+}
+
+.mobileHero p {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+}
+
+/* Mobile Features */
+.mobileFeatures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding: 1rem;
+  margin-top: -1rem;
+}
+
+.mobileFeatureCard {
+  background: white;
+  padding: 0.75rem;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.mobileFeatureCard span {
+  font-size: 1.5rem;
+}
+
+.mobileFeatureCard div {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileFeatureCard strong {
+  font-size: 0.8rem;
+  color: #3E2A1F;
+}
+
+.mobileFeatureCard span:last-child {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+/* Mobile Bulk Products */
+.mobileBulkProducts {
+  padding: 1rem;
+}
+
+.mobileBulkProducts h2 {
+  font-size: 1.2rem;
+  color: #3E2A1F;
+  margin-bottom: 1rem;
+}
+
+.mobileProductGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.mobileProductCard {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.mobileProductCard img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.mobileProductCard h3 {
+  font-size: 0.75rem;
+  color: #3E2A1F;
+  padding: 0.5rem 0.5rem 0.25rem;
+  font-weight: 600;
+}
+
+.mobileBulkPrice {
+  font-size: 0.7rem;
+  color: #9E1B1B;
+  font-weight: 700;
+  padding: 0 0.5rem 0.5rem;
+}
+
+/* Mobile Form Section */
+.mobileFormSection {
+  padding: 1rem;
+  background: white;
+  margin: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.mobileFormSection h2 {
+  font-size: 1.2rem;
+  color: #3E2A1F;
+  margin-bottom: 0.25rem;
+}
+
+.mobileFormSection > p {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin-bottom: 1rem;
+}
+
+.mobileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobileFormGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileFormGroup input,
+.mobileFormGroup select,
+.mobileFormGroup textarea {
+  padding: 0.7rem 0.875rem;
+  border: 2px solid #E8DCC8;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  background: white;
+}
+
+.mobileFormGroup input:focus,
+.mobileFormGroup select:focus,
+.mobileFormGroup textarea:focus {
+  outline: none;
+  border-color: #D9B382;
+}
+
+.mobileFormGroup input.error,
+.mobileFormGroup select.error,
+.mobileFormGroup textarea.error {
+  border-color: #9E1B1B;
+}
+
+.errorMsg {
+  color: #9E1B1B;
+  font-size: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.mobileFormRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.mobileSubmitBtn {
+  padding: 0.85rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.mobileSubmitBtn:disabled {
+  background: #ccc;
+}
+
+/* Mobile WhatsApp CTA */
+.mobileWhatsappCta {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.mobileWhatsappContent {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border-radius: 16px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.mobileWhatsappContent p {
+  color: white;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.mobileWhatsappBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem;
+  background: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #25D366;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Mobile Success Toast */
+.mobileSuccessToast {
+  position: fixed;
+  bottom: 90px;
+  left: 1rem;
+  right: 1rem;
+  background: #1F5B3A;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: slideUp 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.mobileSuccessToast svg {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.mobileSuccessToast strong {
+  font-size: 0.8rem;
+  display: block;
+}
+
+.mobileSuccessToast p {
+  font-size: 0.7rem;
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .desktopProductGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .formContainer {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktopBulkPage {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileBulkPage {
+    display: none;
+  }
+}
+/* Error Message Styles */
+.errorMessageDesktop {
+  background: #FEE2E2;
+  border: 1px solid #9E1B1B;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  color: #9E1B1B;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobileErrorMessage {
+  background: #FEE2E2;
+  border: 1px solid #9E1B1B;
+  border-radius: 12px;
+  padding: 0.75rem;
+  margin: 1rem;
+  color: #9E1B1B;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

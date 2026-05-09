@@ -1,0 +1,648 @@
+.adminCustomers {
+  padding: 1.5rem;
+  background: #F8F9FA;
+  min-height: 100%;
+}
+
+/* Header */
+.header {
+  margin-bottom: 2rem;
+}
+
+.headerLeft h2 {
+  font-size: 1.3rem;
+  color: #3E2A1F;
+  margin: 0;
+}
+
+.headerSubtitle {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+  margin-top: 0.25rem;
+}
+
+/* Stats Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.statCard {
+  background: white;
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.statIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.statInfo {
+  flex: 1;
+}
+
+.statInfo span {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  display: block;
+}
+
+.statInfo strong {
+  font-size: 1.2rem;
+  color: #3E2A1F;
+}
+
+/* Search Bar */
+.searchBar {
+  margin-bottom: 1.5rem;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  padding: 0.6rem 1rem;
+  border-radius: 50px;
+  max-width: 350px;
+  border: 1px solid #E8DCC8;
+  transition: all 0.3s;
+}
+
+.searchBox:focus-within {
+  border-color: #D9B382;
+  box-shadow: 0 0 0 2px rgba(216, 179, 130, 0.2);
+}
+
+.searchBox svg {
+  color: #C89B3C;
+}
+
+.searchBox input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.85rem;
+}
+
+/* Table */
+.tableContainer {
+  overflow-x: auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.table th {
+  text-align: left;
+  padding: 1rem;
+  background: #F8F2E8;
+  color: #3E2A1F;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid #E8DCC8;
+  vertical-align: middle;
+}
+
+.table tr:hover {
+  background: #F8F2E8;
+}
+
+/* Customer Info */
+.customerInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.customerAvatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.customerName {
+  font-weight: 600;
+  color: #3E2A1F;
+}
+
+.customerEmail {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.contactInfo {
+  font-size: 0.85rem;
+  color: #5C4B3A;
+}
+
+.contactInfo div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.orderCount, .totalSpent, .joinDate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #3E2A1F;
+}
+
+.totalSpent {
+  font-weight: 600;
+  color: #1F5B3A;
+}
+
+/* Badges */
+.adminBadge, .customerBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.adminBadge {
+  background: #D9B382;
+  color: #3E2A1F;
+}
+
+.customerBadge {
+  background: #DBEAFE;
+  color: #3B82F6;
+}
+
+.viewBtn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #C89B3C;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0.25rem;
+}
+
+.viewBtn:hover {
+  color: #9E1B1B;
+  transform: scale(1.1);
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 4rem;
+  background: white;
+  border-radius: 20px;
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  color: #D9B382;
+  margin-bottom: 1rem;
+}
+
+.emptyState h3 {
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+.emptyState p {
+  color: #7A6B5A;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: scaleIn 0.3s ease;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid #D8B36A;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+}
+
+.modalHeader h3 {
+  color: #3E2A1F;
+  font-size: 1.2rem;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #9E1B1B;
+  transition: all 0.3s;
+}
+
+.closeBtn:hover {
+  transform: rotate(90deg);
+}
+
+.modalBody {
+  padding: 1.5rem;
+}
+
+/* Profile Section */
+.profileSection {
+  display: flex;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #E8DCC8;
+  margin-bottom: 1.5rem;
+}
+
+.profileAvatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.profileInfo h4 {
+  font-size: 1.2rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+.profileInfo p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #5C4B3A;
+  margin: 0.25rem 0;
+}
+
+/* Customer Stats */
+.customerStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.customerStatCard {
+  background: #F8F2E8;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s;
+}
+
+.customerStatCard:hover {
+  transform: translateY(-2px);
+  background: #FFF9F1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.customerStatCard svg {
+  font-size: 1.5rem;
+  color: #C89B3C;
+}
+
+.customerStatCard div {
+  flex: 1;
+}
+
+.customerStatCard span {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  display: block;
+}
+
+.customerStatCard strong {
+  font-size: 1rem;
+  color: #3E2A1F;
+}
+
+/* Addresses Section */
+.addressesSection {
+  margin-bottom: 1.5rem;
+}
+
+.addressesSection h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #3E2A1F;
+  margin-bottom: 1rem;
+}
+
+.addressesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.addressCard {
+  background: #F8F2E8;
+  border-radius: 12px;
+  padding: 0.75rem;
+  border-left: 3px solid #C89B3C;
+}
+
+.addressCard p {
+  margin: 0.2rem 0;
+  font-size: 0.8rem;
+  color: #5C4B3A;
+}
+
+.addressCard p strong {
+  color: #3E2A1F;
+}
+
+/* Orders Section */
+.ordersSection {
+  margin-bottom: 1rem;
+}
+
+.ordersSection h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #3E2A1F;
+  margin-bottom: 1rem;
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.orderCard {
+  background: #F8F2E8;
+  border-radius: 12px;
+  padding: 0.75rem;
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.orderNumber {
+  font-weight: 600;
+  color: #9E1B1B;
+  font-size: 0.85rem;
+}
+
+.orderStatus {
+  padding: 0.2rem 0.5rem;
+  border-radius: 50px;
+  font-size: 0.65rem;
+  font-weight: 500;
+}
+
+.orderStatus.pending {
+  background: #FEF3C7;
+  color: #F59E0B;
+}
+
+.orderStatus.accepted {
+  background: #D1FAE5;
+  color: #1F5B3A;
+}
+
+.orderStatus.shipped {
+  background: #DBEAFE;
+  color: #3B82F6;
+}
+
+.orderStatus.transit {
+  background: #EDE9FE;
+  color: #8B5CF6;
+}
+
+.orderStatus.out_for_delivery {
+  background: #FCE7F3;
+  color: #EC4899;
+}
+
+.orderStatus.delivered {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.orderStatus.cancelled {
+  background: #FEE2E2;
+  color: #9E1B1B;
+}
+
+.orderDetails {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.noOrders {
+  text-align: center;
+  padding: 1rem;
+  color: #7A6B5A;
+  font-size: 0.85rem;
+}
+
+/* Modal Footer */
+.modalFooter {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #E8DCC8;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeModalBtn {
+  padding: 0.5rem 1rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.closeModalBtn:hover {
+  background: #15452B;
+  transform: translateY(-2px);
+}
+
+/* Loading */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #E8DCC8;
+  border-top-color: #9E1B1B;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .customerStats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .adminCustomers {
+    padding: 1rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .searchBox {
+    max-width: 100%;
+  }
+  
+  .tableContainer {
+    overflow-x: auto;
+  }
+  
+  .profileSection {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .profileInfo p {
+    justify-content: center;
+  }
+  
+  .modalContent {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .statCard {
+    padding: 0.75rem;
+  }
+  
+  .statIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .customerStatCard {
+    padding: 0.75rem;
+  }
+  
+  .addressCard {
+    padding: 0.5rem;
+  }
+}

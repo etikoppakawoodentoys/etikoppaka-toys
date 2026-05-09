@@ -1,0 +1,1926 @@
+.checkoutPage {
+  padding: 2rem 0;
+  min-height: 60vh;
+  background: #F8F2E8;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #9E1B1B;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
+}
+
+.backLink:hover {
+  transform: translateX(-5px);
+}
+
+.pageTitle {
+  font-size: 2rem;
+  color: #9E1B1B;
+  margin-bottom: 2rem;
+  font-family: 'Georgia', serif;
+}
+
+.message {
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.message.success {
+  background: #D1FAE5;
+  color: #1F5B3A;
+}
+
+.message.error {
+  background: #FEE2E2;
+  color: #9E1B1B;
+}
+
+.checkoutLayout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 2rem;
+}
+
+.checkoutLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section {
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #D8B36A;
+}
+
+.sectionIcon {
+  font-size: 1.3rem;
+  color: #9E1B1B;
+}
+
+.sectionHeader h2 {
+  font-size: 1.2rem;
+  color: #3E2A1F;
+}
+
+/* Address Styles */
+.addressList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.addressCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid #E8DCC8;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.addressCard:hover {
+  border-color: #D9B382;
+  background: #FFF9F1;
+}
+
+.addressCard.selected {
+  border-color: #1F5B3A;
+  background: #F0F9F4;
+}
+
+.addressRadio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #C89B3C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.addressCard.selected .addressRadio {
+  border-color: #1F5B3A;
+  background: #1F5B3A;
+  color: white;
+}
+
+.addressDetails {
+  flex: 1;
+}
+
+.addressName {
+  font-weight: bold;
+  color: #3E2A1F;
+  margin-bottom: 0.25rem;
+}
+
+.addressMobile {
+  font-size: 0.85rem;
+  color: #7A6B5A;
+  margin-bottom: 0.25rem;
+}
+
+.addressText, .addressLandmark, .addressLocation {
+  font-size: 0.85rem;
+  color: #5C4B3A;
+  line-height: 1.4;
+}
+
+.defaultBadge {
+  position: absolute;
+  top: -8px;
+  right: 1rem;
+  background: #C89B3C;
+  color: #3E2A1F;
+  padding: 0.2rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.addressActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editAddress, .deleteAddress {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.editAddress {
+  color: #3B82F6;
+}
+
+.editAddress:hover {
+  background: #DBEAFE;
+}
+
+.deleteAddress {
+  color: #9E1B1B;
+}
+
+.deleteAddress:hover {
+  background: #FEE2E2;
+}
+
+.addAddressBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: #D9B382;
+  color: #3E2A1F;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+.addAddressBtn:hover {
+  background: #C89B3C;
+  transform: translateY(-2px);
+}
+
+/* New Address Form */
+.newAddressForm {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #F8F2E8;
+  border-radius: 12px;
+}
+
+.newAddressForm h3 {
+  font-size: 1rem;
+  color: #3E2A1F;
+  margin-bottom: 1rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #3E2A1F;
+}
+
+.formGroup input, .formGroup select {
+  padding: 0.6rem;
+  border: 2px solid #E8DCC8;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.formGroup input:focus, .formGroup select:focus {
+  outline: none;
+  border-color: #D9B382;
+}
+
+.checkboxGroup {
+  margin: 1rem 0;
+}
+
+.checkboxGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.saveAddressBtn {
+  padding: 0.6rem 1.2rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.saveAddressBtn:hover {
+  background: #15452B;
+}
+
+.selectedAddressInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #F0F9F4;
+  border-radius: 12px;
+  color: #1F5B3A;
+}
+
+.checkIcon {
+  font-size: 1.2rem;
+}
+
+/* Order Items */
+.orderItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.orderItem {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.orderItem:last-child {
+  border-bottom: none;
+}
+
+.orderItem img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.orderItemDetails {
+  flex: 1;
+}
+
+.orderItemDetails h4 {
+  font-size: 0.9rem;
+  color: #3E2A1F;
+  margin-bottom: 0.25rem;
+}
+
+.orderItemDetails p {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+}
+
+.orderItemPrice {
+  font-weight: bold;
+  color: #1F5B3A;
+}
+
+/* Order Summary */
+.checkoutRight {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.orderSummary {
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.orderSummary h3 {
+  font-size: 1.2rem;
+  color: #3E2A1F;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #D8B36A;
+}
+
+.summaryDetails {
+  margin-bottom: 1.5rem;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: #5C4B3A;
+}
+
+.summaryRow.total {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #9E1B1B;
+  border-top: 2px solid #E8DCC8;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+}
+
+.free {
+  color: #1F5B3A;
+  font-weight: 500;
+}
+
+.codInfo, .deliveryInfo, .secureInfo {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #F8F2E8;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+}
+
+.codIcon, .infoIcon {
+  font-size: 1.2rem;
+  color: #C89B3C;
+}
+
+.codInfo p, .deliveryInfo p, .secureInfo p {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+  margin-top: 0.2rem;
+}
+
+.placeOrderBtn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 1rem;
+}
+
+.placeOrderBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(31, 91, 58, 0.3);
+}
+
+.placeOrderBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.note {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin-top: 1rem;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #E8DCC8;
+  border-top-color: #9E1B1B;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 968px) {
+  .checkoutLayout {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkoutRight {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+  
+  .addressCard {
+    flex-wrap: wrap;
+  }
+  
+  .addressActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .orderItem {
+    flex-wrap: wrap;
+  }
+  
+  .orderItemPrice {
+    width: 100%;
+    text-align: right;
+  }
+}
+/* Coupon Section */
+.couponSection {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #F8F2E8;
+  border-radius: 12px;
+}
+
+.couponHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  color: #3E2A1F;
+}
+
+.couponInput {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.couponInput input {
+  flex: 1;
+  padding: 0.6rem;
+  border: 2px solid #E8DCC8;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.couponInput input:focus {
+  outline: none;
+  border-color: #D9B382;
+}
+
+.applyCouponBtn {
+  padding: 0.6rem 1rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.applyCouponBtn:hover {
+  background: #15452B;
+}
+
+.appliedCoupon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #D1FAE5;
+  border-radius: 8px;
+}
+
+.couponInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.couponInfo svg {
+  color: #1F5B3A;
+}
+
+.removeCouponBtn {
+  background: none;
+  border: none;
+  color: #9E1B1B;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.couponError {
+  color: #9E1B1B;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.couponSuccess {
+  color: #1F5B3A;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.availableCoupons {
+  margin-top: 0.75rem;
+}
+
+.availableCoupons p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin-bottom: 0.25rem;
+}
+
+.couponList {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.couponTag {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  background: #D9B382;
+  color: #3E2A1F;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.discount {
+  color: #1F5B3A;
+  font-weight: 500;
+}
+
+.savingsMessage {
+  text-align: center;
+  padding: 0.5rem;
+  background: #D1FAE5;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #1F5B3A;
+  margin-top: 0.5rem;
+}
+/* ============================================
+   MOBILE CHECKOUT STYLES
+   ============================================ */
+
+.mobileCheckout {
+  min-height: 100vh;
+  background: #F8F2E8;
+  padding-bottom: 80px;
+}
+
+.mobileHeader {
+  position: sticky;
+  top: 0;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #E8DCC8;
+  z-index: 10;
+}
+
+.mobileBackBtn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #3E2A1F;
+  cursor: pointer;
+}
+
+.mobileHeader h1 {
+  font-size: 1rem;
+  color: #3E2A1F;
+}
+
+.mobilePlaceholder {
+  width: 24px;
+}
+
+.mobileSection {
+  background: white;
+  margin: 12px;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.mobileSectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileSectionHeader h2 {
+  font-size: 0.9rem;
+  color: #3E2A1F;
+}
+
+.mobileAddressList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.mobileAddressCard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+  background: #F8F2E8;
+  border-radius: 12px;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.mobileAddressCard.selected {
+  border-color: #1F5B3A;
+  background: #F0F9F4;
+}
+
+.mobileAddressRadio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #C89B3C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.mobileAddressCard.selected .mobileAddressRadio {
+  border-color: #1F5B3A;
+  background: #1F5B3A;
+  color: white;
+}
+
+.mobileAddressDetails {
+  flex: 1;
+}
+
+.mobileAddressName {
+  font-weight: 600;
+  color: #3E2A1F;
+}
+
+.mobileAddressPhone {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.mobileAddressText, .mobileAddressLocation {
+  font-size: 0.7rem;
+  color: #5C4B3A;
+}
+
+.mobileAddressActions {
+  display: flex;
+  gap: 8px;
+}
+
+.mobileEditAddress, .mobileDeleteAddress {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mobileEditAddress { color: #3B82F6; }
+.mobileDeleteAddress { color: #9E1B1B; }
+
+.mobileDefaultBadge {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  background: #C89B3C;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.6rem;
+}
+
+.mobileAddAddressBtn {
+  width: 100%;
+  padding: 10px;
+  background: #D9B382;
+  color: #3E2A1F;
+  border: none;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.mobileNewAddressForm {
+  margin-top: 12px;
+  padding: 12px;
+  background: #F8F2E8;
+  border-radius: 12px;
+}
+
+.mobileNewAddressForm h3 {
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.mobileNewAddressForm input, .mobileNewAddressForm select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.mobileCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  margin: 10px 0;
+}
+
+.mobileSaveAddressBtn {
+  width: 100%;
+  padding: 10px;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 30px;
+}
+
+.mobileSelectedAddress {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px;
+  background: #D1FAE5;
+  border-radius: 12px;
+  font-size: 0.7rem;
+}
+
+/* Mobile Order Items */
+.mobileOrderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobileOrderItem {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileOrderItem img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.mobileOrderItemInfo {
+  flex: 1;
+}
+
+.mobileOrderItemInfo h4 {
+  font-size: 0.8rem;
+  color: #3E2A1F;
+}
+
+.mobileOrderItemInfo p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.mobileOrderItemPrice {
+  font-weight: bold;
+  color: #9E1B1B;
+  font-size: 0.8rem;
+}
+
+/* Mobile Payment */
+.mobilePaymentSection {
+  margin: 12px;
+}
+
+.mobilePaymentMethod {
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.mobilePaymentMethod svg {
+  font-size: 1.5rem;
+  color: #C89B3C;
+}
+
+.mobilePaymentMethod strong {
+  font-size: 0.8rem;
+}
+
+.mobilePaymentMethod p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+/* Mobile Bottom Bar */
+.mobileBottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #E8DCC8;
+  z-index: 10;
+}
+
+.mobileTotalAmount {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileTotalAmount span {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.mobileTotalAmount strong {
+  font-size: 1.1rem;
+  color: #9E1B1B;
+}
+
+.mobilePlaceOrderBtn {
+  padding: 10px 24px;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mobilePlaceOrderBtn:disabled {
+  opacity: 0.6;
+}
+
+.mobileMessage {
+  position: fixed;
+  top: 70px;
+  left: 16px;
+  right: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  z-index: 20;
+  animation: slideDown 0.3s ease;
+}
+
+.mobileMessage.success {
+  background: #D1FAE5;
+  color: #1F5B3A;
+}
+
+.mobileMessage.error {
+  background: #FEE2E2;
+  color: #9E1B1B;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hide desktop on mobile, hide mobile on desktop */
+@media (max-width: 768px) {
+  .checkoutPage {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileCheckout {
+    display: none;
+  }
+}
+/* Add/Update these mobile styles */
+
+.mobileAddressCard {
+  cursor: pointer;
+}
+
+.mobileAddressRadio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #C89B3C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  background: white;
+}
+
+.mobileAddressCard.selected .mobileAddressRadio {
+  border-color: #1F5B3A;
+  background: #1F5B3A;
+  color: white;
+}
+
+.mobileAddressError {
+  margin-top: 12px;
+  padding: 10px;
+  background: #FEE2E2;
+  color: #9E1B1B;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.mobilePlaceOrderBtn {
+  padding: 12px 24px;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mobilePlaceOrderBtn:active {
+  transform: scale(0.98);
+}
+
+.mobilePlaceOrderBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Make sure addresses are selectable */
+.mobileAddressCard {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mobileAddressCard:active {
+  transform: scale(0.99);
+}
+
+/* Bottom bar fixed position */
+.mobileBottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #E8DCC8;
+  z-index: 100;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+/* Add padding to bottom of page to account for fixed bar */
+.mobileCheckout {
+  padding-bottom: 80px;
+}
+/* ============================================
+   MOBILE CHECKOUT STYLES (Order Summary Below)
+   ============================================ */
+
+.mobileCheckout {
+  min-height: 100vh;
+  background: #F8F2E8;
+}
+
+/* Scrollable Content */
+.mobileScrollContent {
+  padding-bottom: 20px;
+}
+
+/* Mobile Header */
+.mobileHeader {
+  position: sticky;
+  top: 0;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #E8DCC8;
+  z-index: 10;
+}
+
+.mobileBackBtn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #3E2A1F;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.mobileBackBtn:active {
+  background: #F8F2E8;
+}
+
+.mobileHeader h1 {
+  font-size: 1rem;
+  color: #3E2A1F;
+  font-weight: 500;
+}
+
+.mobilePlaceholder {
+  width: 40px;
+}
+
+/* Sections */
+.mobileSection {
+  background: white;
+  margin: 12px;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.mobileSectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileSectionHeader h2 {
+  font-size: 0.9rem;
+  color: #3E2A1F;
+  margin: 0;
+}
+
+/* Address Cards */
+.mobileAddressList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.mobileAddressCard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px;
+  background: #F8F2E8;
+  border-radius: 12px;
+  position: relative;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mobileAddressCard.selected {
+  border-color: #1F5B3A;
+  background: #F0F9F4;
+}
+
+.mobileAddressRadio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #C89B3C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  background: white;
+  flex-shrink: 0;
+}
+
+.mobileAddressCard.selected .mobileAddressRadio {
+  border-color: #1F5B3A;
+  background: #1F5B3A;
+  color: white;
+}
+
+.mobileAddressDetails {
+  flex: 1;
+}
+
+.mobileAddressName {
+  font-weight: 600;
+  color: #3E2A1F;
+  font-size: 0.85rem;
+}
+
+.mobileAddressPhone {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin: 2px 0;
+}
+
+.mobileAddressText, .mobileAddressLocation {
+  font-size: 0.7rem;
+  color: #5C4B3A;
+}
+
+.mobileAddressLandmark {
+  font-size: 0.7rem;
+  color: #C89B3C;
+  margin: 2px 0;
+}
+
+.mobileAddressActions {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.mobileEditAddress, .mobileDeleteAddress {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileEditAddress { color: #3B82F6; }
+.mobileDeleteAddress { color: #9E1B1B; }
+
+.mobileDefaultBadge {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  background: #C89B3C;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 500;
+}
+
+/* Add Address Button */
+.mobileAddAddressBtn {
+  width: 100%;
+  padding: 10px;
+  background: #D9B382;
+  color: #3E2A1F;
+  border: none;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* New Address Form */
+.mobileNewAddressForm {
+  margin-top: 12px;
+  padding: 12px;
+  background: #F8F2E8;
+  border-radius: 12px;
+}
+
+.mobileNewAddressForm h3 {
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  color: #3E2A1F;
+}
+
+.mobileNewAddressForm input, .mobileNewAddressForm select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  background: white;
+}
+
+.mobileCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.mobileSaveAddressBtn {
+  width: 100%;
+  padding: 10px;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* Selected Address */
+.mobileSelectedAddress {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px;
+  background: #D1FAE5;
+  border-radius: 12px;
+  font-size: 0.7rem;
+}
+
+/* Order Items */
+.mobileOrderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobileOrderItem {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileOrderItem:last-child {
+  border-bottom: none;
+}
+
+.mobileOrderItem img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.mobileOrderItemInfo {
+  flex: 1;
+}
+
+.mobileOrderItemInfo h4 {
+  font-size: 0.8rem;
+  color: #3E2A1F;
+  margin-bottom: 4px;
+}
+
+.mobileOrderItemInfo p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin: 2px 0;
+}
+
+.mobileOrderItemPrice {
+  font-weight: bold;
+  color: #9E1B1B;
+  font-size: 0.8rem;
+}
+
+/* Payment Section */
+.mobilePaymentSection {
+  margin: 12px;
+}
+
+.mobilePaymentMethod {
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.mobilePaymentMethod svg {
+  font-size: 1.5rem;
+  color: #C89B3C;
+}
+
+.mobilePaymentMethod strong {
+  font-size: 0.8rem;
+  color: #3E2A1F;
+}
+
+.mobilePaymentMethod p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin-top: 2px;
+}
+
+/* Order Summary Card - Below Items (Not Fixed) */
+.mobileOrderSummaryCard {
+  background: white;
+  margin: 12px;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.mobileOrderSummaryCard h3 {
+  font-size: 0.9rem;
+  color: #3E2A1F;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 0.8rem;
+  color: #5C4B3A;
+}
+
+.mobileSummaryRow .free {
+  color: #1F5B3A;
+  font-weight: 500;
+}
+
+.mobileTotalRow {
+  font-weight: bold;
+  border-top: 1px solid #E8DCC8;
+  margin-top: 4px;
+  padding-top: 12px;
+  font-size: 0.9rem;
+}
+
+.mobileTotalRow strong {
+  color: #9E1B1B;
+  font-size: 1rem;
+}
+
+/* Place Order Button */
+.mobilePlaceOrderBtn {
+  width: 100%;
+  padding: 14px;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.2s;
+}
+
+.mobilePlaceOrderBtn:active {
+  transform: scale(0.98);
+  background: #15452B;
+}
+
+.mobilePlaceOrderBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Bottom Padding */
+.mobileBottomPadding {
+  height: 20px;
+}
+
+/* Message */
+.mobileMessage {
+  position: fixed;
+  top: 70px;
+  left: 16px;
+  right: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  z-index: 20;
+  animation: slideDown 0.3s ease;
+}
+
+.mobileMessage.success {
+  background: #D1FAE5;
+  color: #1F5B3A;
+}
+
+.mobileMessage.error {
+  background: #FEE2E2;
+  color: #9E1B1B;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hide desktop on mobile */
+@media (max-width: 768px) {
+  .checkoutPage {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileCheckout {
+    display: none;
+  }
+}
+/* Payment Options - Desktop */
+.paymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.paymentOption {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid #E8DCC8;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.paymentOption:hover {
+  border-color: #D9B382;
+  background: #F8F2E8;
+}
+
+.paymentOption.selected {
+  border-color: #1F5B3A;
+  background: #E8F5E9;
+}
+
+.paymentOption input {
+  width: 18px;
+  height: 18px;
+  accent-color: #1F5B3A;
+  cursor: pointer;
+}
+
+.paymentOption strong {
+  color: #3E2A1F;
+  font-size: 0.9rem;
+}
+
+.paymentOption p {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin-top: 0.25rem;
+}
+
+/* Mobile Payment Options */
+.mobilePaymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobilePaymentOption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.mobilePaymentOption.selected {
+  border-color: #1F5B3A;
+  background: #E8F5E9;
+}
+
+.mobilePaymentIcon {
+  font-size: 1.8rem;
+}
+
+.mobilePaymentInfo {
+  flex: 1;
+}
+
+.mobilePaymentInfo strong {
+  font-size: 0.85rem;
+  color: #3E2A1F;
+}
+
+.mobilePaymentInfo p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin-top: 0.25rem;
+}
+
+.mobilePaymentCheck {
+  color: #1F5B3A;
+  font-size: 1.1rem;
+}
+/* ============================================
+   PAYMENT METHOD SELECTION - DESKTOP
+   ============================================ */
+
+.paymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.paymentOption {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid #E8DCC8;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.paymentOption:hover {
+  border-color: #D9B382;
+  background: #F8F2E8;
+  transform: translateX(5px);
+}
+
+.paymentOption.selected {
+  border-color: #1F5B3A;
+  background: linear-gradient(135deg, #E8F5E9, #F8F2E8);
+  box-shadow: 0 4px 12px rgba(31, 91, 58, 0.1);
+}
+
+.paymentOption input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #1F5B3A;
+  cursor: pointer;
+  margin: 0;
+}
+
+.paymentOption div {
+  flex: 1;
+}
+
+.paymentOption strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #3E2A1F;
+  margin-bottom: 0.25rem;
+}
+
+.paymentOption p {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin: 0;
+}
+
+.paymentIcon {
+  font-size: 1.8rem;
+}
+
+/* ============================================
+   PAYMENT METHOD SELECTION - MOBILE
+   ============================================ */
+
+.mobilePaymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobilePaymentOption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: white;
+  border: 1.5px solid #E8DCC8;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.mobilePaymentOption:active {
+  transform: scale(0.98);
+}
+
+.mobilePaymentOption.selected {
+  border-color: #1F5B3A;
+  background: #E8F5E9;
+  box-shadow: 0 2px 8px rgba(31, 91, 58, 0.15);
+}
+
+.mobilePaymentIcon {
+  font-size: 1.6rem;
+}
+
+.mobilePaymentInfo {
+  flex: 1;
+}
+
+.mobilePaymentInfo strong {
+  display: block;
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  margin-bottom: 0.25rem;
+}
+
+.mobilePaymentInfo p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin: 0;
+}
+
+.mobilePaymentCheck {
+  color: #1F5B3A;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* ============================================
+   PAYMENT LOADING STATE
+   ============================================ */
+
+.paymentLoadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.paymentLoadingContent {
+  background: white;
+  border-radius: 24px;
+  padding: 2rem;
+  text-align: center;
+  animation: scaleIn 0.3s ease;
+}
+
+.paymentSpinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #E8DCC8;
+  border-top-color: #1F5B3A;
+  border-right-color: #C89B3C;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+.paymentLoadingContent p {
+  color: #3E2A1F;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============================================
+   SUCCESS MESSAGE STYLES
+   ============================================ */
+
+.successMessage {
+  background: #D1FAE5;
+  border-left: 4px solid #10B981;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: slideDown 0.3s ease;
+}
+
+.successMessage svg {
+  color: #10B981;
+  font-size: 1.2rem;
+}
+
+.successMessage span {
+  color: #065F46;
+  font-size: 0.85rem;
+}
+
+.mobileSuccessMessage {
+  background: #D1FAE5;
+  padding: 0.75rem 1rem;
+  margin: 0 1rem 1rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: slideDown 0.3s ease;
+}
+
+.mobileSuccessMessage svg {
+  color: #10B981;
+  font-size: 1rem;
+}
+
+.mobileSuccessMessage span {
+  color: #065F46;
+  font-size: 0.75rem;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .paymentOption {
+    padding: 0.75rem 1rem;
+  }
+  
+  .paymentOption strong {
+    font-size: 0.85rem;
+  }
+  
+  .paymentOption p {
+    font-size: 0.7rem;
+  }
+  
+  .paymentIcon {
+    font-size: 1.4rem;
+  }
+}
+/* Payment Success Animation */
+@keyframes paymentSuccess {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.paymentSuccessAnimation {
+  animation: paymentSuccess 0.5s ease-out;
+}
+
+.razorpayContainer {
+  position: relative;
+}
+
+.razorpayContainer iframe {
+  border-radius: 16px !important;
+}

@@ -1,0 +1,3146 @@
+/* ============================================
+   HOME PAGE STYLES
+   ============================================ */
+
+.home {
+  overflow-x: hidden;
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+}
+
+.loadingSpinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid #E8DCC8;
+  border-top-color: #9E1B1B;
+  border-right-color: #C89B3C;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #FFF9F1 0%, #F8F2E8 100%);
+}
+
+.heroBgEffects {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.effect1, .effect2, .effect3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+}
+
+.effect1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #D9B382, transparent);
+  top: -100px;
+  left: -100px;
+  animation: float 8s ease-in-out infinite;
+}
+
+.effect2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #C89B3C, transparent);
+  bottom: -150px;
+  right: -150px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+.effect3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #9E1B1B, transparent);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.heroContent {
+  text-align: center;
+  z-index: 2;
+  max-width: 900px;
+  padding: 2rem;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(216, 179, 106, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.heroTitle {
+  font-size: 3.8rem;
+  color: #3E2A1F;
+  margin-bottom: 1rem;
+  font-family: 'Georgia', serif;
+  line-height: 1.2;
+  animation: fadeInUp 0.6s ease-out 0.1s backwards;
+}
+
+.highlight {
+  color: #9E1B1B;
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: rgba(158, 27, 27, 0.2);
+  z-index: -1;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  color: #5C4B3A;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInUp 0.6s ease-out 0.2s backwards;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.6s ease-out 0.3s backwards;
+}
+
+.btnPrimary, .btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(31, 91, 58, 0.3);
+}
+
+.btnSecondary {
+  background: transparent;
+  color: #9E1B1B;
+  border: 2px solid #9E1B1B;
+}
+
+.btnSecondary:hover {
+  background: #9E1B1B;
+  color: white;
+  transform: translateY(-3px);
+}
+
+.btnIcon {
+  transition: transform 0.3s ease;
+}
+
+.btnPrimary:hover .btnIcon, .btnSecondary:hover .btnIcon {
+  transform: translateX(5px);
+}
+
+.heroStats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  animation: fadeInUp 0.6s ease-out 0.4s backwards;
+}
+
+.stat {
+  text-align: center;
+}
+
+.statNumber {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #9E1B1B;
+}
+
+.stat span:last-child {
+  font-size: 0.85rem;
+  color: #5C4B3A;
+}
+
+/* Floating Toys */
+.floatingToys {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.toy {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.15;
+  animation: floatToy 8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 1s);
+}
+
+@keyframes floatToy {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+}
+
+/* ============================================
+   FEATURES SECTION
+   ============================================ */
+
+.features {
+  padding: 5rem 0;
+  background: #FFF9F1;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.featureCard {
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.featureCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.featureIcon {
+  font-size: 2.5rem;
+  color: #9E1B1B;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.featureCard h3 {
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.featureCard p {
+  color: #7A6B5A;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  position: relative;
+  z-index: 2;
+}
+
+.featureBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(135deg, #F8F2E8, #FFF9F1);
+  transition: height 0.3s ease;
+  z-index: 0;
+}
+
+.featureCard:hover .featureBg {
+  height: 100%;
+}
+
+/* ============================================
+   DEALS & PRODUCTS SECTIONS
+   ============================================ */
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.deals, .products {
+  padding: 5rem 0;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTag {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(216, 179, 106, 0.2), rgba(200, 155, 60, 0.1));
+  color: #C89B3C;
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: #9E1B1B;
+  font-family: 'Georgia', serif;
+  margin-bottom: 0.5rem;
+}
+
+.sectionSubtitle {
+  color: #7A6B5A;
+  font-size: 1rem;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.productCard {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease-out backwards;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.productCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.discountBadge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: linear-gradient(135deg, #9E1B1B, #C89B3C);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.bulkBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #1F5B3A;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.cardImage {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.productCard:hover .cardImage img {
+  transform: scale(1.1);
+}
+
+.cardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(62, 42, 31, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.productCard:hover .cardOverlay {
+  opacity: 1;
+}
+
+.quickView {
+  background: white;
+  color: #1F5B3A;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.quickView:hover {
+  background: #1F5B3A;
+  color: white;
+  transform: scale(1.05);
+}
+
+.cardContent {
+  padding: 1.5rem;
+}
+
+.cardContent h3 {
+  font-size: 1rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  margin: 0.5rem 0;
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+.dealPrice, .productPrice {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1F5B3A;
+}
+
+.productDesc {
+  color: #7A6B5A;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.productFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.viewIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background: #D9B382;
+  color: #3E2A1F;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.viewIcon:hover {
+  background: #C89B3C;
+  transform: translateX(5px);
+}
+
+.viewBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.viewBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(31, 91, 58, 0.3);
+}
+
+.viewMore {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.viewMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  background: transparent;
+  color: #9E1B1B;
+  text-decoration: none;
+  border: 2px solid #9E1B1B;
+  border-radius: 50px;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.viewMoreBtn:hover {
+  background: #9E1B1B;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+
+.about {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #FFF9F1, #F8F2E8);
+}
+
+.aboutContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.aboutTitle {
+  font-size: 2.2rem;
+  color: #9E1B1B;
+  margin: 1rem 0;
+  font-family: 'Georgia', serif;
+}
+
+.aboutText p {
+  color: #5C4B3A;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.aboutFeatures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.aboutFeatures div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1F5B3A;
+  font-size: 0.9rem;
+}
+
+.aboutFeatures span {
+  color: #C89B3C;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.aboutImage {
+  position: relative;
+}
+
+.imageGallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.galleryItem {
+  background: linear-gradient(135deg, #D9B382, #C89B3C);
+  border-radius: 20px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  transition: all 0.3s;
+  animation: float 6s ease-in-out infinite;
+}
+
+.galleryItem:nth-child(1) { animation-delay: 0s; }
+.galleryItem:nth-child(2) { animation-delay: 1s; }
+.galleryItem:nth-child(3) { animation-delay: 2s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* ============================================
+   BENEFITS SECTION
+   ============================================ */
+
+.benefits {
+  padding: 4rem 0;
+  background: #FFF9F1;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.benefitCard {
+  text-align: center;
+  padding: 2rem;
+  transition: all 0.3s;
+}
+
+.benefitCard:hover {
+  transform: translateY(-5px);
+}
+
+.benefitIcon {
+  font-size: 2.5rem;
+  color: #C89B3C;
+  margin-bottom: 1rem;
+}
+
+.benefitCard h3 {
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.benefitCard p {
+  color: #7A6B5A;
+  font-size: 0.85rem;
+}
+
+/* ============================================
+   NEWSLETTER SECTION
+   ============================================ */
+
+.newsletter {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+}
+
+.newsletterContent {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletterIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.newsletterContent h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Georgia', serif;
+}
+
+.newsletterContent p {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.newsletterForm {
+  display: flex;
+  gap: 1rem;
+}
+
+.newsletterForm input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.newsletterForm input:focus {
+  outline: none;
+  background: white;
+}
+
+.newsletterForm button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: #D9B382;
+  color: #3E2A1F;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.newsletterForm button:hover {
+  background: #C89B3C;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.1; }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .heroTitle {
+    font-size: 2.8rem;
+  }
+  
+  .featuresGrid, .benefitsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .productGrid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+  
+  .heroButtons {
+    flex-direction: column;
+  }
+  
+  .heroStats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .featuresGrid, .benefitsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .aboutContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .aboutFeatures {
+    grid-template-columns: 1fr;
+  }
+  
+  .imageGallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .newsletterForm {
+    flex-direction: column;
+  }
+  
+  .newsletterForm button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .statNumber {
+    font-size: 1.2rem;
+  }
+  
+  .cardImage {
+    height: 200px;
+  }
+  
+  .galleryItem {
+    height: 120px;
+    font-size: 2.5rem;
+  }
+  
+  .deals, .products, .features, .about, .benefits {
+    padding: 3rem 0;
+  }
+}
+/* ============================================
+   MOBILE UI STYLES (Blinkit/Zepto Style)
+   ============================================ */
+
+.mobileHome {
+  min-height: 100vh;
+  background: #F8F2E8;
+  padding-bottom: 70px;
+}
+
+/* Mobile Header */
+.mobileHeader {
+  position: sticky;
+  top: 0;
+  background: white;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E8DCC8;
+  z-index: 100;
+}
+
+.menuBtn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: #3E2A1F;
+  cursor: pointer;
+}
+
+.mobileLogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobileLogoImg {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.mobileLocation {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileLocation span {
+  font-size: 10px;
+  color: #7A6B5A;
+}
+
+.mobileLocation strong {
+  font-size: 12px;
+  color: #3E2A1F;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mobileIcons {
+  display: flex;
+  gap: 16px;
+}
+
+.mobileIcon {
+  color: #3E2A1F;
+  font-size: 1.2rem;
+}
+
+/* Mobile Search Bar */
+.mobileSearchBar {
+  margin: 12px 16px;
+  background: #F8F2E8;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #E8DCC8;
+}
+
+.mobileSearchBar svg {
+  color: #C89B3C;
+}
+
+.mobileSearchBar input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Mobile Hero Banner */
+.mobileHero {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  margin: 16px;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobileHeroContent h1 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+  font-family: 'Georgia', serif;
+}
+
+.mobileHeroContent p {
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.mobileHeroBtn {
+  background: #D9B382;
+  color: #3E2A1F;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.mobileHeroIcon {
+  font-size: 3rem;
+}
+
+/* Mobile Features Row */
+.mobileFeatures {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 16px;
+  background: white;
+  margin: 0 16px 16px;
+  border-radius: 16px;
+}
+
+.mobileFeature {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #5C4B3A;
+}
+
+.mobileFeature svg {
+  color: #C89B3C;
+}
+
+/* Mobile Section */
+.mobileSection {
+  margin: 20px 16px;
+}
+
+.mobileSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.mobileSectionHeader h2 {
+  font-size: 1.1rem;
+  color: #3E2A1F;
+}
+
+.mobileSectionHeader a {
+  color: #9E1B1B;
+  text-decoration: none;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Horizontal Scroll for Deals */
+.mobileHorizontalScroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+
+.mobileProductCard {
+  flex: 0 0 140px;
+  background: white;
+  border-radius: 16px;
+  padding: 12px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.mobileProductCard:active {
+  transform: scale(0.98);
+}
+
+.mobileProductImage {
+  position: relative;
+  height: 120px;
+  background: #F8F2E8;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.mobileProductImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobileDiscountBadge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: #9E1B1B;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.mobileProductCard h3 {
+  font-size: 12px;
+  color: #3E2A1F;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobilePrice {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.mobileOriginalPrice {
+  font-size: 10px;
+  text-decoration: line-through;
+  color: #999;
+}
+
+.mobileDealPrice {
+  font-size: 12px;
+  font-weight: bold;
+  color: #9E1B1B;
+}
+
+/* Products Grid */
+.mobileProductsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.mobileProductGridCard {
+  background: white;
+  border-radius: 16px;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.mobileProductGridCard .mobileProductImage {
+  height: 140px;
+}
+
+.mobileProductGridCard h3 {
+  font-size: 12px;
+  color: #3E2A1F;
+  margin: 8px 0 4px;
+}
+
+.mobileProductGridCard .mobilePrice {
+  font-size: 13px;
+  font-weight: bold;
+  color: #1F5B3A;
+}
+
+/* Mobile About */
+.mobileAbout {
+  background: white;
+  margin: 20px 16px;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.mobileAboutIcon {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.mobileAbout h3 {
+  font-size: 1rem;
+  color: #3E2A1F;
+  margin-bottom: 8px;
+}
+
+.mobileAbout p {
+  font-size: 12px;
+  color: #7A6B5A;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.mobileAboutBtn {
+  color: #9E1B1B;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Mobile Benefits */
+.mobileBenefits {
+  margin: 16px;
+  background: white;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobileBenefit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+}
+
+.mobileBenefit svg {
+  font-size: 1.5rem;
+  color: #C89B3C;
+}
+
+.mobileBenefit strong {
+  display: block;
+  font-size: 13px;
+  color: #3E2A1F;
+}
+
+.mobileBenefit span {
+  font-size: 11px;
+  color: #7A6B5A;
+}
+
+/* Mobile Bottom Navigation */
+.mobileBottomNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 16px 16px;
+  border-top: 1px solid #E8DCC8;
+  z-index: 100;
+}
+
+.mobileNavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #7A6B5A;
+  font-size: 10px;
+  transition: color 0.2s;
+}
+
+.mobileNavItem svg {
+  font-size: 1.2rem;
+}
+
+.mobileNavItem.active {
+  color: #9E1B1B;
+}
+
+/* Mobile Drawer Menu */
+.mobileDrawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 200;
+}
+
+.mobileDrawerContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background: white;
+  padding: 20px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.mobileDrawerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #E8DCC8;
+  margin-bottom: 20px;
+}
+
+.drawerLogo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.mobileDrawerHeader button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.mobileDrawerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobileDrawerLinks a {
+  text-decoration: none;
+  color: #3E2A1F;
+  font-size: 1rem;
+  padding: 8px 0;
+}
+
+/* Loading */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #E8DCC8;
+  border-top-color: #9E1B1B;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+/* ============================================
+   MOBILE HERO SECTION WITH BRAND POSTER
+   ============================================ */
+
+/* ============================================
+   MOBILE HERO SECTION WITH ANIMATIONS
+   ============================================ */
+
+/* Banner Image Animation */
+.mobileHero {
+  margin: 12px 16px;
+  background: transparent;
+  overflow: hidden;
+  animation: fadeInScale 0.6s ease-out;
+}
+
+.mobileHeroPoster {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.mobileHeroPoster:hover {
+  transform: scale(1.02);
+}
+
+/* Text Section */
+.mobileHeroTextSection {
+  text-align: center;
+  padding: 16px;
+  background: transparent;
+}
+
+/* Text Animations */
+.animateText {
+  font-size: 1.3rem;
+  color: #3E2A1F;
+  margin-bottom: 8px;
+  font-family: 'Georgia', serif;
+  font-weight: 600;
+  animation: slideUpFade 0.6s ease-out 0.2s both;
+}
+
+.animateTextDelay {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+  margin-bottom: 16px;
+  line-height: 1.4;
+  animation: slideUpFade 0.6s ease-out 0.4s both;
+}
+
+/* Button Animation */
+.mobileHeroBtn {
+  display: inline-block;
+  background: #1F5B3A;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  animation: slideUpFade 0.6s ease-out 0.6s both;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobileHeroBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 91, 58, 0.3);
+}
+
+.mobileHeroBtn:active {
+  transform: scale(0.98);
+}
+
+/* Button Ripple Effect */
+.mobileHeroBtn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.mobileHeroBtn:active::after {
+  width: 100%;
+  height: 100%;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional: Pulsing animation for the button */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(31, 91, 58, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(31, 91, 58, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(31, 91, 58, 0);
+  }
+}
+
+/* Add subtle floating animation to the banner */
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.mobileHero {
+  animation: fadeInScale 0.6s ease-out, gentleFloat 3s ease-in-out infinite;
+}
+
+/* Hover effect for the image */
+.mobileHeroPoster {
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.mobileHeroPoster:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+/* Shimmer Effect on Banner */
+.mobileHero {
+  position: relative;
+  margin: 12px 16px;
+  background: transparent;
+  overflow: hidden;
+  animation: fadeInScale 0.6s ease-out;
+}
+
+.mobileHero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+/* Bounce animation for button */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.mobileHeroBtn {
+  animation: slideUpFade 0.6s ease-out 0.6s both, bounce 1s ease-in-out 1s;
+}
+/* ============================================
+   MOBILE PRODUCTS - 3 COLUMNS
+   ============================================ */
+
+/* Products Grid - 3 Columns */
+.mobileProductsGrid3Col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.mobileProductCard3Col {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: all 0.2s;
+  padding: 8px;
+  text-align: center;
+}
+
+.mobileProductCard3Col:active {
+  transform: scale(0.97);
+}
+
+.mobileProductImage3Col {
+  width: 100%;
+  height: 100px;
+  background: #F8F2E8;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.mobileProductImage3Col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobileProductCard3Col h3 {
+  font-size: 0.7rem;
+  color: #3E2A1F;
+  margin-bottom: 4px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobilePrice3Col {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #9E1B1B;
+}
+/* ============================================
+   MOBILE ABOUT SECTION - PREMIUM DESIGN
+   ============================================ */
+
+.mobileAbout {
+  margin: 20px 16px;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  border-radius: 24px;
+  padding: 24px 20px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Animated Background Effect */
+.mobileAbout::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(216, 179, 106, 0.1) 0%, transparent 70%);
+  animation: slowRotate 20s linear infinite;
+}
+
+@keyframes slowRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Decorative Line */
+.mobileAbout::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #D9B382, #C89B3C, #D9B382, transparent);
+  border-radius: 3px;
+}
+
+.mobileAboutContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.mobileAboutTag {
+  display: inline-block;
+  background: rgba(216, 179, 106, 0.2);
+  color: #D9B382;
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.mobileAboutContent h3 {
+  font-size: 1.3rem;
+  color: white;
+  font-family: 'Georgia', serif;
+  margin-bottom: 16px;
+  line-height: 1.3;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.mobileAboutContent p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.mobileAboutFeatures {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.mobileAboutFeature {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.mobileAboutFeature span {
+  color: #D9B382;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.mobileAboutFeature:hover {
+  background: rgba(216, 179, 106, 0.3);
+  transform: translateY(-2px);
+}
+
+.mobileAboutBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #D9B382;
+  color: #3E2A1F;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+  animation: fadeInUp 0.6s ease-out 0.5s both;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobileAboutBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.mobileAboutBtn:hover::before {
+  left: 100%;
+}
+
+.mobileAboutBtn:active {
+  transform: scale(0.97);
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slowRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Optional: Add a subtle pulse animation to the tag */
+@keyframes subtlePulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.mobileAboutTag {
+  animation: fadeInUp 0.6s ease-out 0.1s both, subtlePulse 2s ease-in-out infinite;
+}
+
+/* ============================================
+   MOBILE BENEFITS SECTION - PREMIUM UI
+   ============================================ */
+
+.mobileBenefits {
+  margin: 20px 16px;
+  background: white;
+  border-radius: 24px;
+  padding: 24px 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.mobileBenefitsHeader {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.mobileBenefitsTag {
+  display: inline-block;
+  background: rgba(200, 155, 60, 0.15);
+  color: #C89B3C;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.mobileBenefitsHeader h3 {
+  font-size: 1.2rem;
+  color: #3E2A1F;
+  font-family: 'Georgia', serif;
+  margin: 0;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.mobileBenefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.mobileBenefitCard {
+  background: #F8F9FA;
+  border-radius: 16px;
+  padding: 16px 12px;
+  text-align: center;
+  transition: all 0.3s;
+  animation: fadeInUp 0.6s ease-out backwards;
+  border: 1px solid #E8DCC8;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobileBenefitCard:nth-child(1) { animation-delay: 0.1s; }
+.mobileBenefitCard:nth-child(2) { animation-delay: 0.2s; }
+.mobileBenefitCard:nth-child(3) { animation-delay: 0.3s; }
+.mobileBenefitCard:nth-child(4) { animation-delay: 0.4s; }
+
+.mobileBenefitCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1F5B3A, #C89B3C, #1F5B3A);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.mobileBenefitCard:hover::before {
+  transform: scaleX(1);
+}
+
+.mobileBenefitCard:active {
+  transform: scale(0.97);
+}
+
+.mobileBenefitIcon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  transition: all 0.3s;
+}
+
+.mobileBenefitIcon svg {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.mobileBenefitCard:hover .mobileBenefitIcon {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(31, 91, 58, 0.3);
+}
+
+.mobileBenefitContent {
+  text-align: center;
+}
+
+.mobileBenefitContent strong {
+  display: block;
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.mobileBenefitContent span {
+  display: block;
+  font-size: 0.65rem;
+  color: #7A6B5A;
+  line-height: 1.3;
+}
+
+/* Alternative: Horizontal Scrolling Benefits (Modern Style) */
+.mobileBenefitsHorizontal {
+  margin: 20px 16px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobileBenefitsHorizontal::-webkit-scrollbar {
+  display: none;
+}
+
+.mobileBenefitsScroll {
+  display: inline-flex;
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.mobileBenefitCardHorizontal {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border-radius: 60px;
+  padding: 8px 20px 8px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E8DCC8;
+  white-space: normal;
+  transition: all 0.3s;
+}
+
+.mobileBenefitCardHorizontal:active {
+  transform: scale(0.97);
+}
+
+.mobileBenefitIconHorizontal {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileBenefitIconHorizontal svg {
+  font-size: 1rem;
+  color: white;
+}
+
+.mobileBenefitContentHorizontal {
+  text-align: left;
+}
+
+.mobileBenefitContentHorizontal strong {
+  font-size: 0.75rem;
+  color: #3E2A1F;
+  display: block;
+}
+
+.mobileBenefitContentHorizontal span {
+  font-size: 0.6rem;
+  color: #7A6B5A;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .mobileBenefitsGrid {
+    gap: 10px;
+  }
+  
+  .mobileBenefitCard {
+    padding: 12px 8px;
+  }
+  
+  .mobileBenefitIcon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .mobileBenefitIcon svg {
+    font-size: 1.3rem;
+  }
+  
+  .mobileBenefitContent strong {
+    font-size: 0.75rem;
+  }
+  
+  .mobileBenefitContent span {
+    font-size: 0.6rem;
+  }
+}
+/* ============================================
+   DESKTOP ABOUT SECTION - PREMIUM WITH POSTER
+   ============================================ */
+
+.about {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #FFF9F1 0%, #F8F2E8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 80%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(200, 155, 60, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.aboutContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Left Side - Text Content */
+.aboutText {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+.sectionTag {
+  display: inline-block;
+  background: rgba(200, 155, 60, 0.15);
+  color: #C89B3C;
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.aboutTitle {
+  font-size: 2.2rem;
+  color: #9E1B1B;
+  margin-bottom: 1.5rem;
+  font-family: 'Georgia', serif;
+  position: relative;
+}
+
+.aboutTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #C89B3C, #D9B382);
+  border-radius: 3px;
+}
+
+.aboutDesc {
+  color: #5C4B3A;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.aboutFeatures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.aboutFeature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #1F5B3A;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  background: rgba(31, 91, 58, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.aboutFeature:hover {
+  background: rgba(31, 91, 58, 0.1);
+  transform: translateX(5px);
+}
+
+.aboutFeature span {
+  color: #C89B3C;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.aboutBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+.aboutBtn:hover {
+  transform: translateX(5px);
+  background: linear-gradient(135deg, #15452B, #0F3A28);
+  box-shadow: 0 5px 15px rgba(31, 91, 58, 0.3);
+}
+
+/* Right Side - Poster Image */
+.aboutImage {
+  position: relative;
+  animation: fadeInRight 0.8s ease-out;
+}
+
+.aboutImageWrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s;
+}
+
+.aboutImageWrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+}
+
+.aboutPoster {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.aboutImageWrapper:hover .aboutPoster {
+  transform: scale(1.05);
+}
+
+.aboutImageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(158, 27, 27, 0.2), rgba(31, 91, 58, 0.2));
+  pointer-events: none;
+}
+
+.aboutImageGlow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(216, 179, 106, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.aboutImageWrapper:hover .aboutImageGlow {
+  opacity: 1;
+  animation: rotateGlow 6s linear infinite;
+}
+
+/* Decorative Elements */
+.aboutDecoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.decorationCircle {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 120px;
+  height: 120px;
+  border: 2px dashed #D9B382;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: rotateSlow 20s linear infinite;
+}
+
+.decorationDot1 {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  font-size: 2rem;
+  opacity: 0.6;
+  animation: float 4s ease-in-out infinite;
+}
+
+.decorationDot2 {
+  position: absolute;
+  top: 30%;
+  right: -30px;
+  font-size: 1.5rem;
+  opacity: 0.5;
+  animation: float 5s ease-in-out infinite reverse;
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateGlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .aboutContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .aboutTitle::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .aboutFeatures {
+    grid-template-columns: 1fr;
+    text-align: left;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .aboutBtn {
+    margin: 0 auto;
+  }
+  
+  .decorationCircle {
+    width: 80px;
+    height: 80px;
+    top: -20px;
+    right: -20px;
+  }
+  
+  .decorationDot1 {
+    font-size: 1.5rem;
+  }
+  
+  .decorationDot2 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 3rem 0;
+  }
+  
+  .aboutTitle {
+    font-size: 1.8rem;
+  }
+  
+  .aboutDesc {
+    font-size: 0.85rem;
+  }
+}
+/* ============================================
+   DESKTOP HERO SECTION - PREMIUM
+   ============================================ */
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #FFF9F1 0%, #F8F2E8 100%);
+  padding: 4rem 2rem;
+}
+
+/* Background Effects */
+.heroBgEffects {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.effect1, .effect2, .effect3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: floatSlow 12s ease-in-out infinite;
+}
+
+.effect1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #D9B382, transparent);
+  top: -150px;
+  left: -150px;
+}
+
+.effect2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #C89B3C, transparent);
+  bottom: -200px;
+  right: -200px;
+  animation-delay: 2s;
+}
+
+.effect3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #9E1B1B, transparent);
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, 20px) scale(1.1); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.1; }
+}
+
+/* Hero Container - Left & Right Layout */
+.heroContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Left Side - Content */
+.heroContent {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(216, 179, 106, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(216, 179, 106, 0.3);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  color: #3E2A1F;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  line-height: 1.2;
+  animation: fadeInUp 0.6s ease-out 0.1s backwards;
+}
+
+.highlight {
+  color: #9E1B1B;
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: rgba(158, 27, 27, 0.2);
+  z-index: -1;
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  color: #5C4B3A;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 500px;
+  animation: fadeInUp 0.6s ease-out 0.2s backwards;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.6s ease-out 0.3s backwards;
+}
+
+.btnPrimary, .btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btnPrimary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btnPrimary:hover::before {
+  left: 100%;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(31, 91, 58, 0.3);
+}
+
+.btnSecondary {
+  background: transparent;
+  color: #9E1B1B;
+  border: 2px solid #9E1B1B;
+  position: relative;
+  overflow: hidden;
+}
+
+.btnSecondary:hover {
+  background: #9E1B1B;
+  color: white;
+  transform: translateY(-3px);
+}
+
+.btnIcon {
+  transition: transform 0.3s ease;
+}
+
+.btnPrimary:hover .btnIcon, .btnSecondary:hover .btnIcon {
+  transform: translateX(5px);
+}
+
+.heroStats {
+  display: flex;
+  gap: 3rem;
+  animation: fadeInUp 0.6s ease-out 0.4s backwards;
+}
+
+.stat {
+  text-align: center;
+}
+
+.statNumber {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #9E1B1B;
+}
+
+.stat span:last-child {
+  font-size: 0.85rem;
+  color: #5C4B3A;
+}
+
+/* Right Side - Hero Image */
+.heroImageContainer {
+  position: relative;
+  animation: fadeInRight 0.8s ease-out;
+}
+
+.heroImageWrapper {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease;
+  animation: floatImage 6s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.heroImageWrapper:hover {
+  transform: scale(1.02);
+  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.heroImageWrapper:hover .heroImage {
+  transform: scale(1.05);
+}
+
+.heroImageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(158, 27, 27, 0.15), rgba(31, 91, 58, 0.15));
+  pointer-events: none;
+}
+
+.heroImageGlow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(216, 179, 106, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.heroImageWrapper:hover .heroImageGlow {
+  opacity: 1;
+  animation: rotateGlow 8s linear infinite;
+}
+
+@keyframes rotateGlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hero Image Decorations */
+.heroImageDecoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.heroDecoCircle {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 150px;
+  height: 150px;
+  border: 2px dashed #D9B382;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: rotateSlow 25s linear infinite;
+}
+
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.heroDecoDot1, .heroDecoDot2, .heroDecoDot3 {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.5;
+  animation: floatDeco 5s ease-in-out infinite;
+}
+
+.heroDecoDot1 {
+  bottom: -30px;
+  left: -30px;
+  animation-delay: 0s;
+}
+
+.heroDecoDot2 {
+  top: 20%;
+  right: -40px;
+  animation-delay: 1s;
+}
+
+.heroDecoDot3 {
+  bottom: 30%;
+  left: -40px;
+  animation-delay: 2s;
+}
+
+@keyframes floatDeco {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+}
+
+/* Floating Toys */
+.floatingToys {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.toy {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.12;
+  animation: floatToy 10s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 1s);
+  filter: blur(0.5px);
+}
+
+@keyframes floatToy {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(10deg);
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .heroContainer {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .heroContent {
+    text-align: center;
+  }
+  
+  .heroSubtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .heroStats {
+    justify-content: center;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroImageContainer {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+  
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroButtons {
+    flex-direction: column;
+  }
+  
+  .heroStats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .heroDecoCircle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .heroDecoDot1, .heroDecoDot2, .heroDecoDot3 {
+    font-size: 1.5rem;
+  }
+}
+/* Deals Grid - 4 Columns, Multiple Rows */
+.dealsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.dealCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+  animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.dealCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .dealsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dealsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Products Grid - 4 Columns on Desktop */
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.productCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.cardImage {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #F8F2E8;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.productCard:hover .cardImage img {
+  transform: scale(1.08);
+}
+
+.cardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(62, 42, 31, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.productCard:hover .cardOverlay {
+  opacity: 1;
+}
+
+.quickView {
+  padding: 0.5rem 1rem;
+  background: white;
+  border-radius: 50px;
+  text-decoration: none;
+  color: #3E2A1F;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.quickView:hover {
+  background: #9E1B1B;
+  color: white;
+}
+
+.bulkBadge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: linear-gradient(135deg, #C89B3C, #D9B382);
+  color: #3E2A1F;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.cardContent {
+  padding: 1rem;
+}
+
+.cardContent h3 {
+  font-size: 0.95rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.productDesc {
+  color: #7A6B5A;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.productFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productPrice {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #9E1B1B;
+}
+
+.viewIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #D9B382;
+  color: #3E2A1F;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.viewIcon:hover {
+  background: #C89B3C;
+  transform: translateX(3px);
+}
+
+.viewMore {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.viewMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: #9E1B1B;
+  text-decoration: none;
+  border: 2px solid #9E1B1B;
+  border-radius: 50px;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.viewMoreBtn:hover {
+  background: #9E1B1B;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cardImage {
+    height: 200px;
+  }
+}
+/* Mobile Search Results */
+.mobileSearchResults {
+  padding: 8px 16px;
+  background: #FFF9F1;
+  border-bottom: 1px solid #E8DCC8;
+  margin-bottom: 8px;
+}
+
+.mobileSearchResults p {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+}
+
+.mobileSearchResults strong {
+  color: #9E1B1B;
+}
+
+.mobileNoResults {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 16px;
+}
+
+.mobileNoResults p {
+  color: #7A6B5A;
+  margin-bottom: 12px;
+}
+
+.mobileClearSearchBtn {
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+/* Sold Out Badge Styles */
+.soldOutBadge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 10;
+  white-space: nowrap;
+  letter-spacing: 1px;
+}
+
+.outOfStockBtn {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background: #FEE2E2;
+  color: #9E1B1B;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: not-allowed;
+}
+
+/* Mobile Sold Out Badge */
+.mobileSoldOutBadge {
+  position: absolute;
+  bottom: 30px;
+  left: 5px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 0.6rem;
+  font-weight: bold;
+  z-index: 3;
+}

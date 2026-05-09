@@ -1,0 +1,417 @@
+/* ============================================
+   MOBILE LOGIN UI - LARGER LOGO
+   ============================================ */
+
+.mobileLoginPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #F8F2E8 0%, #FFF9F1 100%);
+  padding: 20px 16px 40px;
+}
+
+/* Mobile Header */
+.mobileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.mobileBackBtn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #3E2A1F;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.mobileBackBtn:active {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.mobileHeader h1 {
+  font-size: 1.2rem;
+  color: #3E2A1F;
+  font-weight: 600;
+}
+
+.mobilePlaceholder {
+  width: 40px;
+}
+
+/* Mobile Logo - LARGER */
+.mobileLogoContainer {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.mobileLogo {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  background: #FFF9F1;
+  padding: 0;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mobileLogo:active {
+  transform: scale(0.98);
+}
+
+/* Mobile Login Card */
+.mobileLoginCard {
+  background: white;
+  border-radius: 24px;
+  padding: 28px 24px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.mobileLoginCard h2 {
+  font-size: 1.5rem;
+  color: #3E2A1F;
+  margin-bottom: 8px;
+  font-family: 'Georgia', serif;
+}
+
+.mobileSubtitle {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+  margin-bottom: 28px;
+}
+
+/* Mobile Input Groups */
+.mobileInputGroup {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.mobileInputIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #C89B3C;
+  font-size: 1.1rem;
+}
+
+.mobileInputGroup input {
+  width: 100%;
+  padding: 15px 45px 15px 48px;
+  border: 1px solid #E8DCC8;
+  border-radius: 60px;
+  font-size: 0.9rem;
+  background: white;
+  transition: all 0.3s;
+}
+
+.mobileInputGroup input:focus {
+  outline: none;
+  border-color: #D9B382;
+  box-shadow: 0 0 0 3px rgba(216, 179, 130, 0.2);
+}
+
+.mobilePasswordToggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #7A6B5A;
+  font-size: 1.1rem;
+}
+
+/* Mobile Forgot Link */
+.mobileForgotLink {
+  text-align: right;
+  margin-bottom: 28px;
+}
+
+.mobileForgotLink a {
+  color: #9E1B1B;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+/* Mobile Submit Button */
+.mobileSubmitBtn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+  border-radius: 60px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 20px;
+}
+
+.mobileSubmitBtn:active {
+  transform: scale(0.98);
+}
+
+.mobileSubmitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mobile Signup Link */
+.mobileSignupLink {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #7A6B5A;
+}
+
+.mobileSignupLink a {
+  color: #9E1B1B;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Mobile Error Message */
+.mobileErrorMessage {
+  background: #FEE2E2;
+  color: #9E1B1B;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Mobile Footer */
+.mobileFooter {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.mobileFooter p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+/* Hide desktop on mobile, hide mobile on desktop */
+@media (max-width: 768px) {
+  .loginPage {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileLoginPage {
+    display: none;
+  }
+}
+
+/* ============================================
+   DESKTOP LOGIN STYLES - LARGER LOGO
+   ============================================ */
+
+.loginPage {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #F8F2E8 0%, #FFF9F1 100%);
+}
+
+.loginContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1000px;
+  width: 100%;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.loginLeft {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  padding: 3rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.brand {
+  text-align: center;
+}
+
+.brandLogo {
+  width: 220px;
+  height: auto; /* fixed square for proper fit */
+  object-fit: contain;
+  background: #FFF9F1;
+  padding: 10px; /* reduced padding so logo fits nicely */
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.brandLogo:hover {
+  transform: scale(1.05);
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+}
+
+.feature span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(216, 179, 106, 0.3);
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.loginRight {
+  padding: 3rem;
+  background: white;
+}
+
+.loginCard h3 {
+  font-size: 1.8rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #7A6B5A;
+  margin-bottom: 2rem;
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #3E2A1F;
+  font-weight: 500;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 2px solid #E8DCC8;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: #D9B382;
+  box-shadow: 0 0 0 3px rgba(216, 179, 130, 0.2);
+}
+
+.forgotPasswordLink {
+  text-align: right;
+  margin-bottom: 1.5rem;
+}
+
+.forgotPasswordLink a {
+  color: #9E1B1B;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(31, 91, 58, 0.3);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.signupLink {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #7A6B5A;
+}
+
+.signupLink a {
+  color: #9E1B1B;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.terms {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin-top: 2rem;
+}
+
+.errorMessage {
+  background: #FEE2E2;
+  color: #9E1B1B;
+  padding: 0.9rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  .brandLogo {
+    width: 180px;
+    padding: 20px;
+  }
+}
+
+/* Small Desktop */
+@media (max-width: 900px) {
+  .brandLogo {
+    width: 160px;
+    padding: 18px;
+  }
+}

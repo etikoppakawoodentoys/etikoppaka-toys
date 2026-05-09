@@ -1,0 +1,641 @@
+/* src/components/CookieConsent/CookieConsent.module.css */
+
+/* ============================================
+   DESKTOP COOKIE BANNER
+   ============================================ */
+.cookieBannerDesktop {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  animation: slideUpDesktop 0.4s ease-out;
+  border: 1px solid rgba(200, 155, 60, 0.2);
+}
+
+@keyframes slideUpDesktop {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cookieContentDesktop {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+}
+
+.cookieIconDesktop {
+  font-size: 3rem;
+  background: linear-gradient(135deg, #F8F2E8, #fff);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cookieTextDesktop {
+  flex: 1;
+}
+
+.cookieTextDesktop h3 {
+  font-size: 1.2rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.cookieTextDesktop p {
+  font-size: 0.85rem;
+  color: #5C4B3A;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.cookieLinksDesktop {
+  display: flex;
+  gap: 1rem;
+}
+
+.settingsLinkDesktop, .policyLinkDesktop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 0.75rem;
+  color: #1F5B3A;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  font-weight: 500;
+}
+
+.settingsLinkDesktop:hover, .policyLinkDesktop:hover {
+  color: #C89B3C;
+}
+
+.cookieButtonsDesktop {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.essentialBtnDesktop {
+  padding: 0.6rem 1.2rem;
+  background: #F8F2E8;
+  border: 1px solid #E8DCC8;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #5C4B3A;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.essentialBtnDesktop:hover {
+  background: #E8DCC8;
+}
+
+.acceptBtnDesktop {
+  padding: 0.6rem 1.5rem;
+  background: #1F5B3A;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.acceptBtnDesktop:hover {
+  background: #15452B;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   MOBILE COOKIE BANNER
+   ============================================ */
+.cookieBannerMobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  animation: slideUpMobile 0.4s ease-out;
+}
+
+@keyframes slideUpMobile {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cookieContentMobile {
+  padding: 1.25rem;
+}
+
+.cookieHeaderMobile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.cookieIconMobile {
+  font-size: 1.8rem;
+}
+
+.cookieHeaderMobile h3 {
+  font-size: 1.1rem;
+  color: #3E2A1F;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cookieTextMobile p {
+  font-size: 0.8rem;
+  color: #5C4B3A;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.cookieButtonsMobile {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.essentialBtnMobile {
+  flex: 1;
+  padding: 0.75rem;
+  background: #FEE2E2;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9E1B1B;
+  cursor: pointer;
+}
+
+.settingsBtnMobile {
+  flex: 1;
+  padding: 0.75rem;
+  background: #F8F2E8;
+  border: 1px solid #E8DCC8;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #3E2A1F;
+  cursor: pointer;
+}
+
+.acceptBtnMobile {
+  flex: 1;
+  padding: 0.75rem;
+  background: #1F5B3A;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+
+/* ============================================
+   DESKTOP MODAL
+   ============================================ */
+.modalOverlayDesktop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalContentDesktop {
+  background: white;
+  border-radius: 28px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 85vh;
+  overflow: hidden;
+  animation: modalZoom 0.3s ease-out;
+}
+
+@keyframes modalZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modalHeaderDesktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 2px solid #E8DCC8;
+}
+
+.modalHeaderDesktop h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  color: #3E2A1F;
+  margin: 0;
+}
+
+.closeBtnDesktop {
+  background: #F8F2E8;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #5C4B3A;
+  transition: all 0.2s;
+}
+
+.closeBtnDesktop:hover {
+  background: #E8DCC8;
+}
+
+.modalBodyDesktop {
+  padding: 1.5rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modalDescDesktop {
+  font-size: 0.85rem;
+  color: #5C4B3A;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.cookieOptionDesktop {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #F8F2E8;
+  border-radius: 16px;
+}
+
+.optionHeaderDesktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.optionHeaderDesktop h4 {
+  font-size: 0.95rem;
+  color: #3E2A1F;
+  margin-bottom: 0.25rem;
+}
+
+.optionHeaderDesktop p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin: 0;
+}
+
+.cookieStatusDesktop {
+  font-size: 0.65rem;
+  color: #1F5B3A;
+}
+
+.alwaysActiveBadgeDesktop {
+  background: #1F5B3A;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.switchDesktop {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switchDesktop input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.sliderDesktop {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.sliderDesktop:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.switchDesktop input:checked + .sliderDesktop {
+  background-color: #1F5B3A;
+}
+
+.switchDesktop input:checked + .sliderDesktop:before {
+  transform: translateX(26px);
+}
+
+.optionDescDesktop {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+}
+
+.modalFooterDesktop {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #E8DCC8;
+  background: white;
+}
+
+.rejectBtnDesktop, .saveBtnDesktop, .acceptAllBtnDesktop {
+  padding: 0.6rem 1.2rem;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rejectBtnDesktop {
+  background: #FEE2E2;
+  border: none;
+  color: #9E1B1B;
+}
+
+.saveBtnDesktop {
+  background: #F8F2E8;
+  border: 1px solid #E8DCC8;
+  color: #3E2A1F;
+}
+
+.acceptAllBtnDesktop {
+  background: #1F5B3A;
+  border: none;
+  color: white;
+}
+
+.rejectBtnDesktop:hover, .saveBtnDesktop:hover, .acceptAllBtnDesktop:hover {
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   MOBILE MODAL
+   ============================================ */
+.modalOverlayMobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.2s ease;
+}
+
+.modalContentMobile {
+  background: white;
+  border-radius: 24px 24px 0 0;
+  width: 100%;
+  max-height: 85vh;
+  overflow: hidden;
+  animation: slideUpModal 0.3s ease-out;
+}
+
+@keyframes slideUpModal {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.modalHeaderMobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.modalHeaderMobile h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #3E2A1F;
+  margin: 0;
+}
+
+.closeBtnMobile {
+  background: #F8F2E8;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.modalBodyMobile {
+  padding: 1rem 1.25rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modalDescMobile {
+  font-size: 0.75rem;
+  color: #5C4B3A;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.cookieOptionMobile {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #F8F2E8;
+  border-radius: 12px;
+}
+
+.optionHeaderMobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.optionHeaderMobile h4 {
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  margin: 0;
+}
+
+.alwaysActiveMobile {
+  font-size: 0.6rem;
+  color: #1F5B3A;
+  font-weight: 500;
+}
+
+.switchMobile {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 22px;
+}
+
+.switchMobile input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.sliderMobile {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 22px;
+}
+
+.sliderMobile:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.switchMobile input:checked + .sliderMobile {
+  background-color: #1F5B3A;
+}
+
+.switchMobile input:checked + .sliderMobile:before {
+  transform: translateX(22px);
+}
+
+.optionDescMobile {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  line-height: 1.3;
+  margin-top: 0.5rem;
+}
+
+.modalFooterMobile {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #E8DCC8;
+  background: white;
+}
+
+.rejectBtnMobile, .saveBtnMobile, .acceptAllBtnMobile {
+  flex: 1;
+  padding: 0.6rem;
+  border-radius: 40px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+
+.rejectBtnMobile {
+  background: #FEE2E2;
+  border: none;
+  color: #9E1B1B;
+}
+
+.saveBtnMobile {
+  background: #F8F2E8;
+  border: 1px solid #E8DCC8;
+  color: #3E2A1F;
+}
+
+.acceptAllBtnMobile {
+  background: #1F5B3A;
+  border: none;
+  color: white;
+}

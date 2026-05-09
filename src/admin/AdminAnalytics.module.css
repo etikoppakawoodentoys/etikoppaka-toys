@@ -1,0 +1,129 @@
+.adminAnalytics {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #F8F2E8;
+  border-radius: 12px;
+}
+
+.statIcon {
+  font-size: 2rem;
+}
+
+.statInfo h3 {
+  font-size: 0.85rem;
+  color: #7A6B5A;
+  margin-bottom: 0.25rem;
+}
+
+.statNumber {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #9E1B1B;
+}
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.chartCard {
+  padding: 1rem;
+  background: #F8F2E8;
+  border-radius: 12px;
+}
+
+.chartCard h3 {
+  color: #3E2A1F;
+  margin-bottom: 1rem;
+}
+
+.barChart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 250px;
+}
+
+.barItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.barWrapper {
+  height: 150px;
+  width: 40px;
+  background: #E8DCC8;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.bar {
+  width: 100%;
+  background: #9E1B1B;
+  border-radius: 8px;
+  transition: height 0.3s ease;
+}
+
+.barLabel {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+}
+
+.barValue {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #1F5B3A;
+}
+
+.topProducts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.productRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 8px;
+}
+
+.productRank {
+  font-weight: bold;
+  color: #D9B382;
+  min-width: 40px;
+}
+
+.productName {
+  flex: 1;
+  color: #3E2A1F;
+}
+
+.productSales {
+  color: #1F5B3A;
+  font-weight: 500;
+}

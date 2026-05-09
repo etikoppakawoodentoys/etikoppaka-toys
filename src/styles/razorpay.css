@@ -1,0 +1,24 @@
+/* src/styles/razorpay.css */
+
+/* Custom Razorpay Checkout Styling */
+.razorpay-checkout {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+.razorpay-checkout-frame {
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
+/* Custom button styling inside Razorpay if needed */
+.razorpay-payment-button {
+  background: #1F5B3A !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s !important;
+}
+
+.razorpay-payment-button:hover {
+  background: #15452B !important;
+  transform: translateY(-2px) !important;
+}

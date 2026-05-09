@@ -1,0 +1,186 @@
+/* ============================================
+   PAYMENT STATUS PAGE - DESKTOP
+   ============================================ */
+
+.paymentStatusPage {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F8F2E8;
+  padding: 2rem;
+}
+
+.paymentCard {
+  background: white;
+  border-radius: 28px;
+  padding: 3rem;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.successIcon {
+  font-size: 5rem;
+  color: #10B981;
+  margin-bottom: 1rem;
+  animation: scaleIn 0.4s ease-out 0.2s both;
+}
+
+.errorIcon {
+  font-size: 5rem;
+  color: #EF4444;
+  margin-bottom: 1rem;
+  animation: scaleIn 0.4s ease-out 0.2s both;
+}
+
+.pendingIcon {
+  font-size: 5rem;
+  color: #F59E0B;
+  margin-bottom: 1rem;
+  animation: scaleIn 0.4s ease-out 0.2s both;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.paymentCard h2 {
+  font-size: 1.8rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.paymentCard p {
+  color: #7A6B5A;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.paymentDetails {
+  background: #F8F2E8;
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.detailRow:last-child {
+  border-bottom: none;
+}
+
+.detailRow span {
+  color: #7A6B5A;
+  font-size: 0.8rem;
+}
+
+.detailRow strong {
+  color: #3E2A1F;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+.viewOrdersBtn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #1F5B3A;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+.viewOrdersBtn:hover {
+  background: #15452B;
+  transform: translateY(-2px);
+}
+
+.loadingContainer {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F8F2E8;
+}
+
+.loadingSpinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid #E8DCC8;
+  border-top-color: #1F5B3A;
+  border-right-color: #C89B3C;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   PAYMENT STATUS - MOBILE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .paymentStatusPage {
+    padding: 1rem;
+    min-height: 80vh;
+  }
+  
+  .paymentCard {
+    padding: 2rem 1.5rem;
+  }
+  
+  .successIcon, .errorIcon, .pendingIcon {
+    font-size: 4rem;
+  }
+  
+  .paymentCard h2 {
+    font-size: 1.5rem;
+  }
+  
+  .paymentCard p {
+    font-size: 0.8rem;
+  }
+  
+  .detailRow span,
+  .detailRow strong {
+    font-size: 0.7rem;
+  }
+  
+  .viewOrdersBtn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
