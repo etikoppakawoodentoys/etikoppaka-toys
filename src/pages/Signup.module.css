@@ -405,3 +405,60 @@
     width: 140px;
   }
 }
+/* Terms Section Styles */
+.terms {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  line-height: 1.4;
+}
+
+.termsLink {
+  color: #1F5B3A;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.termsLink:hover {
+  color: #C89B3C;
+  text-decoration: underline;
+}
+
+/* Terms Checkbox Version */
+.termsCheckbox {
+  margin-top: 1rem;
+}
+
+.termsCheckbox label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: #5C4B3A;
+}
+
+.termsCheckbox input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #1F5B3A;
+}
+
+.termsCheckbox span {
+  line-height: 1.4;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .terms {
+    font-size: 0.7rem;
+    padding: 0 0.5rem;
+  }
+  
+  .termsCheckbox label {
+    font-size: 0.7rem;
+  }
+}

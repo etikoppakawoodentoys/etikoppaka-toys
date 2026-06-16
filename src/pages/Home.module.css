@@ -3144,3 +3144,731 @@
   font-weight: bold;
   z-index: 3;
 }
+/* ============================================
+   MOBILE DEALS & PRODUCTS - FIXED LAYOUT
+   ============================================ */
+
+/* Horizontal Scroll Container - Fixed Height */
+.mobileHorizontalScroll {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 12px;
+  padding: 4px 0 12px 0;
+  margin: 0 -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile Product Card - FIXED SIZE (Deals) */
+.mobileProductCard {
+  flex: 0 0 160px;
+  width: 160px;
+  min-width: 160px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+  scroll-snap-align: start;
+}
+
+.mobileProductCard:active {
+  transform: scale(0.98);
+}
+
+/* Fixed Image Container for Deals */
+.mobileProductImage {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  background: #F8F2E8;
+  overflow: hidden;
+}
+
+.mobileProductImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Fixed Text Area for Deals */
+.mobileProductCard h3 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #3E2A1F;
+  padding: 8px 8px 4px 8px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+/* Fixed Price Container */
+.mobilePrice {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px 10px 8px;
+  flex-wrap: wrap;
+}
+
+.mobileOriginalPrice {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  text-decoration: line-through;
+}
+
+.mobileDealPrice {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #9E1B1B;
+}
+
+/* ============================================
+   MOBILE PRODUCTS GRID - 3 COLUMN FIXED
+   ============================================ */
+
+/* Products Grid - 3 Columns Fixed */
+.mobileProductsGrid3Col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Fixed Product Card for 3 Column Grid */
+.mobileProductCard3Col {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+}
+
+.mobileProductCard3Col:active {
+  transform: scale(0.98);
+}
+
+/* Fixed Image Container for 3 Col Product */
+.mobileProductImage3Col {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #F8F2E8;
+  overflow: hidden;
+}
+
+.mobileProductImage3Col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Fixed Text for 3 Col Product */
+.mobileProductCard3Col h3 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #3E2A1F;
+  padding: 6px 6px 2px 6px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.mobilePrice3Col {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9E1B1B;
+  padding: 0 6px 8px 6px;
+  text-align: center;
+}
+
+/* ============================================
+   MOBILE SECTION STYLES
+   ============================================ */
+
+.mobileSection {
+  padding: 0 16px;
+  margin-bottom: 28px;
+}
+
+.mobileSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+.mobileSectionHeader h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #3E2A1F;
+  margin: 0;
+}
+
+.mobileSectionHeader a {
+  font-size: 0.7rem;
+  color: #1F5B3A;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* ============================================
+   SOLD OUT BADGE - FIXED POSITION
+   ============================================ */
+
+.mobileSoldOutBadge {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  z-index: 5;
+}
+
+/* Discount Badge - Fixed Position */
+.mobileDiscountBadge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #9E1B1B;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  z-index: 5;
+}
+
+/* ============================================
+   NO RESULTS & CLEAR SEARCH
+   ============================================ */
+
+.mobileNoResults {
+  background: white;
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.mobileNoResults p {
+  color: #7A6B5A;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.mobileClearSearchBtn {
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ============================================
+   RESPONSIVE - LARGER MOBILE SCREENS
+   ============================================ */
+
+@media (min-width: 480px) {
+  .mobileProductCard {
+    flex: 0 0 180px;
+    width: 180px;
+    min-width: 180px;
+  }
+  
+  .mobileProductImage {
+    height: 180px;
+  }
+  
+  .mobileProductsGrid3Col {
+    gap: 14px;
+  }
+  
+  .mobileProductCard3Col h3 {
+    font-size: 0.75rem;
+  }
+  
+  .mobilePrice3Col {
+    font-size: 0.8rem;
+  }
+}
+/* ============================================
+   WORLDWIDE DELIVERY SECTION - DESKTOP
+   ============================================ */
+
+.worldwideSection {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #0F2B1D 0%, #1A3A28 50%, #0F2B1D 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.worldwideBgPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(217, 179, 130, 0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+}
+
+.worldwideGlow {
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 140%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(217, 179, 130, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  animation: rotateGlow 20s linear infinite;
+}
+
+@keyframes rotateGlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.worldwideContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.worldwideBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(217, 179, 130, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1.2rem;
+  border-radius: 60px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #D9B382;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(217, 179, 130, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.worldwideTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', 'Georgia', serif;
+}
+
+.worldwideTitle span {
+  color: #D9B382;
+  position: relative;
+  display: inline-block;
+}
+
+.worldwideTitle span::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #D9B382, transparent);
+}
+
+.worldwideSubtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.worldwideGrid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.worldwideCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  border: 1px solid rgba(217, 179, 130, 0.2);
+  transition: all 0.3s ease;
+  min-width: 180px;
+}
+
+.worldwideCard:hover {
+  transform: translateY(-8px);
+  border-color: rgba(217, 179, 130, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.worldwideCardIcon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.worldwideCard h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.worldwideCard p {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.worldwideCountries {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 2rem 0;
+}
+
+.countryTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(217, 179, 130, 0.2);
+  transition: all 0.3s ease;
+}
+
+.countryTag:hover {
+  background: rgba(217, 179, 130, 0.15);
+  border-color: #D9B382;
+  transform: translateY(-2px);
+}
+
+.countryTag svg {
+  color: #D9B382;
+  font-size: 1rem;
+}
+
+.worldwideCTA {
+  margin-top: 2rem;
+}
+
+.worldwideBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #D9B382, #C89B3C);
+  color: #1A3A28;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.worldwideBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(217, 179, 130, 0.3);
+  gap: 1rem;
+}
+
+/* ============================================
+   WORLDWIDE DELIVERY SECTION - MOBILE
+   ============================================ */
+
+.mobileWorldwideSection {
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #0F2B1D 0%, #1A3A28 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin: 1rem;
+  border-radius: 24px;
+}
+
+.mobileWorldwideBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(217, 179, 130, 0.15);
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  color: #D9B382;
+  margin-bottom: 1rem;
+}
+
+.mobileWorldwideTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+  font-family: 'Playfair Display', 'Georgia', serif;
+}
+
+.mobileWorldwideTitle span {
+  color: #D9B382;
+}
+
+.mobileWorldwideSubtitle {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.mobileWorldwideGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.mobileWorldwideCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 0.9rem;
+  text-align: center;
+  border: 1px solid rgba(217, 179, 130, 0.15);
+  transition: all 0.3s;
+}
+
+.mobileWorldwideCard:active {
+  transform: scale(0.97);
+}
+
+.mobileWorldwideCardIcon {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.mobileWorldwideCard h4 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.2rem;
+}
+
+.mobileWorldwideCard p {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mobileCountryTags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.2rem 0;
+}
+
+.mobileCountryTag {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.25rem 0.7rem;
+  border-radius: 30px;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.9);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.mobileWorldwideBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #D9B382, #C89B3C);
+  color: #1A3A28;
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  transition: all 0.3s;
+}
+
+.mobileWorldwideBtn:active {
+  transform: scale(0.97);
+}
+
+/* ============================================
+   RESPONSIVE - DESKTOP MEDIA QUERIES
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .worldwideGrid {
+    gap: 1rem;
+  }
+  
+  .worldwideCard {
+    padding: 1rem 1.2rem;
+    min-width: 150px;
+  }
+  
+  .worldwideTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .worldwideSection {
+    display: none;
+  }
+  
+  .mobileWorldwideSection {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileWorldwideSection {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobileWorldwideGrid {
+    gap: 0.5rem;
+  }
+  
+  .mobileWorldwideCard {
+    padding: 0.7rem;
+  }
+  
+  .mobileWorldwideCardIcon {
+    font-size: 1.4rem;
+  }
+  
+  .mobileWorldwideCard h4 {
+    font-size: 0.65rem;
+  }
+  
+  .mobileWorldwideCard p {
+    font-size: 0.55rem;
+  }
+  
+  .mobileWorldwideTitle {
+    font-size: 1.1rem;
+  }
+  
+  .mobileCountryTag {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
+/* WhatsApp Button Styling */
+.whatsappIcon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.worldwideBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.worldwideBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+  gap: 1rem;
+}
+
+.mobileWorldwideBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+  transition: all 0.3s;
+}
+
+.mobileWorldwideBtn:active {
+  transform: scale(0.97);
+}
+
+.mobileWorldwideBtn .whatsappIcon {
+  width: 1rem;
+  height: 1rem;
+}
+.highlightGold {
+  background: #D9B382;
+  padding: 0 0.2rem;
+  border-radius: 4px;
+  color: #3E2A1F;
+}
+.highlight {
+  color: #9E1B1B;
+  position: relative;
+  display: inline-block;
+}
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: rgba(158, 27, 27, 0.2);
+  z-index: -1;
+}

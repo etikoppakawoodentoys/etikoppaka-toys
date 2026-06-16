@@ -835,4 +835,954 @@
   overflow: hidden;
 }
 
-/* ... rest of your existing desktop styles ... */
+/* ============================================
+   MOBILE DEALS PAGE - 2 PER ROW GRID
+   ============================================ */
+
+.mobileDealsPage {
+  min-height: 100vh;
+  background: #F8F2E8;
+  padding: 16px 16px 80px 16px;
+}
+
+/* Mobile Header */
+.mobileHeader {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 8px 0;
+}
+
+.mobileHeader h1 {
+  font-size: 1.6rem;
+  color: #3E2A1F;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  margin-bottom: 4px;
+}
+
+.mobileHeader p {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+}
+
+/* Mobile Deals Grid - 2 PER ROW */
+.mobileDealsList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Mobile Deal Card - Fixed Size */
+.mobileDealCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileDealCard:active {
+  transform: scale(0.98);
+}
+
+/* Fixed Image Container */
+.mobileDealImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #F8F2E8;
+  overflow: hidden;
+}
+
+.mobileDealImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Badges */
+.mobileDiscountBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #9E1B1B;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.mobileTimerBadge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+}
+
+/* Fixed Content Area */
+.mobileDealInfo {
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileDealInfo h3 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #3E2A1F;
+  margin-bottom: 6px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 32px;
+}
+
+/* Fixed Price Section */
+.mobilePrice {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.mobileOriginalPrice {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  text-decoration: line-through;
+}
+
+.mobileDealPrice {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #9E1B1B;
+}
+
+.mobileSavings {
+  font-size: 0.65rem;
+  color: #1F5B3A;
+  background: #E8F5E9;
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  width: fit-content;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* No Deals State */
+.mobileNoDeals {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.mobileNoDeals svg {
+  font-size: 3rem;
+  color: #C89B3C;
+  margin-bottom: 12px;
+}
+
+.mobileNoDeals p {
+  color: #7A6B5A;
+  margin-bottom: 16px;
+}
+
+.mobileNoDeals a {
+  color: #1F5B3A;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Mobile Banner */
+.mobileBanner {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.mobileBannerIcon {
+  font-size: 2rem;
+}
+
+.mobileBannerText {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.mobileBannerText strong {
+  display: block;
+  font-size: 0.8rem;
+  color: white;
+}
+
+.mobileBannerText span {
+  font-size: 0.65rem;
+  color: #D9B382;
+}
+
+.mobileBanner a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.2);
+  padding: 6px 12px;
+  border-radius: 30px;
+}
+
+/* Larger Mobile Screens */
+@media (min-width: 480px) {
+  .mobileDealsList {
+    gap: 16px;
+  }
+  
+  .mobileDealInfo h3 {
+    font-size: 0.8rem;
+  }
+  
+  .mobileDealPrice {
+    font-size: 1rem;
+  }
+  
+  .mobileDiscountBadge {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 360px) {
+  .mobileDealInfo h3 {
+    font-size: 0.7rem;
+    min-height: 30px;
+  }
+  
+  .mobileDealPrice {
+    font-size: 0.8rem;
+  }
+  
+  .mobileSavings {
+    font-size: 0.6rem;
+  }
+}
+/* ============================================
+   MOBILE DEALS PAGE - 2 PER ROW GRID (PRODUCTS STYLE)
+   ============================================ */
+
+.mobileDealsPage {
+  min-height: 100vh;
+  background: #F8F2E8;
+  padding: 16px 12px 80px;
+}
+
+/* Mobile Header */
+.mobileHeader {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 8px 0;
+}
+
+.mobileHeader h1 {
+  font-size: 1.6rem;
+  color: #3E2A1F;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.mobileHeader p {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+}
+
+/* Mobile Deals Grid - 2 PER ROW */
+.mobileDealsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* Mobile Deal Card */
+.mobileDealCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.mobileDealCard:active {
+  transform: scale(0.97);
+}
+
+/* Image Container - Fixed Aspect Ratio */
+.mobileDealImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #F8F2E8;
+  overflow: hidden;
+}
+
+.mobileDealImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.mobileDealCard:active .mobileDealImage img {
+  transform: scale(1.05);
+}
+
+/* Badges */
+.mobileDiscountBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: linear-gradient(135deg, #9E1B1B, #C89B3C);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mobileTimerBadge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+}
+
+.mobileSoldOutBadge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 3;
+  white-space: nowrap;
+}
+
+/* Deal Info */
+.mobileDealInfo {
+  padding: 10px;
+}
+
+.mobileDealInfo h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3E2A1F;
+  margin-bottom: 6px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 34px;
+}
+
+/* Price Row */
+.mobilePriceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.mobilePrice {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.mobileOriginalPrice {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  text-decoration: line-through;
+}
+
+.mobileDealPrice {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #9E1B1B;
+}
+
+.mobileDiscountChip {
+  background: #FEE2E2;
+  color: #9E1B1B;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.mobileSavings {
+  font-size: 0.65rem;
+  color: #1F5B3A;
+  background: #E8F5E9;
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.mobileExpiredBadge {
+  font-size: 0.65rem;
+  color: #7A6B5A;
+  background: #F8F2E8;
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-top: 4px;
+}
+
+/* Mobile No Deals */
+.mobileNoDeals {
+  text-align: center;
+  padding: 50px 20px;
+  background: white;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.mobileNoDeals svg {
+  font-size: 3rem;
+  color: #D9B382;
+  margin-bottom: 12px;
+}
+
+.mobileNoDeals p {
+  color: #7A6B5A;
+  margin-bottom: 16px;
+}
+
+.mobileNoDeals a {
+  color: #1F5B3A;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Mobile Banner */
+.mobileBanner {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.mobileBannerIcon {
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.15);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileBannerText {
+  flex: 1;
+}
+
+.mobileBannerText strong {
+  display: block;
+  font-size: 0.8rem;
+  color: white;
+  margin-bottom: 2px;
+}
+
+.mobileBannerText span {
+  font-size: 0.65rem;
+  color: #D9B382;
+}
+
+.mobileBanner a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 14px;
+  border-radius: 30px;
+  transition: all 0.2s;
+}
+
+.mobileBanner a:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Larger Mobile Screens */
+@media (min-width: 480px) {
+  .mobileDealsGrid {
+    gap: 16px;
+  }
+  
+  .mobileDealInfo h3 {
+    font-size: 0.85rem;
+    min-height: 38px;
+  }
+  
+  .mobileDealPrice {
+    font-size: 1rem;
+  }
+  
+  .mobileDiscountBadge {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+  
+  .mobileDiscountChip {
+    font-size: 0.7rem;
+  }
+  
+  .mobileSavings {
+    font-size: 0.7rem;
+  }
+}
+
+/* Very Small Screens */
+@media (max-width: 360px) {
+  .mobileDealInfo h3 {
+    font-size: 0.7rem;
+    min-height: 30px;
+  }
+  
+  .mobileDealPrice {
+    font-size: 0.85rem;
+  }
+  
+  .mobileOriginalPrice {
+    font-size: 0.65rem;
+  }
+  
+  .mobileDiscountChip {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+  
+  .mobileSavings {
+    font-size: 0.6rem;
+  }
+  
+  .mobileBannerIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  
+  .mobileBannerText strong {
+    font-size: 0.7rem;
+  }
+  
+  .mobileBannerText span {
+    font-size: 0.6rem;
+  }
+}
+/* ============================================
+   PREMIUM NO DEALS SECTION - DESKTOP
+   ============================================ */
+
+.noDealsPremium {
+  text-align: center;
+  padding: 4rem 3rem;
+  background: white;
+  border-radius: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  max-width: 700px;
+  margin: 2rem auto;
+  animation: fadeInUp 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.noDealsPremium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1F5B3A, #C89B3C, #9E1B1B);
+}
+
+.noDealsIconWrapper {
+  margin-bottom: 1.5rem;
+}
+
+.noDealsIconRing {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #F8F2E8, #FFF9F1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(200, 155, 60, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 20px rgba(200, 155, 60, 0);
+  }
+}
+
+.noDealsBellIcon {
+  font-size: 3rem;
+  color: #C89B3C;
+}
+
+.noDealsPremium h2 {
+  font-size: 1.8rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+  font-family: 'Playfair Display', 'Georgia', serif;
+}
+
+.noDealsPremium p {
+  color: #7A6B5A;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.noDealsFeatures {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.noDealsFeature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: #F8F2E8;
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+
+.noDealsFeature:hover {
+  transform: translateY(-3px);
+  background: #FFF9F1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.noDealsFeature .featureIcon {
+  font-size: 1.5rem;
+}
+
+.noDealsFeature strong {
+  display: block;
+  font-size: 0.85rem;
+  color: #3E2A1F;
+}
+
+.noDealsFeature span {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.noDealsActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.noDealsShopBtn, .noDealsHampersBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.noDealsShopBtn {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+}
+
+.noDealsShopBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(31, 91, 58, 0.3);
+}
+
+.noDealsHampersBtn {
+  background: #F8F2E8;
+  color: #1F5B3A;
+  border: 1px solid #E8DCC8;
+}
+
+.noDealsHampersBtn:hover {
+  background: #1F5B3A;
+  color: white;
+  transform: translateY(-3px);
+}
+
+.noDealsNotification {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: #FFF9F1;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: #C89B3C;
+  border: 1px dashed #D9B382;
+  margin-top: 0.5rem;
+}
+
+.noDealsNotification svg {
+  font-size: 1rem;
+}
+
+/* ============================================
+   PREMIUM NO DEALS SECTION - MOBILE
+   ============================================ */
+
+.mobileNoDealsPremium {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: white;
+  border-radius: 24px;
+  margin: 1rem;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.mobileNoDealsIcon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #F8F2E8, #FFF9F1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.mobileNoDealsIcon svg {
+  font-size: 2.5rem;
+  color: #C89B3C;
+}
+
+.mobileNoDealsRing {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  border: 2px dashed #D9B382;
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.mobileNoDealsPremium h3 {
+  font-size: 1.1rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+  font-family: 'Playfair Display', 'Georgia', serif;
+}
+
+.mobileNoDealsPremium p {
+  color: #7A6B5A;
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.mobileNoDealsFeatures {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.mobileFeature {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  background: #F8F2E8;
+  border-radius: 40px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #3E2A1F;
+}
+
+.mobileFeature svg {
+  font-size: 0.8rem;
+  color: #C89B3C;
+}
+
+.mobileNoDealsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  text-decoration: none;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.mobileNoDealsBtn:active {
+  transform: scale(0.97);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .noDealsPremium {
+    margin: 1rem;
+    padding: 2rem 1.5rem;
+  }
+  
+  .noDealsIconRing {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .noDealsBellIcon {
+    font-size: 2rem;
+  }
+  
+  .noDealsPremium h2 {
+    font-size: 1.3rem;
+  }
+  
+  .noDealsPremium p {
+    font-size: 0.85rem;
+  }
+  
+  .noDealsFeatures {
+    gap: 1rem;
+  }
+  
+  .noDealsFeature {
+    padding: 0.5rem 1rem;
+  }
+  
+  .noDealsFeature .featureIcon {
+    font-size: 1.2rem;
+  }
+  
+  .noDealsFeature strong {
+    font-size: 0.75rem;
+  }
+  
+  .noDealsFeature span {
+    font-size: 0.65rem;
+  }
+  
+  .noDealsActions {
+    gap: 0.75rem;
+  }
+  
+  .noDealsShopBtn, .noDealsHampersBtn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .noDealsFeatures {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .noDealsFeature {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .noDealsActions {
+    flex-direction: column;
+  }
+  
+  .noDealsShopBtn, .noDealsHampersBtn {
+    justify-content: center;
+  }
+}

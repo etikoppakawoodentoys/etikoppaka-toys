@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Etikoppaka Toys</string>
+    <string name="title_activity_main">Etikoppaka Toys</string>
+    <string name="package_name">com.etikoppaka.toys</string>
+    <string name="custom_url_scheme">com.etikoppaka.toys</string>
+</resources>

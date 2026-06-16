@@ -1,0 +1,1156 @@
+/* Desktop Styles */
+.hampersPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #FDF8F0 0%, #F8F2E8 100%);
+}
+
+.heroBanner {
+  background: linear-gradient(135deg, #1F5B3A 0%, #15452B 100%);
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1.25rem;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  color: #D9B382;
+  margin-bottom: 1rem;
+}
+
+.heroBanner h1 {
+  font-size: 3rem;
+  color: white;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  margin-bottom: 0.5rem;
+}
+
+.heroBanner p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.9);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.searchBox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: white;
+  padding: 0.75rem 1rem;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.searchBox input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  background: transparent;
+}
+
+.clearSearch {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #B8A99A;
+}
+
+.sortWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sortWrapper label {
+  font-size: 0.85rem;
+  color: #7A6B5A;
+}
+
+.sortWrapper select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #E8DCC8;
+  border-radius: 40px;
+  background: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.priceFilterSection {
+  background: white;
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.priceRange {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.priceRange > span {
+  font-weight: 600;
+  color: #3E2A1F;
+}
+
+.priceInputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.priceInputs input {
+  width: 120px;
+  padding: 0.5rem;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.clearFiltersBtn {
+  background: #F8F2E8;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  cursor: pointer;
+  color: #7A6B5A;
+}
+
+.hampersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.hamperCard {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hamperCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.cardImage {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.hamperCard:hover .cardImage img {
+  transform: scale(1.05);
+}
+
+.cardBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, #FF9A9E, #FF6B6B);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+}
+
+.cardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hamperCard:hover .cardOverlay {
+  opacity: 1;
+}
+
+.quickViewBtn {
+  background: white;
+  color: #1F5B3A;
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cardContent {
+  padding: 1rem;
+}
+
+.cardContent h3 {
+  font-size: 1rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.hamperDesc {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.priceInfo {
+  flex: 1;
+}
+
+.hamperPrice {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #9E1B1B;
+}
+
+.viewBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #F8F2E8;
+  color: #1F5B3A;
+  padding: 0.4rem 0.8rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.viewBtn:hover {
+  background: #1F5B3A;
+  color: white;
+  gap: 0.5rem;
+}
+
+.noResults {
+  text-align: center;
+  padding: 4rem;
+  background: white;
+  border-radius: 24px;
+}
+
+.noResultsIcon {
+  font-size: 4rem;
+  color: #D9B382;
+  margin-bottom: 1rem;
+}
+
+.noResults h3 {
+  font-size: 1.3rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+.noResults p {
+  color: #7A6B5A;
+  margin-bottom: 1.5rem;
+}
+
+.resetBtn {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+/* Mobile Styles */
+.mobileHampersPage {
+  min-height: 100vh;
+  background: #F8F2E8;
+  padding: 1rem;
+  padding-bottom: 80px;
+}
+
+.mobileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.mobileHeader h1 {
+  font-size: 1.2rem;
+  color: #3E2A1F;
+}
+
+.filterChip {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: white;
+  border: 1px solid #E8DCC8;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.mobileSearchBar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  padding: 0.75rem 1rem;
+  border-radius: 40px;
+  margin-bottom: 1rem;
+}
+
+.mobileSearchBar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.mobileSortBar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.mobileSortBar button {
+  flex: 1;
+  padding: 0.5rem;
+  background: white;
+  border: 1px solid #E8DCC8;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.mobileSortBar button.active {
+  background: #1F5B3A;
+  color: white;
+  border-color: #1F5B3A;
+}
+
+.mobileHampersGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.mobileHamperCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.mobileHamperImage {
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.mobileHamperImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobileHamperBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: linear-gradient(135deg, #FF9A9E, #FF6B6B);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.mobileHamperInfo {
+  padding: 0.75rem;
+}
+
+.mobileHamperInfo h3 {
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  margin-bottom: 0.25rem;
+}
+
+.mobileHamperPrice {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #9E1B1B;
+  margin-bottom: 0.25rem;
+}
+
+.mobileHamperDesc {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin-bottom: 0.25rem;
+}
+
+.mobileHamperItems {
+  font-size: 0.65rem;
+  color: #D9B382;
+}
+
+.mobileNoResults {
+  text-align: center;
+  padding: 3rem;
+  color: #B8A99A;
+}
+
+.mobileNoResults button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* Filter Drawer */
+.mobileFilterDrawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+}
+
+.mobileFilterContent {
+  background: white;
+  width: 100%;
+  border-radius: 24px 24px 0 0;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.mobileFilterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileFilterHeader h3 {
+  font-size: 1rem;
+  color: #3E2A1F;
+}
+
+.mobileFilterHeader button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.mobileFilterBody {
+  padding: 1rem;
+}
+
+.mobileFilterGroup {
+  margin-bottom: 1rem;
+}
+
+.mobileFilterGroup h4 {
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+.mobilePriceInputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobilePriceInputs input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+}
+
+.mobileApplyBtn {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.mobileClearBtn {
+  width: 100%;
+  padding: 0.75rem;
+  background: #F8F2E8;
+  color: #7A6B5A;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 1rem;
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #E8DCC8;
+  border-top-color: #1F5B3A;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1200px) {
+  .hampersGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .hampersGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hampersPage {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileHampersPage {
+    display: none;
+  }
+}
+/* Add these styles to your existing Hampers.module.css */
+
+/* Mobile Hero Section */
+.mobileHero {
+  background: linear-gradient(135deg, #1F5B3A 0%, #15452B 100%);
+  padding: 2rem 1rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobileHeroContent {
+  position: relative;
+  z-index: 2;
+}
+
+.mobileHeroBadge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  padding: 0.3rem 0.8rem;
+  border-radius: 40px;
+  font-size: 0.7rem;
+  color: #D9B382;
+  margin-bottom: 0.75rem;
+}
+
+.mobileHero h1 {
+  font-size: 1.8rem;
+  color: white;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  margin-bottom: 0.5rem;
+}
+
+.mobileHero p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.85);
+}
+
+.mobileHeroWave {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  line-height: 0;
+}
+
+.mobileHeroWave svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Mobile Search and Filter Bar */
+.mobileSearchFilterBar {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: white;
+  margin: -20px 1rem 1rem 1rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 5;
+}
+
+.mobileSearchBar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #F8F2E8;
+  padding: 0.6rem 1rem;
+  border-radius: 40px;
+  border: 1px solid #E8DCC8;
+}
+
+.mobileSearchBar svg {
+  color: #D9B382;
+  font-size: 1rem;
+}
+
+.mobileSearchBar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.85rem;
+}
+
+.mobileClearSearch {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #B8A99A;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.mobileFilterBtn {
+  background: #1F5B3A;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s;
+}
+
+.mobileFilterBtn:active {
+  transform: scale(0.95);
+}
+
+/* Mobile Sort Chips */
+.mobileSortChips {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.mobileSortChips::-webkit-scrollbar {
+  display: none;
+}
+
+.sortChip {
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid #E8DCC8;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #7A6B5A;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sortChip.active {
+  background: #1F5B3A;
+  border-color: #1F5B3A;
+  color: white;
+}
+
+/* Mobile Results Count */
+.mobileResultsCount {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.mobileResultsCount span {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  background: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+/* Mobile Hampers Grid */
+.mobileHampersGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.mobileHamperCard {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.mobileHamperCard:active {
+  transform: scale(0.98);
+}
+
+.mobileHamperImage {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5efe8 0%, #ede5db 100%);
+}
+
+.mobileHamperImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.mobileHamperCard:active .mobileHamperImage img {
+  transform: scale(1.05);
+}
+
+.mobileHamperBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: linear-gradient(135deg, #FF9A9E, #FF6B6B);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.mobileItemCountBadge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.mobileHamperInfo {
+  padding: 0.75rem;
+}
+
+.mobileHamperInfo h3 {
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.mobileHamperDesc {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.mobilePriceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobileHamperPrice {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #9E1B1B;
+}
+
+.mobileViewBtn {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.7rem;
+  color: #1F5B3A;
+  font-weight: 600;
+}
+
+/* Mobile No Results */
+.mobileNoResults {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.mobileNoResults svg {
+  font-size: 3rem;
+  color: #D9B382;
+  margin-bottom: 1rem;
+}
+
+.mobileNoResults h3 {
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.mobileNoResults p {
+  color: #7A6B5A;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.mobileNoResults button {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Mobile Filter Drawer */
+.mobileFilterDrawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.mobileFilterContent {
+  background: white;
+  width: 100%;
+  border-radius: 24px 24px 0 0;
+  max-height: 70vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.mobileFilterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #E8DCC8;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.mobileFilterHeader h3 {
+  font-size: 1rem;
+  color: #3E2A1F;
+  font-weight: 700;
+}
+
+.mobileFilterHeader button {
+  background: #F8F2E8;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.mobileFilterBody {
+  padding: 1.25rem;
+}
+
+.mobileFilterGroup {
+  margin-bottom: 1.5rem;
+}
+
+.mobileFilterGroup h4 {
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.mobilePriceRange {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mobilePriceInput {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #F8F2E8;
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  padding: 0.5rem;
+}
+
+.mobilePriceInput span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #7A6B5A;
+  margin-right: 0.25rem;
+}
+
+.mobilePriceInput input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.85rem;
+}
+
+.priceDash {
+  color: #7A6B5A;
+  font-weight: 600;
+}
+
+.mobileApplyBtn {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.mobileClearBtn {
+  width: 100%;
+  padding: 0.75rem;
+  background: #FEE2E2;
+  color: #9E1B1B;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Desktop hero stats */
+.heroStats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.heroStat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(4px);
+  padding: 0.4rem 1rem;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  color: white;
+}
+
+.itemCountBadge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.resultCount {
+  background: rgba(31, 91, 58, 0.1);
+  padding: 0.4rem 1rem;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1F5B3A;
+}
+
+.priceInputWrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  padding: 0.25rem 0.5rem;
+}
+
+.priceInputWrapper span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #7A6B5A;
+  margin-right: 0.25rem;
+}
+
+.priceInputWrapper input {
+  width: 100px;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.priceDash {
+  color: #7A6B5A;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .mobileHampersGrid {
+    gap: 0.75rem;
+  }
+  
+  .mobileHamperInfo h3 {
+    font-size: 0.75rem;
+  }
+  
+  .mobileHamperPrice {
+    font-size: 0.8rem;
+  }
+}

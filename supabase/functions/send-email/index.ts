@@ -18,381 +18,472 @@ serve(async (req: Request) => {
   try {
     const { type, to, data } = await req.json()
 
-    console.log('=== Email Request ===')
-    console.log('Type:', type)
-    console.log('To:', to)
-    console.log('Data:', JSON.stringify(data, null, 2))
+    if (!to || !type) throw new Error('Missing required fields')
 
-    if (!to || !type) {
-      throw new Error('Missing required fields')
+    const sendEmail = async (emailTo: string, emailSubject: string, emailHtml: string) => {
+      const response = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: FROM_EMAIL,
+          to: emailTo,
+          subject: emailSubject,
+          html: emailHtml,
+        }),
+      })
+      return await response.json()
     }
 
-    let subject = ''
-    let html = ''
-
-    const colors = {
-      primaryRed: '#9E1B1B',
-      heritageGreen: '#1F5B3A',
-      creamBg: '#F8F2E8',
-      offWhite: '#FFF9F1',
-      mutedGold: '#D8B36A',
-      accentGold: '#C89B3C',
-      textDark: '#3E2A1F',
-      buttonHover: '#15452B'
-    }
-
-    const statusConfig: Record<string, { title: string; icon: string; color: string; message: string }> = {
-      'accepted': { 
-        title: 'Order Accepted', 
-        icon: '✅', 
-        color: '#10B981',
-        message: 'Great news! Your order has been accepted and is being processed by our team.'
-      },
-      'shipped': { 
-        title: 'Order Shipped', 
-        icon: '📦', 
-        color: '#3B82F6',
-        message: 'Your order has been shipped and is on its way to you!'
-      },
-      'transit': { 
-        title: 'In Transit', 
-        icon: '🚚', 
-        color: '#8B5CF6',
-        message: 'Your order is in transit and will reach you soon.'
-      },
-      'out_for_delivery': { 
-        title: 'Out for Delivery', 
-        icon: '🚛', 
-        color: '#EC4899',
-        message: 'Your order is out for delivery! Get ready to receive your package today.'
-      },
-      'delivered': { 
-        title: 'Order Delivered', 
-        icon: '🎁', 
-        color: '#059669',
-        message: 'Your order has been delivered! We hope you love your traditional handcrafted toys.'
-      },
-      'cancelled': { 
-        title: 'Order Cancelled', 
-        icon: '❌', 
-        color: '#EF4444',
-        message: 'Your order has been cancelled. Please contact us for any questions.'
-      }
-    }
-
-    const baseStyles = `
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #F5F5F5; padding: 40px 20px; }
-        .email-box { max-width: 560px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-        .header { background: linear-gradient(135deg, ${colors.heritageGreen}, ${colors.buttonHover}); padding: 28px 24px; text-align: center; }
-        .logo { font-size: 44px; margin-bottom: 8px; }
-        .brand { font-size: 22px; font-weight: 700; color: white; letter-spacing: 0.5px; }
-        .tagline { font-size: 10px; color: ${colors.mutedGold}; letter-spacing: 1.5px; margin-top: 4px; }
-        .content { padding: 28px 24px; }
-        .badge { display: inline-block; background: ${colors.creamBg}; padding: 5px 12px; border-radius: 50px; font-size: 11px; font-weight: 600; color: ${colors.primaryRed}; margin-bottom: 20px; border: 1px solid ${colors.mutedGold}; }
-        .greeting { font-size: 22px; font-weight: 600; color: ${colors.textDark}; margin-bottom: 12px; }
-        .greeting span { color: ${colors.primaryRed}; }
-        .message { color: #666; line-height: 1.6; font-size: 14px; margin-bottom: 24px; }
-        .card { background: ${colors.creamBg}; border-radius: 16px; padding: 20px; margin: 24px 0; border: 1px solid ${colors.mutedGold}; }
-        .card-title { font-size: 15px; font-weight: 600; color: ${colors.textDark}; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid ${colors.mutedGold}; display: flex; align-items: center; gap: 8px; }
-        .row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(216,179,106,0.2); }
-        .row:last-child { border-bottom: none; }
-        .label { color: #888; font-size: 13px; }
-        .value { font-weight: 600; color: ${colors.textDark}; font-size: 13px; }
-        .item-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(216,179,106,0.15); }
-        .item-name { font-size: 13px; color: ${colors.textDark}; flex: 2; }
-        .item-qty { font-size: 13px; color: ${colors.accentGold}; flex: 1; text-align: center; }
-        .item-price { font-size: 13px; font-weight: 600; color: ${colors.heritageGreen}; flex: 1; text-align: right; }
-        .total { background: linear-gradient(135deg, ${colors.offWhite}, ${colors.creamBg}); border-radius: 12px; padding: 16px; margin-top: 16px; display: flex; justify-content: space-between; align-items: center; border: 1px solid ${colors.accentGold}40; }
-        .total-label { font-size: 15px; font-weight: 600; color: ${colors.textDark}; }
-        .total-amount { font-size: 22px; font-weight: 700; color: ${colors.primaryRed}; }
-        .status-card { background: ${colors.creamBg}; border-radius: 16px; padding: 24px; text-align: center; margin: 24px 0; border: 1px solid ${colors.mutedGold}; }
-        .status-icon { font-size: 48px; margin-bottom: 12px; }
-        .status-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-        .status-message { color: #666; font-size: 13px; }
-        .handcrafted { text-align: center; margin: 24px 0; padding: 12px; background: ${colors.creamBg}; border-radius: 12px; border: 1px dashed ${colors.accentGold}; }
-        .handcrafted-text { font-size: 11px; color: ${colors.accentGold}; letter-spacing: 1px; }
-        .button { display: block; background: ${colors.heritageGreen}; color: white; text-align: center; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; margin: 24px 0 16px; }
-        .button:hover { background: ${colors.buttonHover}; }
-        .footer { background: ${colors.textDark}; padding: 24px; text-align: center; }
-        .footer-text { color: #B8A88A; font-size: 11px; line-height: 1.6; }
-        hr { border: none; border-top: 1px solid rgba(216,179,106,0.15); margin: 16px 0; }
-        @media (max-width: 600px) { .content { padding: 20px; } .greeting { font-size: 20px; } .total-amount { font-size: 20px; } }
-      </style>
+    const getProfessionalTemplate = (title: string, content: string, statusColor: string = '#1F5B3A') => `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Etikoppaka Toys</title>
+        <style>
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #F8F2E8; margin: 0; padding: 20px; line-height: 1.5; }
+          .email-container { max-width: 560px; margin: 0 auto; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+          .email-header { background: linear-gradient(135deg, #1F5B3A 0%, #15452B 100%); padding: 24px; text-align: center; }
+          .brand { font-size: 22px; font-weight: 700; color: white; letter-spacing: 0.5px; }
+          .tagline { font-size: 11px; color: #D9B382; margin-top: 6px; letter-spacing: 0.5px; }
+          .status-banner { background: ${statusColor}; color: white; text-align: center; padding: 12px; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+          .email-body { padding: 28px 24px; }
+          .greeting { font-size: 20px; font-weight: 600; color: #3E2A1F; margin-bottom: 12px; }
+          .greeting span { color: #9E1B1B; }
+          .message-text { color: #5C4B3A; line-height: 1.6; margin-bottom: 24px; font-size: 14px; }
+          .info-card { background: #F8F2E8; border-radius: 12px; padding: 20px; margin-bottom: 24px; border: 1px solid #E8DCC8; }
+          .info-title { font-size: 14px; font-weight: 600; color: #3E2A1F; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #D9B382; }
+          .info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #E8DCC8; font-size: 13px; }
+          .info-row:last-child { border-bottom: none; }
+          .info-label { color: #7A6B5A; }
+          .info-value { font-weight: 600; color: #3E2A1F; }
+          .free-delivery { color: #10B981; font-weight: 600; }
+          .paid-delivery { color: #D97706; font-weight: 600; }
+          .update-detail { background: #FFF9F1; border-left: 4px solid #D9B382; padding: 12px; margin: 12px 0; border-radius: 6px; }
+          .update-detail p { margin: 6px 0; font-size: 13px; }
+          .items-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+          .items-table th { text-align: left; padding: 10px 0; color: #7A6B5A; font-weight: 500; font-size: 12px; border-bottom: 1px solid #E8DCC8; }
+          .items-table td { padding: 10px 0; border-bottom: 1px solid #E8DCC8; font-size: 13px; vertical-align: top; }
+          .gift-row { background: #FFFDF0; }
+          .gift-badge { display: inline-block; background: #FEF3C7; color: #C89B3C; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 4px; }
+          .gift-message { font-size: 11px; color: #7A6B5A; font-style: italic; margin-top: 3px; }
+          .gift-box { background: #FFFDF0; border: 1.5px dashed #C89B3C; border-radius: 8px; padding: 12px 16px; margin: 12px 0; }
+          .gift-box-title { font-size: 13px; font-weight: 700; color: #C89B3C; margin-bottom: 8px; }
+          .gift-box-item { font-size: 12px; padding: 4px 0; border-bottom: 1px solid #F5E6B8; color: #5C4B3A; }
+          .gift-box-item:last-child { border-bottom: none; }
+          .total-row { display: flex; justify-content: space-between; padding: 16px 0 8px; border-top: 2px solid #E8DCC8; margin-top: 8px; font-weight: 700; font-size: 16px; }
+          .total-amount { color: #9E1B1B; }
+          .action-button { display: inline-block; background: #1F5B3A; color: white; text-decoration: none; padding: 12px 28px; border-radius: 50px; font-weight: 600; font-size: 14px; margin: 16px 0 8px; }
+          .handcrafted-note { text-align: center; margin: 24px 0 16px; padding: 12px; background: #F8F2E8; border-radius: 10px; font-size: 11px; color: #C89B3C; border: 1px dashed #D9B382; }
+          .email-footer { background: #3E2A1F; padding: 20px; text-align: center; }
+          .footer-text { color: #B8A88A; font-size: 11px; line-height: 1.5; }
+          .footer-text p { margin: 4px 0; }
+          hr { border: none; border-top: 1px solid rgba(216,179,106,0.2); margin: 12px 0; }
+        </style>
+      </head>
+      <body>
+        <div class="email-container">
+          <div class="email-header">
+            <div class="brand">Etikoppaka Toys</div>
+            <div class="tagline">TRADITIONAL • HANDCRAFTED • HERITAGE</div>
+          </div>
+          <div class="status-banner">${title}</div>
+          <div class="email-body">
+            ${content}
+            <div class="handcrafted-note">
+              ✨ Each piece is handcrafted with natural colors and sustainable wood ✨
+            </div>
+          </div>
+          <div class="email-footer">
+            <div class="footer-text">
+              <p>📍 Etikoppaka, Visakhapatnam, Andhra Pradesh - 531082</p>
+              <p>📞 +91 9154884214 | 📧 orders@etikoppakatoys.store</p>
+              <hr>
+              <p>© ${new Date().getFullYear()} Etikoppaka Toys. Preserving Indian Heritage.</p>
+              <p>🌿 Eco-friendly • Non-toxic dyes • GI Tagged</p>
+            </div>
+          </div>
+        </div>
+      </body>
+      </html>
     `
 
-    // BULK ORDER EMAIL - NEW
+    // ── Helper: build items table HTML (shared by order_confirmation & admin_notification) ──
+    const buildItemsTable = (items: any[]) => {
+      if (!items || items.length === 0) return ''
+
+      let rows = ''
+      let subtotal = 0
+
+      items.forEach((item: any) => {
+        const baseTotal = item.price * item.quantity
+        const giftCharge = item.gift_packing ? (item.gift_charge || 50) : 0
+        const lineTotal = baseTotal + giftCharge
+        subtotal += lineTotal
+
+        rows += `
+          <tr class="${item.gift_packing ? 'gift-row' : ''}">
+            <td>
+              <strong>${item.product_name}</strong>
+              ${item.gift_packing ? '<span class="gift-badge">🎁 Gift</span>' : ''}
+              ${item.item_type === 'hamper' ? '<span class="gift-badge">🎁 Hamper</span>' : ''}
+              ${item.gift_packing && item.gift_quote
+                ? `<div class="gift-message">"${item.gift_quote}"</div>`
+                : item.gift_packing
+                  ? '<div class="gift-message"><em>No gift message</em></div>'
+                  : ''
+              }
+            </td>
+            <td>x${item.quantity}</td>
+            <td>₹${item.price}${item.gift_packing ? `<br><small style="color:#C89B3C;">+₹${giftCharge} gift</small>` : ''}</td>
+            <td style="font-weight:600;">₹${lineTotal}</td>
+          </tr>
+        `
+      })
+
+      return `
+        <table class="items-table">
+          <thead>
+            <tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th></tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `
+    }
+
+    // ── Helper: build gift messages summary box ──────────────────────────────
+    const buildGiftBox = (items: any[]) => {
+      if (!items) return ''
+      const giftItems = items.filter(i => i.gift_packing && i.item_type !== 'hamper')
+      if (giftItems.length === 0) return ''
+
+      const rows = giftItems.map(i => `
+        <div class="gift-box-item">
+          <strong>${i.product_name}</strong> —
+          ${i.gift_quote ? `"${i.gift_quote}"` : '<em>No gift message</em>'}
+          <span style="float:right;color:#1F5B3A;font-weight:600;">+₹${i.gift_charge || 50}</span>
+        </div>
+      `).join('')
+
+      return `
+        <div class="gift-box">
+          <div class="gift-box-title">🎁 Gift Packing Details</div>
+          ${rows}
+        </div>
+      `
+    }
+
+    // ── ORDER CONFIRMATION ───────────────────────────────────────────────────
+    if (type === 'order_confirmation') {
+      const statusColor = '#10B981'
+      const title = '✅ ORDER CONFIRMED'
+      const subject = `✨ Order Confirmed! #${data.orderNumber} ✨`
+
+      const paymentMethod = data.paymentMethod || 'COD'
+      const isPrepaid = paymentMethod === 'RAZORPAY' || paymentMethod === 'PREPAID'
+      const giftCharges = data.giftCharges || 0
+      const deliveryCharge = data.deliveryCharge || 0
+      const subtotal = (data.totalAmount || 0) - giftCharges - deliveryCharge
+
+      const paymentHtml = isPrepaid ? `
+        <div class="update-detail" style="border-left-color: #10B981;">
+          <p><strong>💳 Payment Status:</strong> PAID via Razorpay</p>
+          <p>Your payment has been successfully processed. Order confirmed and will be processed immediately.</p>
+        </div>
+      ` : `
+        <div class="update-detail" style="border-left-color: #F59E0B;">
+          <p><strong>💰 Payment Method:</strong> Cash on Delivery</p>
+          <p><strong>Payment Terms:</strong> 50% advance required to confirm order. Our team will call you within 24 hours to share payment details.</p>
+          <p><strong>Balance 50%:</strong> Payable at the time of delivery (cash/card/UPI)</p>
+        </div>
+      `
+
+      const itemsHtml = buildItemsTable(data.items)
+      const giftBoxHtml = buildGiftBox(data.items)
+      const totalAmount = data.totalAmount || 0
+
+      const content = `
+        <div class="greeting">Namaste, <span>${data.customerName}</span>! 🙏</div>
+        <p class="message-text">Thank you for choosing our traditional handcrafted toys. Your order has been confirmed successfully.</p>
+
+        <div class="info-card">
+          <div class="info-title">📋 ORDER SUMMARY</div>
+          <div class="info-row"><span class="info-label">Order Number</span><span class="info-value">#${data.orderNumber}</span></div>
+          <div class="info-row"><span class="info-label">Order Date</span><span class="info-value">${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</span></div>
+          <div class="info-row"><span class="info-label">Payment Method</span><span class="info-value">${isPrepaid ? '💳 Online Payment (Prepaid)' : '💰 Cash on Delivery'}</span></div>
+          <div class="info-row"><span class="info-label">Subtotal</span><span class="info-value">₹${subtotal}</span></div>
+          ${giftCharges > 0 ? `<div class="info-row"><span class="info-label">🎁 Gift Packing</span><span class="info-value" style="color:#C89B3C;">+₹${giftCharges}</span></div>` : ''}
+          <div class="info-row"><span class="info-label">🚚 Delivery Fee</span><span class="info-value ${deliveryCharge === 0 ? 'free-delivery' : 'paid-delivery'}">${deliveryCharge === 0 ? 'FREE' : `+₹${deliveryCharge}`}</span></div>
+          <div class="info-row"><span class="info-label">Total Amount</span><span class="info-value" style="color:#9E1B1B;">₹${totalAmount}</span></div>
+          <div class="info-row"><span class="info-label">Shipping Address</span><span class="info-value">${data.shippingAddress || 'Address provided at checkout'}</span></div>
+        </div>
+
+        ${paymentHtml}
+
+        ${itemsHtml ? `<div class="info-card"><div class="info-title">📦 ORDER ITEMS</div>${itemsHtml}</div>` : ''}
+
+        ${giftBoxHtml}
+
+        <div class="total-row">
+          <span>Total Amount</span>
+          <span class="total-amount">₹${totalAmount}</span>
+        </div>
+
+        ${deliveryCharge > 0 && totalAmount >= 499 ? `
+        <div class="update-detail" style="border-left-color: #10B981; margin-top: 16px;">
+          <p><strong>🎉 Free Delivery Unlocked!</strong></p>
+          <p>Your order qualified for free delivery. No delivery charges applied.</p>
+        </div>
+        ` : deliveryCharge > 0 ? `
+        <div class="update-detail" style="border-left-color: #F59E0B; margin-top: 16px;">
+          <p><strong>🚚 Delivery Information</strong></p>
+          <p>Delivery charge of ₹${deliveryCharge} applies. Add ₹${499 - (totalAmount - deliveryCharge - giftCharges)} more for free delivery on your next order.</p>
+        </div>
+        ` : ''}
+
+        <div style="text-align: center;">
+          <a href="https://etikoppakatoys.store/orders" class="action-button">📦 Track Your Order →</a>
+        </div>
+      `
+
+      await sendEmail(to, subject, getProfessionalTemplate(title, content, statusColor))
+
+      // Admin copy
+      const adminContent = `
+        <div class="greeting">Hello Admin,</div>
+        <p class="message-text">A new order has been placed. Please review and process it.</p>
+
+        <div class="info-card">
+          <div class="info-title">📋 ORDER DETAILS</div>
+          <div class="info-row"><span class="info-label">Order Number</span><span class="info-value">#${data.orderNumber}</span></div>
+          <div class="info-row"><span class="info-label">Customer</span><span class="info-value">${data.customerName}</span></div>
+          <div class="info-row"><span class="info-label">Email</span><span class="info-value">${to}</span></div>
+          <div class="info-row"><span class="info-label">Phone</span><span class="info-value">${data.customerPhone || 'Not provided'}</span></div>
+          <div class="info-row"><span class="info-label">Payment Method</span><span class="info-value">${isPrepaid ? '💳 Prepaid (Razorpay)' : '💰 Cash on Delivery'}</span></div>
+          <div class="info-row"><span class="info-label">Subtotal</span><span class="info-value">₹${subtotal}</span></div>
+          ${giftCharges > 0 ? `<div class="info-row"><span class="info-label">🎁 Gift Packing</span><span class="info-value" style="color:#C89B3C;">+₹${giftCharges}</span></div>` : ''}
+          <div class="info-row"><span class="info-label">🚚 Delivery Fee</span><span class="info-value ${deliveryCharge === 0 ? 'free-delivery' : 'paid-delivery'}">${deliveryCharge === 0 ? 'FREE' : `+₹${deliveryCharge}`}</span></div>
+          <div class="info-row"><span class="info-label">Total Amount</span><span class="info-value" style="color:#9E1B1B;">₹${totalAmount}</span></div>
+          <div class="info-row"><span class="info-label">Shipping Address</span><span class="info-value">${data.shippingAddress || 'Address provided'}</span></div>
+        </div>
+
+        ${itemsHtml ? `<div class="info-card"><div class="info-title">📦 ORDER ITEMS</div>${itemsHtml}</div>` : ''}
+        ${giftBoxHtml}
+
+        <div style="text-align: center;">
+          <a href="https://etikoppakatoys.store/admin" class="action-button">📋 View in Admin Panel →</a>
+        </div>
+      `
+
+      await sendEmail(ADMIN_EMAIL, `🆕 New Order #${data.orderNumber}`, getProfessionalTemplate('🆕 NEW ORDER RECEIVED', adminContent, '#EC4899'))
+
+      return new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'Access-Control-Allow-Origin': '*' } })
+    }
+
+    // ── ORDER STATUS UPDATE ──────────────────────────────────────────────────
+    if (type === 'order_status_update') {
+      const statusMap: Record<string, { title: string; message: string; icon: string; color: string; nextSteps: string }> = {
+        'accepted': {
+          title: 'ORDER ACCEPTED', message: 'Your order has been accepted by our team and is now being processed.',
+          icon: '✅', color: '#10B981', nextSteps: 'Our artisans will begin crafting your traditional toys. Production will take 2-3 days.'
+        },
+        'shipped': {
+          title: 'ORDER SHIPPED', message: 'Great news! Your order has been shipped and is on its way to you.',
+          icon: '📦', color: '#3B82F6', nextSteps: 'You can track your shipment using the tracking link below. Delivery expected in 3-7 business days.'
+        },
+        'transit': {
+          title: 'IN TRANSIT', message: 'Your order is currently in transit and moving through our logistics network.',
+          icon: '🚚', color: '#8B5CF6', nextSteps: 'Your package is on schedule. Check tracking for real-time location updates.'
+        },
+        'out_for_delivery': {
+          title: 'OUT FOR DELIVERY', message: 'Your order is out for delivery! Get ready to receive your package today.',
+          icon: '🚛', color: '#EC4899', nextSteps: 'Please keep your phone handy. The delivery agent will call before arriving.'
+        },
+        'delivered': {
+          title: 'ORDER DELIVERED', message: 'Your order has been successfully delivered. We hope you love your traditional handcrafted toys!',
+          icon: '🎁', color: '#059669', nextSteps: 'Enjoy your Etikoppaka toys! Share your experience with a review.'
+        },
+        'cancelled': {
+          title: 'ORDER CANCELLED', message: 'Your order has been cancelled as requested. If you have paid online, refund will be processed within 5-7 business days.',
+          icon: '❌', color: '#EF4444', nextSteps: 'If you have any questions, please contact our support team.'
+        }
+      }
+
+      const statusInfo = statusMap[data.status] || {
+        title: 'ORDER UPDATED', message: 'Your order status has been updated.',
+        icon: '📋', color: '#1F5B3A', nextSteps: 'Check your order details below for more information.'
+      }
+
+      const statusTitle = `${statusInfo.icon} ${statusInfo.title}`
+      const subject = `📦 Order Update #${data.orderNumber} - ${statusInfo.title.replace(/_/g, ' ')}`
+
+      const statusChangedHtml = data.oldStatus ? `
+        <div class="update-detail" style="border-left-color: ${statusInfo.color};">
+          <p><strong>📊 Status Changed:</strong></p>
+          <p>From: <span style="color:#7A6B5A;">${data.oldStatus.toUpperCase().replace(/_/g, ' ')}</span> → To: <strong style="color:${statusInfo.color};">${statusInfo.title}</strong></p>
+        </div>
+      ` : ''
+
+      const content = `
+        <div class="greeting">Hello, <span>${data.customerName}</span></div>
+        <p class="message-text">${statusInfo.message}</p>
+
+        ${statusChangedHtml}
+
+        <div class="update-detail" style="border-left-color: ${statusInfo.color};">
+          <p><strong>📋 What This Means:</strong></p>
+          <p>${statusInfo.nextSteps}</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-title">📦 ORDER DETAILS</div>
+          <div class="info-row"><span class="info-label">Order Number</span><span class="info-value">#${data.orderNumber}</span></div>
+          <div class="info-row"><span class="info-label">Current Status</span><span class="info-value" style="color:${statusInfo.color};">${statusInfo.title}</span></div>
+          <div class="info-row"><span class="info-label">Total Amount</span><span class="info-value">₹${data.totalAmount || 0}</span></div>
+          <div class="info-row"><span class="info-label">Shipping Address</span><span class="info-value">${data.shippingAddress || 'Address provided at checkout'}</span></div>
+        </div>
+
+        ${data.trackingUrl ? `
+        <div class="update-detail" style="border-left-color: #3B82F6;">
+          <p><strong>🔗 Track Your Shipment:</strong></p>
+          <p><a href="${data.trackingUrl}" style="color:#1F5B3A;">${data.trackingUrl}</a></p>
+        </div>
+        ` : ''}
+
+        <div style="text-align: center;">
+          <a href="https://etikoppakatoys.store/orders" class="action-button">📦 Track Your Order →</a>
+        </div>
+      `
+
+      await sendEmail(to, subject, getProfessionalTemplate(statusTitle, content, statusInfo.color))
+
+      return new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'Access-Control-Allow-Origin': '*' } })
+    }
+
+    // ── ADMIN NOTIFICATION ───────────────────────────────────────────────────
+    if (type === 'admin_notification') {
+      const isPrepaid = data.paymentMethod === 'RAZORPAY' || data.paymentMethod === 'PREPAID'
+      const giftCharges = data.giftCharges || 0
+      const deliveryCharge = data.deliveryCharge || 0
+      const subtotal = (data.totalAmount || 0) - giftCharges - deliveryCharge
+
+      const itemsHtml = buildItemsTable(data.items)
+      const giftBoxHtml = buildGiftBox(data.items)
+
+      const content = `
+        <div class="greeting">Hello Admin,</div>
+        <p class="message-text">A new order has been placed.</p>
+
+        <div class="info-card">
+          <div class="info-title">📋 ORDER DETAILS</div>
+          <div class="info-row"><span class="info-label">Order Number</span><span class="info-value">#${data.orderNumber}</span></div>
+          <div class="info-row"><span class="info-label">Customer</span><span class="info-value">${data.customerName}</span></div>
+          <div class="info-row"><span class="info-label">Email</span><span class="info-value">${data.customerEmail}</span></div>
+          <div class="info-row"><span class="info-label">Phone</span><span class="info-value">${data.customerPhone || 'Not provided'}</span></div>
+          <div class="info-row"><span class="info-label">Payment Method</span><span class="info-value">${isPrepaid ? '💳 Prepaid (Razorpay)' : '💰 Cash on Delivery'}</span></div>
+          <div class="info-row"><span class="info-label">Subtotal</span><span class="info-value">₹${subtotal}</span></div>
+          ${giftCharges > 0 ? `<div class="info-row"><span class="info-label">🎁 Gift Packing</span><span class="info-value" style="color:#C89B3C;">+₹${giftCharges}</span></div>` : ''}
+          <div class="info-row"><span class="info-label">🚚 Delivery Fee</span><span class="info-value ${deliveryCharge === 0 ? 'free-delivery' : 'paid-delivery'}">${deliveryCharge === 0 ? 'FREE' : `+₹${deliveryCharge}`}</span></div>
+          <div class="info-row"><span class="info-label">Total Amount</span><span class="info-value" style="color:#9E1B1B;">₹${data.totalAmount}</span></div>
+          <div class="info-row"><span class="info-label">Shipping Address</span><span class="info-value">${data.shippingAddress}</span></div>
+        </div>
+
+        ${itemsHtml ? `<div class="info-card"><div class="info-title">📦 ORDER ITEMS</div>${itemsHtml}</div>` : ''}
+        ${giftBoxHtml}
+
+        <div style="text-align: center;">
+          <a href="https://etikoppakatoys.store/admin" class="action-button">📋 View in Admin Panel →</a>
+        </div>
+      `
+
+      await sendEmail(ADMIN_EMAIL, `🆕 New Order #${data.orderNumber}`, getProfessionalTemplate('🆕 NEW ORDER RECEIVED', content, '#EC4899'))
+
+      return new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'Access-Control-Allow-Origin': '*' } })
+    }
+
+    // ── BULK ORDER ───────────────────────────────────────────────────────────
     if (type === 'bulk_order') {
-      subject = `📦 New Bulk Order Inquiry #${data.orderNumber}`
-      
-      const emailHtml = `
-        <!DOCTYPE html>
-        <html>
-        <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Bulk Order Inquiry</title>${baseStyles}</head>
-        <body>
-          <div class="email-box">
-            <div class="header"><div class="logo">🏭</div><div class="brand">Etikoppaka Toys</div><div class="tagline">WHOLESALE • BULK • TRADE</div></div>
-            <div class="content">
-              <div class="badge">📦 BULK ORDER INQUIRY</div>
-              <h1 class="greeting">Thank you, <span>${data.customerName}</span>!</h1>
-              <p class="message">Your bulk order inquiry has been received. Our wholesale team will review your requirements and get back to you within 24 hours with a custom quote.</p>
-              <div class="card">
-                <div class="card-title">📋 Inquiry Summary</div>
-                <div class="row"><span class="label">Inquiry Number</span><span class="value">#${data.orderNumber}</span></div>
-                <div class="row"><span class="label">Date</span><span class="value">${new Date(data.createdAt).toLocaleDateString('en-IN')}</span></div>
-                <div class="row"><span class="label">Product Interest</span><span class="value">${data.productInterest}</span></div>
-                <div class="row"><span class="label">Quantity</span><span class="value">${data.quantity} ${data.quantityUnit}</span></div>
-                ${data.budgetRange ? `<div class="row"><span class="label">Budget Range</span><span class="value">${data.budgetRange}</span></div>` : ''}
-                ${data.expectedDeliveryDate ? `<div class="row"><span class="label">Expected Delivery</span><span class="value">${new Date(data.expectedDeliveryDate).toLocaleDateString('en-IN')}</span></div>` : ''}
-              </div>
-              ${data.additionalRequirements ? `
-              <div class="card">
-                <div class="card-title">📝 Additional Requirements</div>
-                <p class="value" style="padding: 10px 0;">${data.additionalRequirements}</p>
-              </div>
-              ` : ''}
-              <div class="handcrafted"><div class="handcrafted-text">✦ Minimum order quantity: 50 pieces per design ✦</div></div>
-              <div class="handcrafted"><div class="handcrafted-text">🎯 Get up to 40% discount on bulk orders</div></div>
-              <a href="https://etikoppakatoys.store/bulk-order" class="button">📞 Track Your Inquiry →</a>
-            </div>
-            <div class="footer"><div class="footer-text"><p>📍 Etikoppaka, Visakhapatnam, AP - 531082</p><p>📧 bulk@etikoppakatoys.com | 📞 +91 98765 43210</p><hr><p>© ${new Date().getFullYear()} Etikoppaka Toys. Preserving Indian Heritage.</p><p>🌿 Supporting local artisans • Eco-friendly • Natural dyes</p></div></div>
-          </div>
-        </body>
-        </html>
+      const statusColor = '#8B5CF6'
+      const title = '📦 BULK ORDER INQUIRY'
+      const subject = `📦 Bulk Order Inquiry #${data.orderNumber}`
+
+      const content = `
+        <div class="greeting">Thank you, <span>${data.customerName}</span>!</div>
+        <p class="message-text">Your bulk order inquiry has been received. Our wholesale team will review your requirements and get back to you within 24 hours with a custom quote.</p>
+
+        <div class="info-card">
+          <div class="info-title">📋 INQUIRY SUMMARY</div>
+          <div class="info-row"><span class="info-label">Inquiry Number</span><span class="info-value">#${data.orderNumber}</span></div>
+          <div class="info-row"><span class="info-label">Date</span><span class="info-value">${new Date(data.createdAt).toLocaleDateString('en-IN')}</span></div>
+          <div class="info-row"><span class="info-label">Product Interest</span><span class="info-value">${data.productInterest}</span></div>
+          <div class="info-row"><span class="info-label">Quantity</span><span class="info-value">${data.quantity} ${data.quantityUnit}</span></div>
+          ${data.budgetRange ? `<div class="info-row"><span class="info-label">Budget Range</span><span class="info-value">${data.budgetRange}</span></div>` : ''}
+          ${data.expectedDeliveryDate ? `<div class="info-row"><span class="info-label">Expected Delivery</span><span class="info-value">${new Date(data.expectedDeliveryDate).toLocaleDateString('en-IN')}</span></div>` : ''}
+        </div>
+
+        ${data.additionalRequirements ? `
+        <div class="info-card">
+          <div class="info-title">📝 ADDITIONAL REQUIREMENTS</div>
+          <div class="info-row">${data.additionalRequirements}</div>
+        </div>
+        ` : ''}
+
+        <div class="update-detail" style="border-left-color: #8B5CF6;">
+          <p><strong>🎯 Next Steps:</strong></p>
+          <p>• Minimum order quantity: 50 pieces per design</p>
+          <p>• Custom quote will be shared within 24 hours</p>
+          <p>• Get up to 40% discount on bulk orders</p>
+        </div>
+
+        <div style="text-align: center;">
+          <a href="https://etikoppakatoys.store/bulk-order" class="action-button">📞 Track Your Inquiry →</a>
+        </div>
       `
-      
-      // Send to customer
-      const customerRes = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ from: FROM_EMAIL, to: to, subject: subject, html: emailHtml })
-      })
-      
-      const customerResult = await customerRes.json()
-      
-      if (!customerRes.ok) {
-        console.error('Customer email error:', customerResult)
-      } else {
-        console.log('Customer bulk order email sent:', customerResult.id)
-      }
-      
-      // Send to admin
-      const adminHtml = `
-        <!DOCTYPE html>
-        <html>
-        <head><meta charset="UTF-8"><title>New Bulk Order</title>${baseStyles}</head>
-        <body>
-          <div class="email-box">
-            <div class="header"><div class="logo">🏭</div><div class="brand">Etikoppaka Toys</div><div class="tagline">ADMIN - BULK ORDER ALERT</div></div>
-            <div class="content">
-              <div class="badge">🆕 NEW BULK ORDER INQUIRY</div>
-              <h1 class="greeting">Hello Admin,</h1>
-              <p class="message">A new bulk order inquiry has been received. Please review the details below.</p>
-              <div class="card">
-                <div class="card-title">📋 Customer Details</div>
-                <div class="row"><span class="label">Inquiry Number</span><span class="value">#${data.orderNumber}</span></div>
-                <div class="row"><span class="label">Name</span><span class="value">${data.customerName}</span></div>
-                <div class="row"><span class="label">Email</span><span class="value">${data.customerEmail}</span></div>
-                <div class="row"><span class="label">Phone</span><span class="value">${data.customerPhone}</span></div>
-                ${data.companyName ? `<div class="row"><span class="label">Company</span><span class="value">${data.companyName}</span></div>` : ''}
-                ${data.gstNumber ? `<div class="row"><span class="label">GST Number</span><span class="value">${data.gstNumber}</span></div>` : ''}
-              </div>
-              <div class="card">
-                <div class="card-title">📦 Order Requirements</div>
-                <div class="row"><span class="label">Product Interest</span><span class="value">${data.productInterest}</span></div>
-                <div class="row"><span class="label">Quantity</span><span class="value">${data.quantity} ${data.quantityUnit}</span></div>
-                ${data.budgetRange ? `<div class="row"><span class="label">Budget Range</span><span class="value">${data.budgetRange}</span></div>` : ''}
-                ${data.expectedDeliveryDate ? `<div class="row"><span class="label">Expected Delivery</span><span class="value">${new Date(data.expectedDeliveryDate).toLocaleDateString('en-IN')}</span></div>` : ''}
-              </div>
-              ${data.additionalRequirements ? `
-              <div class="card">
-                <div class="card-title">📝 Additional Requirements</div>
-                <p class="value" style="padding: 10px 0;">${data.additionalRequirements}</p>
-              </div>
-              ` : ''}
-              <a href="https://lvyjklkfmdubtchealte.supabase.co/project" class="button">📋 View in Admin Panel →</a>
-            </div>
-            <div class="footer"><div class="footer-text"><p>© ${new Date().getFullYear()} Etikoppaka Toys</p></div></div>
-          </div>
-        </body>
-        </html>
+
+      await sendEmail(to, subject, getProfessionalTemplate(title, content, statusColor))
+
+      const adminContent = `
+        <div class="greeting">Hello Admin,</div>
+        <p class="message-text">A new bulk order inquiry has been received.</p>
+
+        <div class="info-card">
+          <div class="info-title">📋 CUSTOMER DETAILS</div>
+          <div class="info-row"><span class="info-label">Inquiry Number</span><span class="info-value">#${data.orderNumber}</span></div>
+          <div class="info-row"><span class="info-label">Name</span><span class="info-value">${data.customerName}</span></div>
+          <div class="info-row"><span class="info-label">Email</span><span class="info-value">${data.customerEmail}</span></div>
+          <div class="info-row"><span class="info-label">Phone</span><span class="info-value">${data.customerPhone}</span></div>
+          ${data.companyName ? `<div class="info-row"><span class="info-label">Company</span><span class="info-value">${data.companyName}</span></div>` : ''}
+        </div>
+
+        <div class="info-card">
+          <div class="info-title">📦 ORDER REQUIREMENTS</div>
+          <div class="info-row"><span class="info-label">Product Interest</span><span class="info-value">${data.productInterest}</span></div>
+          <div class="info-row"><span class="info-label">Quantity</span><span class="info-value">${data.quantity} ${data.quantityUnit}</span></div>
+          ${data.budgetRange ? `<div class="info-row"><span class="info-label">Budget</span><span class="info-value">${data.budgetRange}</span></div>` : ''}
+        </div>
+
+        <div style="text-align: center;">
+          <a href="https://etikoppakatoys.store/admin" class="action-button">📋 View in Admin Panel →</a>
+        </div>
       `
-      
-      const adminRes = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ from: FROM_EMAIL, to: ADMIN_EMAIL, subject: `🆕 New Bulk Order #${data.orderNumber}`, html: adminHtml })
-      })
-      
-      const adminResult = await adminRes.json()
-      console.log('Admin bulk order email sent:', adminResult.id)
-      
-      return new Response(JSON.stringify({ success: true, customerId: customerResult.id, adminId: adminResult.id }), {
-        status: 200,
-        headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' }
-      })
+
+      await sendEmail(ADMIN_EMAIL, `🆕 New Bulk Order #${data.orderNumber}`, getProfessionalTemplate('🆕 NEW BULK ORDER INQUIRY', adminContent, '#EC4899'))
+
+      return new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'Access-Control-Allow-Origin': '*' } })
     }
-    
-    // ORDER CONFIRMATION EMAIL (existing)
-    else if (type === 'order_confirmation') {
-      subject = `✨ Order Confirmed! #${data.orderNumber} ✨`
-      
-      let itemsHtml = ''
-      if (data.items && data.items.length > 0) {
-        itemsHtml = data.items.map((item: any) => `
-          <div class="item-row">
-            <span class="item-name">${item.product_name}</span>
-            <span class="item-qty">x${item.quantity}</span>
-            <span class="item-price">₹${item.price * item.quantity}</span>
-          </div>
-        `).join('')
-      }
-      
-      const orderDate = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
-      
-      const emailHtml = `
-        <!DOCTYPE html>
-        <html>
-        <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Order Confirmed</title>${baseStyles}</head>
-        <body>
-          <div class="email-box">
-            <div class="header"><div class="logo">🎨</div><div class="brand">Etikoppaka Toys</div><div class="tagline">TRADITIONAL • HANDCRAFTED • HERITAGE</div></div>
-            <div class="content">
-              <div class="badge">✨ ORDER CONFIRMED ✨</div>
-              <h1 class="greeting">Namaste, <span>${data.customerName}</span>! 🙏</h1>
-              <p class="message">Thank you for choosing our traditional handcrafted toys. Your order has been confirmed and our artisans are preparing your treasures with love and care.</p>
-              <div class="card">
-                <div class="card-title">📜 Order Summary</div>
-                <div class="row"><span class="label">Order Number</span><span class="value">#${data.orderNumber}</span></div>
-                <div class="row"><span class="label">Order Date</span><span class="value">${orderDate}</span></div>
-                <div class="row"><span class="label">Payment Method</span><span class="value">Cash on Delivery 💰</span></div>
-                <div class="row"><span class="label">Shipping Address</span><span class="value">${data.shippingAddress || 'Address provided at checkout'}</span></div>
-              </div>
-              ${itemsHtml ? `<div class="card"><div class="card-title">📦 Order Items</div>${itemsHtml}</div>` : ''}
-              <div class="total"><span class="total-label">Total Amount</span><span class="total-amount">₹${data.totalAmount || 0}</span></div>
-              <div class="handcrafted"><div class="handcrafted-text">✦ Each piece is handcrafted with natural colors ✦</div></div>
-              <a href="https://etikoppakatoys.store/orders" class="button">📦 Track Your Order →</a>
-            </div>
-            <div class="footer"><div class="footer-text"><p>📍 Etikoppaka, Visakhapatnam, AP - 531082</p><p>📧 orders@etikoppakatoys.store | 📞 +91 9154884214</p><hr><p>© ${new Date().getFullYear()} Etikoppaka Toys. Preserving Indian Heritage.</p><p>🌿 Supporting local artisans • Eco-friendly • Natural dyes</p></div></div>
-          </div>
-        </body>
-        </html>
-      `
-      
-      const customerRes = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ from: FROM_EMAIL, to: to, subject: subject, html: emailHtml })
-      })
-      
-      const customerResult = await customerRes.json()
-      
-      const adminHtml = `
-        <!DOCTYPE html><html><head><meta charset="UTF-8"><title>New Order</title>${baseStyles}</head>
-        <body>
-          <div class="email-box">
-            <div class="header"><div class="logo">🎨</div><div class="brand">Etikoppaka Toys</div><div class="tagline">ADMIN NOTIFICATION</div></div>
-            <div class="content">
-              <div class="badge">🆕 NEW ORDER RECEIVED</div>
-              <h1 class="greeting">Hello Admin,</h1>
-              <p class="message">A new order has been placed. Please review and process it.</p>
-              <div class="card">
-                <div class="card-title">📜 Order Details</div>
-                <div class="row"><span class="label">Order Number</span><span class="value">#${data.orderNumber}</span></div>
-                <div class="row"><span class="label">Customer</span><span class="value">${data.customerName}</span></div>
-                <div class="row"><span class="label">Email</span><span class="value">${to}</span></div>
-                <div class="row"><span class="label">Total Amount</span><span class="value" style="color: ${colors.primaryRed};">₹${data.totalAmount || 0}</span></div>
-                <div class="row"><span class="label">Shipping Address</span><span class="value">${data.shippingAddress || 'Address provided'}</span></div>
-              </div>
-              ${data.items && data.items.length > 0 ? `<div class="card"><div class="card-title">📦 Items Ordered</div>${data.items.map((item: any) => `<div class="row"><span>${item.product_name}</span><span>x${item.quantity} - ₹${item.price * item.quantity}</span></div>`).join('')}</div>` : ''}
-              <a href="https://lvyjklkfmdubtchealte.supabase.co/project" class="button">📋 View in Admin Panel →</a>
-            </div>
-            <div class="footer"><div class="footer-text"><p>© ${new Date().getFullYear()} Etikoppaka Toys</p></div></div>
-          </div>
-        </body>
-        </html>
-      `
-      
-      const adminRes = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ from: FROM_EMAIL, to: ADMIN_EMAIL, subject: `🆕 New Order #${data.orderNumber}`, html: adminHtml })
-      })
-      
-      const adminResult = await adminRes.json()
-      
-      return new Response(JSON.stringify({ success: true, customerId: customerResult.id, adminId: adminResult.id }), {
-        status: 200,
-        headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' }
-      })
-      
-    } 
-    // ORDER STATUS UPDATE EMAIL (existing)
-    else if (type === 'order_status_update') {
-      const config = statusConfig[data.status]
-      if (!config) {
-        throw new Error(`Unknown status: ${data.status}`)
-      }
-      
-      subject = `📦 Order Update #${data.orderNumber} - ${config.title}`
-      
-      const emailHtml = `
-        <!DOCTYPE html>
-        <html>
-        <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Order Update</title>${baseStyles}</head>
-        <body>
-          <div class="email-box">
-            <div class="header"><div class="logo">🎨</div><div class="brand">Etikoppaka Toys</div><div class="tagline">TRADITIONAL • HANDCRAFTED • HERITAGE</div></div>
-            <div class="content">
-              <div class="badge">📦 ORDER UPDATE</div>
-              <h1 class="greeting">Hello, <span>${data.customerName}</span></h1>
-              <div class="status-card">
-                <div class="status-icon">${config.icon}</div>
-                <div class="status-title" style="color: ${config.color}">${config.title}</div>
-                <div class="status-message">${config.message}</div>
-              </div>
-              <div class="card">
-                <div class="card-title">📋 Order Details</div>
-                <div class="row"><span class="label">Order Number</span><span class="value">#${data.orderNumber}</span></div>
-                <div class="row"><span class="label">Total Amount</span><span class="value" style="color: ${colors.primaryRed};">₹${data.totalAmount || 0}</span></div>
-                <div class="row"><span class="label">Shipping Address</span><span class="value">${data.shippingAddress || 'Address provided at checkout'}</span></div>
-              </div>
-              <div class="handcrafted"><div class="handcrafted-text">✦ Handcrafted with natural colors & sustainable wood ✦</div></div>
-              <a href="https://etikoppakatoys.store/orders" class="button">📦 Track Your Order →</a>
-            </div>
-            <div class="footer"><div class="footer-text"><p>📍 Etikoppaka, Visakhapatnam, AP - 531082</p><p>📧 orders@etikoppakatoys.com | 📞 +91 9154884214</p><hr><p>© ${new Date().getFullYear()} Etikoppaka Toys</p></div></div>
-          </div>
-        </body>
-        </html>
-      `
-      
-      const res = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ from: FROM_EMAIL, to: to, subject: subject, html: emailHtml })
-      })
-      
-      const result = await res.json()
-      
-      if (!res.ok) {
-        throw new Error(result.message)
-      }
-      
-      return new Response(JSON.stringify({ success: true, id: result.id }), {
-        status: 200,
-        headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' }
-      })
-    }
-    
+
     return new Response(JSON.stringify({ error: 'Unknown email type' }), { status: 400 })
-    
+
   } catch (error) {
     console.error('Error:', error.message)
     return new Response(JSON.stringify({ error: error.message }), {
       status: 400,
-      headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' }
+      headers: { 'Access-Control-Allow-Origin': '*' },
     })
   }
 })

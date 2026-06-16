@@ -1,0 +1,558 @@
+/* ============================================
+   DESKTOP CONTACT US PAGE - PROFESSIONAL & CLEAN
+   ============================================ */
+
+.contactPage {
+  background: #F8F2E8;
+  min-height: 100vh;
+  padding: 2rem 0 4rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+  color: #1F5B3A;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #C89B3C;
+}
+
+.current {
+  color: #3E2A1F;
+}
+
+/* Two Column Layout */
+.twoColumnLayout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Left Column */
+.leftColumn {
+  position: sticky;
+  top: 100px;
+}
+
+.infoCard {
+  background: white;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.sectionBadge {
+  display: inline-block;
+  background: #F8F2E8;
+  color: #C89B3C;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  color: #3E2A1F;
+  font-family: 'Playfair Display', Georgia, serif;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.sectionDesc {
+  color: #7A6B5A;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+/* Contact Details */
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.contactItem {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.contactIcon {
+  width: 44px;
+  height: 44px;
+  background: #F8F2E8;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1F5B3A;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.contactItem h4 {
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  margin-bottom: 0.25rem;
+}
+
+.contactItem p {
+  font-size: 0.8rem;
+  color: #5C4B3A;
+  margin-bottom: 0.15rem;
+}
+
+.contactItem span {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.contactItem a {
+  font-size: 0.75rem;
+  color: #1F5B3A;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contactItem a:hover {
+  text-decoration: underline;
+}
+
+/* Social Connect */
+.socialConnect h4 {
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  margin-bottom: 0.75rem;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.socialIcon {
+  width: 36px;
+  height: 36px;
+  background: #F8F2E8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1F5B3A;
+  transition: all 0.2s;
+}
+
+.socialIcon:hover {
+  background: #1F5B3A;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Right Column - Form */
+.rightColumn {
+  background: white;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.formCard h2 {
+  font-size: 1.3rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+.formCard > p {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+  margin-bottom: 1.5rem;
+}
+
+/* Alerts */
+.alertSuccess, .alertError {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.alertSuccess {
+  background: #D1FAE5;
+  border-left: 4px solid #10B981;
+}
+
+.alertSuccess svg {
+  color: #059669;
+}
+
+.alertSuccess strong {
+  color: #065F46;
+  font-size: 0.8rem;
+}
+
+.alertSuccess p {
+  color: #065F46;
+  font-size: 0.7rem;
+}
+
+.alertError {
+  background: #FEE2E2;
+  border-left: 4px solid #EF4444;
+}
+
+.alertError svg {
+  color: #DC2626;
+}
+
+.alertError strong {
+  color: #991B1B;
+  font-size: 0.8rem;
+}
+
+.alertError p {
+  color: #991B1B;
+  font-size: 0.7rem;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.inputGroup label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #3E2A1F;
+}
+
+.inputGroup label span {
+  color: #9E1B1B;
+}
+
+.inputWrapper, .textareaWrapper {
+  position: relative;
+}
+
+.inputIcon, .textareaIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #C89B3C;
+  font-size: 0.9rem;
+}
+
+.textareaIcon {
+  top: 14px;
+  transform: none;
+}
+
+.inputWrapper input, .textareaWrapper textarea {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  transition: all 0.2s;
+  background: white;
+}
+
+.textareaWrapper textarea {
+  padding-top: 12px;
+  resize: vertical;
+}
+
+.inputWrapper input:focus, .textareaWrapper textarea:focus {
+  outline: none;
+  border-color: #C89B3C;
+  box-shadow: 0 0 0 3px rgba(200, 155, 60, 0.1);
+}
+
+.inputWrapper input.errorInput, .textareaWrapper textarea.errorInput {
+  border-color: #EF4444;
+}
+
+.errorText {
+  font-size: 0.65rem;
+  color: #EF4444;
+}
+
+.submitButton {
+  padding: 0.85rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  margin-top: 0.5rem;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #15452B;
+  transform: translateY(-1px);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.responseNote {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  background: #F8F2E8;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  color: #1F5B3A;
+  justify-content: center;
+}
+
+/* ============================================
+   MOBILE CONTACT PAGE
+   ============================================ */
+
+.mobileContactPage {
+  min-height: 100vh;
+  background: #F8F2E8;
+  padding-bottom: 2rem;
+}
+
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileBackBtn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #3E2A1F;
+}
+
+.mobileHeader h1 {
+  font-size: 1rem;
+  color: #3E2A1F;
+  margin: 0;
+}
+
+.mobilePlaceholder {
+  width: 40px;
+}
+
+/* Mobile Alerts */
+.mobileAlertSuccess, .mobileAlertError {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+}
+
+.mobileAlertSuccess {
+  background: #D1FAE5;
+}
+
+.mobileAlertError {
+  background: #FEE2E2;
+}
+
+/* Mobile Contact Info */
+.mobileContactInfo {
+  background: white;
+  margin: 1rem;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.mobileInfoItem {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileInfoItem:last-child {
+  border-bottom: none;
+}
+
+.mobileInfoIcon {
+  width: 40px;
+  height: 40px;
+  background: #F8F2E8;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1F5B3A;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.mobileInfoItem h4 {
+  font-size: 0.8rem;
+  color: #3E2A1F;
+  margin-bottom: 0.25rem;
+}
+
+.mobileInfoItem p {
+  font-size: 0.7rem;
+  color: #5C4B3A;
+}
+
+.mobileInfoItem a {
+  font-size: 0.7rem;
+  color: #1F5B3A;
+  text-decoration: none;
+}
+
+/* Mobile Form */
+.mobileFormCard {
+  background: white;
+  margin: 1rem;
+  padding: 1.25rem;
+  border-radius: 20px;
+}
+
+.mobileFormCard h2 {
+  font-size: 1rem;
+  color: #3E2A1F;
+  margin-bottom: 1rem;
+}
+
+.mobileInputGroup {
+  margin-bottom: 1rem;
+}
+
+.mobileInputGroup input, .mobileInputGroup textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-family: inherit;
+}
+
+.mobileInputGroup input:focus, .mobileInputGroup textarea:focus {
+  outline: none;
+  border-color: #C89B3C;
+}
+
+.mobileInputGroup input.errorInput, .mobileInputGroup textarea.errorInput {
+  border-color: #EF4444;
+}
+
+.mobileSubmitBtn {
+  width: 100%;
+  padding: 0.75rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.mobileSocial {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.mobileSocialIcon {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1F5B3A;
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .twoColumnLayout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .leftColumn {
+    position: static;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}

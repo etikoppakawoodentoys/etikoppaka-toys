@@ -522,3 +522,329 @@
     display: none;
   }
 }
+/* ============================================
+   ADDITIONAL PROFESSIONAL STYLES
+   ============================================ */
+
+/* Courier Partners Section */
+.courierPartners {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.courierBadge {
+  background: #F8F2E8;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: #3E2A1F;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.courierBadge::before {
+  content: "✓";
+  color: #1F5B3A;
+  font-weight: bold;
+}
+
+/* Tracking Info Card */
+.trackingCard {
+  background: linear-gradient(135deg, #1F5B3A 0%, #15452B 100%);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+  color: white;
+}
+
+.trackingCard h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trackingCard p {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+/* Shipping Notice Box */
+.shippingNotice {
+  background: #FEF3C7;
+  border-left: 4px solid #F59E0B;
+  padding: 1rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+
+.shippingNotice p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #92400E;
+}
+
+/* Order Cut-off Badge */
+.cutoffBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #E8F5E9;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  color: #1F5B3A;
+  font-weight: 500;
+}
+
+/* Hover Effects for Cards */
+.infoCard {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.infoCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Card Enhancements */
+.sidebarCard {
+  transition: transform 0.2s;
+}
+
+.sidebarCard:hover {
+  transform: translateY(-2px);
+}
+
+/* Contact Info Icons */
+.contactInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.contactInfo:last-child {
+  border-bottom: none;
+}
+
+.contactInfo svg {
+  font-size: 1.2rem;
+  color: #1F5B3A;
+  min-width: 24px;
+}
+
+.contactInfo strong {
+  display: block;
+  font-size: 0.8rem;
+  color: #3E2A1F;
+}
+
+.contactInfo span {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+}
+
+/* Timeline Improvements */
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.timelineStep {
+  text-align: center;
+  flex: 1;
+  position: relative;
+}
+
+.timelineDot {
+  width: 12px;
+  height: 12px;
+  background: #C89B3C;
+  border-radius: 50%;
+  margin: 0 auto 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.timelineStep.completed .timelineDot {
+  background: #1F5B3A;
+}
+
+.timelineLine {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: #E8DCC8;
+  z-index: 1;
+}
+
+.timelineStep:first-child .timelineLine {
+  display: none;
+}
+
+/* Zones Table Improvements */
+.zonesTable {
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.zonesHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  background: #1F5B3A;
+  color: white;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.zonesRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #E8DCC8;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+}
+
+.zonesRow:hover {
+  background: #F8F2E8;
+}
+
+.zonesRow:last-child {
+  border-bottom: none;
+}
+
+.freeShipping {
+  color: #1F5B3A;
+  font-weight: 600;
+}
+
+/* Bulk Order Link */
+.bulkLink {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #1F5B3A;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.bulkLink:hover {
+  color: #C89B3C;
+  text-decoration: underline;
+}
+
+/* Mobile Specific Additions */
+@media (max-width: 768px) {
+  .mobileInfoGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .mobileInfoCard {
+    background: white;
+    padding: 0.75rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .mobileInfoCard svg {
+    font-size: 1.2rem;
+    color: #1F5B3A;
+  }
+  
+  .mobileInfoCard strong {
+    display: block;
+    font-size: 0.7rem;
+    color: #3E2A1F;
+  }
+  
+  .mobileInfoCard span {
+    font-size: 0.65rem;
+    color: #7A6B5A;
+  }
+  
+  .mobileZoneItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border-bottom: 1px solid #E8DCC8;
+  }
+  
+  .mobileZoneItem strong {
+    display: block;
+    font-size: 0.8rem;
+  }
+  
+  .mobileZoneItem span {
+    font-size: 0.7rem;
+    color: #7A6B5A;
+  }
+  
+  .zoneCost {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #1F5B3A;
+  }
+  
+  .mobileContactCard {
+    background: white;
+    border-radius: 16px;
+    padding: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .mobileContactCard h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .mobileContactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+  }
+  
+  .mobileContactInfo div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #3E2A1F;
+  }
+  
+  .mobileContactInfo svg {
+    color: #1F5B3A;
+  }
+  
+  .mobileTiming {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    color: #7A6B5A;
+    margin-top: 0.5rem;
+  }
+}

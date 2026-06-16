@@ -1,25 +1,38 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Etikoppaka Toys",
+  "short_name": "Etikoppaka",
+  "description": "Authentic Etikoppaka wooden toys - Traditional handcrafted toys with natural colors",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1F5B3A",
+  "background_color": "#F8F2E8",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "categories": ["shopping", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Products",
+      "short_name": "Shop",
+      "url": "/products",
+      "icons": [{ "src": "/icon-shop.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Cart",
+      "short_name": "Cart",
+      "url": "/cart",
+      "icons": [{ "src": "/icon-cart.png", "sizes": "96x96" }]
+    }
+  ]
 }

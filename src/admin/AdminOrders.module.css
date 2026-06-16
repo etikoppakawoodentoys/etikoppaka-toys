@@ -769,4 +769,925 @@
   border-radius: 20px;
   font-size: 0.7rem;
   font-weight: 500;
+}/* Payment Notification Popup */
+.paymentNotification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: linear-gradient(135deg, #10B981, #059669);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1000;
+  animation: slideInRight 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 300px;
+}
+
+.paymentNotificationIcon {
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paymentNotificationContent h4 {
+  color: white;
+  margin: 0 0 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.paymentNotificationContent p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.notificationClose {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* COD Payment Pending Section */
+.codPaymentPending {
+  background: #FEF3C7;
+  border-radius: 12px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #FDE68A;
+}
+
+.codNote {
+  color: #92400E;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Refresh Button */
+.refreshBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+/* ============================================
+   ADD THESE STYLES TO YOUR AdminOrders.module.css
+   (paste at the bottom of the file)
+   ============================================ */
+
+/* Gift order card highlight */
+.giftOrder {
+  border-left: 3px solid #C89B3C;
+}
+
+/* Gift badge in order header */
+.giftBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #FEF3C7;
+  color: #C89B3C;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  border: 1px solid #F5E6B8;
+}
+
+/* Gift item row in items list */
+.giftItem {
+  background: #FFFDF0;
+  border-radius: 4px;
+}
+
+.giftItemBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: #FEF3C7;
+  color: #C89B3C;
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+/* Admin gift details box */
+.adminGiftBox {
+  margin-top: 0.75rem;
+  background: #FFFDF0;
+  border: 1.5px dashed #C89B3C;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+}
+
+.adminGiftTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #C89B3C;
+  margin-bottom: 0.5rem;
+}
+
+.adminGiftRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #F5E6B8;
+  font-size: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.adminGiftRow:last-of-type {
+  border-bottom: none;
+}
+
+.adminGiftProduct {
+  font-weight: 600;
+  color: #3E2A1F;
+  min-width: 120px;
+}
+
+.adminGiftMessage {
+  flex: 1;
+  color: #7A6B5A;
+  font-style: italic;
+}
+
+.adminGiftMessage em {
+  color: #B0A090;
+}
+
+.adminGiftCharge {
+  font-weight: 600;
+  color: #1F5B3A;
+  white-space: nowrap;
+}
+
+.adminGiftTotal {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #C89B3C;
+  margin-top: 0.4rem;
+  text-align: right;
+}
+/* ============================================
+   HAMPER STYLES - ADMIN ORDERS
+   ============================================ */
+
+.hamperOrder {
+  border-left: 3px solid #1F5B3A;
+}
+
+.hamperBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.hamperItemsSection {
+  margin-top: 10px;
+  padding: 10px;
+  background: #F0FDF4;
+  border-radius: 8px;
+  border-left: 3px solid #1F5B3A;
+}
+
+.hamperItemsTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1F5B3A;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hamperItem {
+  background: #F0FDF4 !important;
+}
+
+.hamperItemBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  color: #065F46;
+  background: #D1FAE5;
+  padding: 2px 7px;
+  border-radius: 20px;
+  margin-left: 6px;
+  font-weight: 500;
+}
+/* ============================================
+   DELIVERY CHARGE STYLES - ADMIN ORDERS
+   ============================================ */
+
+/* Delivery Note in Order Total */
+.deliveryNote {
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+  font-weight: normal;
+  color: #D97706;
+  background: #FEF3C7;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.deliveryNote.freeDelivery {
+  color: #065F46;
+  background: #D1FAE5;
+}
+
+/* Delivery section in order card */
+.deliverySection {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  background: #F8FAFC;
+  border-radius: 10px;
+  border-left: 3px solid #C89B3C;
+}
+
+.deliveryTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #3E2A1F;
+  margin-bottom: 0.4rem;
+}
+
+.deliveryTitle svg {
+  color: #C89B3C;
+  font-size: 0.85rem;
+}
+
+.deliveryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  padding: 0.25rem 0;
+}
+
+.deliveryLabel {
+  color: #7A6B5A;
+}
+
+.deliveryValue {
+  font-weight: 600;
+  color: #D97706;
+}
+
+.deliveryValue.free {
+  color: #10B981;
+}
+
+/* Free delivery highlight badge */
+.freeDeliveryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #D1FAE5;
+  color: #065F46;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+/* Delivery info tooltip */
+.deliveryInfoIcon {
+  cursor: help;
+  margin-left: 0.25rem;
+  color: #B8A99A;
+  font-size: 0.65rem;
+}
+
+.deliveryInfoIcon:hover {
+  color: #C89B3C;
+}
+
+/* Order total row enhancement */
+.orderTotal {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #FFF9F1;
+  border-radius: 12px;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.orderTotal svg {
+  color: #C89B3C;
+}
+
+.orderTotal strong {
+  font-size: 0.8rem;
+  color: #3E2A1F;
+}
+
+.orderTotal span {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #9E1B1B;
+}
+
+/* Delivery threshold message */
+.deliveryThresholdMsg {
+  font-size: 0.65rem;
+  color: #D97706;
+  background: #FEF3C7;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .deliveryNote {
+    font-size: 0.6rem;
+    margin-left: 0.3rem;
+    padding: 0.15rem 0.4rem;
+  }
+  
+  .deliveryRow {
+    font-size: 0.65rem;
+  }
+  
+  .orderTotal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .deliveryNote {
+    margin-left: 0;
+    margin-top: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .deliveryNote {
+    font-size: 0.55rem;
+    padding: 0.1rem 0.35rem;
+  }
+  
+  .deliverySection {
+    padding: 0.5rem;
+  }
+  
+  .deliveryTitle {
+    font-size: 0.7rem;
+  }
+}
+/* ============================================
+   INVOICE BUTTON STYLES - ADMIN ORDERS
+   ============================================ */
+
+/* Invoice Button - Desktop */
+.invoiceBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.invoiceBtn:hover {
+  background: linear-gradient(135deg, #2D7A4E, #1F5B3A);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 91, 58, 0.3);
+}
+
+.invoiceBtn:active {
+  transform: translateY(0);
+}
+
+/* Actions Section - 3 buttons layout */
+.actionsSection {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.viewBtn, .updateBtn, .invoiceBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.viewBtn {
+  background: #F8F2E8;
+  color: #3E2A1F;
+  border: 1px solid #E8DCC8;
+}
+
+.viewBtn:hover {
+  background: #E8DCC8;
+  transform: translateY(-2px);
+}
+
+.updateBtn {
+  background: #1F5B3A;
+  color: white;
+}
+
+.updateBtn:hover:not(:disabled) {
+  background: #15452B;
+  transform: translateY(-2px);
+}
+
+.updateBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Actions Section - Stack vertically on mobile */
+  .actionsSection {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .viewBtn, .updateBtn, .invoiceBtn {
+    width: 100%;
+    padding: 0.7rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Order Card adjustments */
+  .orderCard {
+    margin-bottom: 1rem;
+  }
+  
+  .orderCardHeader {
+    padding: 0.75rem;
+  }
+  
+  .orderInfo {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .badgeGroup {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  
+  /* Order Items - Mobile */
+  .orderItem {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  
+  .itemName {
+    width: 100%;
+    font-size: 0.75rem;
+  }
+  
+  .itemQty {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+  }
+  
+  .itemPrice {
+    font-size: 0.75rem;
+  }
+  
+  /* Order Total - Mobile */
+  .orderTotal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    padding: 0.6rem;
+  }
+  
+  .orderTotal span {
+    font-size: 0.85rem;
+  }
+  
+  /* Delivery Note - Mobile */
+  .deliveryNote {
+    font-size: 0.6rem;
+    margin-left: 0;
+    margin-top: 0.25rem;
+    padding: 0.15rem 0.4rem;
+    display: inline-block;
+  }
+  
+  /* Customer Details - Mobile */
+  .customerDetails {
+    padding: 0.6rem;
+  }
+  
+  .customerDetails p {
+    font-size: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  
+  /* Gift Box - Mobile */
+  .adminGiftBox {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .adminGiftRow {
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+  }
+  
+  .adminGiftProduct {
+    min-width: auto;
+  }
+  
+  .adminGiftMessage {
+    font-size: 0.7rem;
+  }
+  
+  .adminGiftCharge {
+    font-size: 0.7rem;
+  }
+  
+  /* Hamper Section - Mobile */
+  .hamperItemsSection {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .hamperItemsTitle {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Timeline - Mobile */
+  .timeline {
+    padding-left: 1rem;
+  }
+  
+  .timeline::before {
+    left: 3px;
+  }
+  
+  .timelineDot {
+    left: -1rem;
+    width: 8px;
+    height: 8px;
+  }
+  
+  .timelineContent {
+    padding: 0.4rem;
+  }
+  
+  .timelineHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+  
+  .timelineStatus {
+    font-size: 0.7rem;
+  }
+  
+  .timelineDate {
+    font-size: 0.6rem;
+  }
+  
+  /* Stats Chips - Mobile */
+  .headerStats {
+    gap: 0.5rem;
+  }
+  
+  .statChip {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+  }
+  
+  /* Filters - Mobile */
+  .searchBox {
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .searchBox input {
+    font-size: 0.8rem;
+  }
+  
+  .filterDropdown {
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .filterDropdown select {
+    font-size: 0.8rem;
+  }
+  
+  /* Popup - Mobile */
+  .popupContent {
+    width: 95%;
+    margin: 1rem;
+  }
+  
+  .popupBody {
+    padding: 1rem;
+  }
+  
+  .popupBody p {
+    font-size: 0.85rem;
+  }
+  
+  .statusOptions select {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  .popupFooter {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .cancelBtn, .confirmBtn {
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE (max-width: 480px)
+   ============================================ */
+
+@media (max-width: 480px) {
+  /* Header */
+  .header h2 {
+    font-size: 1.1rem;
+  }
+  
+  /* Order Card */
+  .orderCardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .orderInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  
+  .orderNumber {
+    font-size: 0.8rem;
+  }
+  
+  .orderDate {
+    font-size: 0.65rem;
+  }
+  
+  /* Badge Group */
+  .badgeGroup {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .statusBadge, .paymentBadge, .giftBadge, .hamperBadge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+  }
+  
+  /* Order Items */
+  .orderItem {
+    padding: 0.4rem;
+  }
+  
+  .itemName {
+    font-size: 0.7rem;
+  }
+  
+  /* Order Total */
+  .orderTotal strong {
+    font-size: 0.75rem;
+  }
+  
+  .orderTotal span {
+    font-size: 0.8rem;
+  }
+  
+  /* Delivery Note */
+  .deliveryNote {
+    font-size: 0.5rem;
+    padding: 0.1rem 0.3rem;
+  }
+  
+  /* Section Titles */
+  .sectionTitle h4 {
+    font-size: 0.75rem;
+  }
+  
+  .sectionTitle svg {
+    font-size: 0.8rem;
+  }
+  
+  /* Stats Chips */
+  .statChip {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.65rem;
+  }
+  
+  .statChip svg {
+    font-size: 0.75rem;
+  }
+  
+  /* Buttons */
+  .viewBtn, .updateBtn, .invoiceBtn {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.7rem;
+  }
+  
+  /* Gift Box */
+  .adminGiftTitle {
+    font-size: 0.7rem;
+  }
+  
+  .adminGiftRow {
+    font-size: 0.65rem;
+  }
+  
+  .adminGiftTotal {
+    font-size: 0.65rem;
+  }
+}
+
+/* ============================================
+   TABLET VIEW (769px - 1024px)
+   ============================================ */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .ordersGrid {
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 1rem;
+  }
+  
+  .actionsSection {
+    gap: 0.5rem;
+  }
+  
+  .viewBtn, .updateBtn, .invoiceBtn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.7rem;
+  }
+  
+  .orderCardBody {
+    padding: 1rem;
+  }
+  
+  .itemName {
+    font-size: 0.75rem;
+  }
+  
+  .adminGiftRow {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+}
+
+/* ============================================
+   PRINT STYLES (for invoice)
+   ============================================ */
+
+@media print {
+  .adminOrders {
+    padding: 0;
+    background: white;
+  }
+  
+  .header, .filtersBar, .actionsSection, .updateBtn, .viewBtn, .invoiceBtn {
+    display: none;
+  }
+  
+  .orderCard {
+    box-shadow: none;
+    border: 1px solid #E8DCC8;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  .orderCard:hover {
+    transform: none;
+  }
+  
+  .timeline::before {
+    display: none;
+  }
+}
+
+/* ============================================
+   INVOICE BUTTON ACTIVE STATE
+   ============================================ */
+
+.invoiceBtn:active {
+  transform: scale(0.98);
+}
+
+/* Disabled state for invoice button (if needed) */
+.invoiceBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  background: linear-gradient(135deg, #95A5A6, #7F8C8D);
+}
+
+/* Tooltip for invoice button */
+.invoiceBtn[title] {
+  position: relative;
+}
+
+.invoiceBtn[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3E2A1F;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  white-space: nowrap;
+  z-index: 10;
+  margin-bottom: 5px;
 }

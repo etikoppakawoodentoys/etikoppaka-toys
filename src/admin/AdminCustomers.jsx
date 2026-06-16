@@ -38,29 +38,32 @@ const AdminCustomers = () => {
     fetchCustomers();
     fetchStats();
 
-    const customersSubscription = supabase
-      .channel('customers-channel')
+    // FIXED: Use unique channel names for each component
+    const customersChannel = supabase
+      .channel('admin-customers-channel')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'users' }, () => {
         fetchCustomers();
         fetchStats();
-      })
-      .subscribe();
+      });
 
-    const ordersSubscription = supabase
-      .channel('orders-channel')
+    const customerOrdersChannel = supabase
+      .channel('admin-customer-orders-channel')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => {
         if (selectedCustomer) {
           fetchCustomerOrders(selectedCustomer.id);
         }
         fetchStats();
-      })
-      .subscribe();
+      });
+
+    // Subscribe to channels
+    customersChannel.subscribe();
+    customerOrdersChannel.subscribe();
 
     return () => {
-      customersSubscription.unsubscribe();
-      ordersSubscription.unsubscribe();
+      customersChannel.unsubscribe();
+      customerOrdersChannel.unsubscribe();
     };
-  }, []);
+  }, [selectedCustomer]);
 
   const fetchCustomers = async () => {
     const { data, error } = await supabase
@@ -267,11 +270,11 @@ const AdminCustomers = () => {
                     </div>
                   </div>
                 </td>
-                <tr>
+                <td>
                   <div className={styles.contactInfo}>
                     <div><FiPhone /> {customer.mobile || 'Not provided'}</div>
                   </div>
-                </tr>
+                </td>
                 <td>
                   <div className={styles.orderCount}>
                     <FiPackage />

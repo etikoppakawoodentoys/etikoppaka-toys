@@ -139,9 +139,16 @@ const Login = () => {
         </div>
 
         {/* Mobile Footer Text */}
-        <div className={styles.mobileFooter}>
-          <p>By continuing, you agree to our Terms of Service & Privacy Policy</p>
-        </div>
+       <div className={styles.terms}>
+  By logging in, you agree to our{" "}
+  <Link to="/terms" target="_blank" className={styles.termsLink}>
+    Terms of Service
+  </Link>{" "}
+  and{" "}
+  <Link to="/privacy" target="_blank" className={styles.termsLink}>
+    Privacy Policy
+  </Link>
+</div>
       </div>
     );
   }
@@ -218,8 +225,15 @@ const Login = () => {
             </div>
 
             <div className={styles.terms}>
-              By continuing, you agree to our Terms of Service and Privacy Policy
-            </div>
+  By logging in, you agree to our{" "}
+  <Link to="/terms" target="_blank" className={styles.termsLink}>
+    Terms of Service
+  </Link>{" "}
+  and{" "}
+  <Link to="/privacy" target="_blank" className={styles.termsLink}>
+    Privacy Policy
+  </Link>
+</div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FiTruck, FiClock, FiMapPin, FiPhone, FiMail, FiShield, FiCheckCircle, FiArrowLeft } from 'react-icons/fi';
+import { FiTruck, FiClock, FiMapPin, FiPhone, FiMail, FiShield, FiCheckCircle, FiArrowLeft, FiPackage, FiGlobe } from 'react-icons/fi';
 import styles from './ShippingPolicy.module.css';
 
 const ShippingPolicy = () => {
@@ -16,27 +16,29 @@ const ShippingPolicy = () => {
   }, []);
 
   const shippingInfo = {
-    processingTime: "1-2 business days",
+    processingTime: "24-48 hours",
     deliveryTime: "3-7 business days",
     freeShippingThreshold: 499,
-    shippingCost: 50,
+    shippingCost: 40,
     codAvailable: true,
     codCharges: 0,
     internationalShipping: false,
-    paymentTerms: "50% advance payment required for order confirmation. Balance 50% on delivery.",
+    dispatchDays: "Monday to Saturday (excluding public holidays)",
+    estimatedDelivery: "3-7 business days after dispatch",
+    trackingEnabled: true,
+    courierPartners: ["Delhivery", "Ecom Express", "India Post", "DTDC"],
+    paymentTerms: "Full payment required at checkout. COD available with zero extra charges.",
     contactForOrders: "+91 9154884214",
     emailForOrders: "orders@etikoppakatoys.store"
   };
 
   const shippingZones = [
-    { zone: "Andhra Pradesh", time: "3-4 days", cost: "Free above ₹499" },
-    { zone: "Telangana", time: "3-4 days", cost: "Free above ₹499" },
-    { zone: "Karnataka", time: "4-5 days", cost: "Free above ₹499" },
-    { zone: "Tamil Nadu", time: "4-5 days", cost: "Free above ₹499" },
-    { zone: "Kerala", time: "5-6 days", cost: "Free above ₹499" },
-    { zone: "Maharashtra", time: "5-6 days", cost: "Free above ₹499" },
-    { zone: "Delhi NCR", time: "5-7 days", cost: "Free above ₹499" },
-    { zone: "Other States", time: "5-7 days", cost: "Free above ₹499" }
+    { zone: "Andhra Pradesh & Telangana", time: "2-4 days", cost: "Free above ₹499 | ₹40 otherwise" },
+    { zone: "South India (KA, TN, KL)", time: "3-5 days", cost: "Free above ₹499 | ₹40 otherwise" },
+    { zone: "West India (MH, GJ)", time: "4-6 days", cost: "Free above ₹499 | ₹50 otherwise" },
+    { zone: "North India (DL, UP, HR, PB)", time: "5-7 days", cost: "Free above ₹499 | ₹50 otherwise" },
+    { zone: "East India (WB, OD, JH)", time: "5-7 days", cost: "Free above ₹499 | ₹60 otherwise" },
+    { zone: "Northeast India", time: "7-10 days", cost: "Free above ₹999 | ₹80 otherwise" }
   ];
 
   // Mobile UI
@@ -52,14 +54,12 @@ const ShippingPolicy = () => {
         </div>
 
         <div className={styles.mobileContent}>
-          {/* Hero Section */}
           <div className={styles.mobileHero}>
             <FiTruck className={styles.mobileHeroIcon} />
-            <h2>Shipping & Delivery</h2>
-            <p>Fast, reliable shipping across India</p>
+            <h2>Fast & Reliable Delivery</h2>
+            <p>Free shipping on orders above ₹{shippingInfo.freeShippingThreshold}</p>
           </div>
 
-          {/* Shipping Info Cards */}
           <div className={styles.mobileInfoGrid}>
             <div className={styles.mobileInfoCard}>
               <FiClock />
@@ -79,44 +79,49 @@ const ShippingPolicy = () => {
               <FiShield />
               <div>
                 <strong>Free Shipping</strong>
-                <span>On orders above ₹{shippingInfo.freeShippingThreshold}</span>
+                <span>Above ₹{shippingInfo.freeShippingThreshold}</span>
+              </div>
+            </div>
+            <div className={styles.mobileInfoCard}>
+              <FiPackage />
+              <div>
+                <strong>Track Order</strong>
+                <span>Real-time tracking available</span>
               </div>
             </div>
           </div>
 
-          {/* Payment Terms */}
           <div className={styles.mobileSection}>
-            <h3>💰 Payment Terms</h3>
+            <h3>📦 How We Ship</h3>
             <div className={styles.mobilePaymentTerms}>
-              <p>{shippingInfo.paymentTerms}</p>
+              <p>We partner with leading courier services including Delhivery, Ecom Express, India Post, and DTDC to ensure your orders reach you safely and on time.</p>
               <div className={styles.mobilePaymentSteps}>
                 <div className={styles.step}>
                   <span className={styles.stepNumber}>1</span>
-                  <span>Place order online</span>
+                  <span>Order placed & confirmed</span>
                 </div>
                 <div className={styles.step}>
                   <span className={styles.stepNumber}>2</span>
-                  <span>Our team calls for confirmation</span>
+                  <span>Order packed with care ({shippingInfo.processingTime})</span>
                 </div>
                 <div className={styles.step}>
                   <span className={styles.stepNumber}>3</span>
-                  <span>Pay 50% advance via UPI/Bank transfer</span>
+                  <span>Dispatched via trusted courier partner</span>
                 </div>
                 <div className={styles.step}>
                   <span className={styles.stepNumber}>4</span>
-                  <span>Product shipped after payment confirmation</span>
+                  <span>Tracking link shared via email/SMS</span>
                 </div>
                 <div className={styles.step}>
                   <span className={styles.stepNumber}>5</span>
-                  <span>Pay remaining 50% on delivery</span>
+                  <span>Delivered within {shippingInfo.deliveryTime}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Shipping Zones */}
           <div className={styles.mobileSection}>
-            <h3>📍 Shipping Zones</h3>
+            <h3>📍 Shipping Zones & Delivery Timeline</h3>
             <div className={styles.mobileZonesList}>
               {shippingZones.map((zone, idx) => (
                 <div key={idx} className={styles.mobileZoneItem}>
@@ -130,16 +135,15 @@ const ShippingPolicy = () => {
             </div>
           </div>
 
-          {/* Contact Section */}
           <div className={styles.mobileContactCard}>
-            <h3>📞 Need Help?</h3>
-            <p>For order confirmation and payment, contact us:</p>
+            <h3>📞 Need Help With Your Order?</h3>
+            <p>For order tracking, dispatch updates, or shipping inquiries:</p>
             <div className={styles.mobileContactInfo}>
               <div><FiPhone /> {shippingInfo.contactForOrders}</div>
               <div><FiMail /> {shippingInfo.emailForOrders}</div>
             </div>
             <div className={styles.mobileTiming}>
-              <FiClock /> Mon-Sat: 10 AM - 7 PM
+              <FiClock /> Support Hours: Mon-Sat, 10 AM - 7 PM
             </div>
           </div>
         </div>
@@ -151,7 +155,6 @@ const ShippingPolicy = () => {
   return (
     <div className={styles.shippingPage}>
       <div className={styles.container}>
-        {/* Breadcrumb */}
         <div className={styles.breadcrumb}>
           <Link to="/">Home</Link>
           <span>/</span>
@@ -161,29 +164,28 @@ const ShippingPolicy = () => {
         <div className={styles.pageHeader}>
           <FiTruck className={styles.pageIcon} />
           <h1>Shipping Policy</h1>
-          <p>Learn about our shipping and delivery process</p>
+          <p>Fast, reliable delivery across India</p>
         </div>
 
         <div className={styles.contentGrid}>
-          {/* Left Column - Main Info */}
           <div className={styles.mainContent}>
             <div className={styles.infoCard}>
-              <h2>📦 Order Processing</h2>
-              <p>Orders are processed within <strong>{shippingInfo.processingTime}</strong> after order confirmation and payment of 50% advance amount.</p>
+              <h2>📦 Order Processing & Dispatch</h2>
+              <p>Orders are processed within <strong>{shippingInfo.processingTime}</strong> of order confirmation. We dispatch orders from our facility in Etikoppaka, Andhra Pradesh.</p>
               
-              <h3>Order Confirmation Process:</h3>
+              <h3>Order Dispatch Process:</h3>
               <ul className={styles.processList}>
-                <li>✅ Order placed online</li>
-                <li>📞 Our team calls to confirm order details</li>
-                <li>💰 50% advance payment required to confirm order</li>
-                <li>🚚 Product shipped after payment confirmation</li>
-                <li>💵 Remaining 50% payable on delivery</li>
+                <li>✅ Order placed & payment confirmed</li>
+                <li>📦 Quality check & secure packaging ({shippingInfo.processingTime})</li>
+                <li>🚚 Handover to courier partner</li>
+                <li>📱 Tracking details shared via email & SMS</li>
+                <li>🏠 Delivery within {shippingInfo.deliveryTime}</li>
               </ul>
             </div>
 
             <div className={styles.infoCard}>
               <h2>🚚 Delivery Timeline</h2>
-              <p>Estimated delivery time: <strong>{shippingInfo.deliveryTime}</strong> after shipping.</p>
+              <p>Estimated delivery time: <strong>{shippingInfo.deliveryTime}</strong> after dispatch.</p>
               <div className={styles.timeline}>
                 <div className={styles.timelineStep}>
                   <div className={styles.timelineDot}></div>
@@ -192,17 +194,17 @@ const ShippingPolicy = () => {
                 <div className={styles.timelineLine}></div>
                 <div className={styles.timelineStep}>
                   <div className={styles.timelineDot}></div>
-                  <div>Processing (1-2 days)</div>
+                  <div>Processing ({shippingInfo.processingTime})</div>
                 </div>
                 <div className={styles.timelineLine}></div>
                 <div className={styles.timelineStep}>
                   <div className={styles.timelineDot}></div>
-                  <div>Shipped</div>
+                  <div>Dispatched & Tracking Shared</div>
                 </div>
                 <div className={styles.timelineLine}></div>
                 <div className={styles.timelineStep}>
                   <div className={styles.timelineDot}></div>
-                  <div>In Transit (3-7 days)</div>
+                  <div>In Transit ({shippingInfo.deliveryTime})</div>
                 </div>
                 <div className={styles.timelineLine}></div>
                 <div className={styles.timelineStep}>
@@ -213,32 +215,12 @@ const ShippingPolicy = () => {
             </div>
 
             <div className={styles.infoCard}>
-              <h2>💰 Payment Terms</h2>
-              <div className={styles.paymentBox}>
-                <div className={styles.paymentHalf}>
-                  <span className={styles.paymentPercent}>50%</span>
-                  <strong>Advance Payment</strong>
-                  <p>Required to confirm your order</p>
-                  <small>UPI / Bank Transfer / GPay</small>
-                </div>
-                <div className={styles.paymentArrow}>→</div>
-                <div className={styles.paymentHalf}>
-                  <span className={styles.paymentPercent}>50%</span>
-                  <strong>On Delivery</strong>
-                  <p>Cash / Card / UPI</p>
-                  <small>Pay when you receive</small>
-                </div>
-              </div>
-              <p className={styles.paymentNote}>* Our team will call you to share payment details for advance amount.</p>
-            </div>
-
-            <div className={styles.infoCard}>
               <h2>📍 Shipping Zones & Charges</h2>
               <div className={styles.zonesTable}>
                 <div className={styles.zonesHeader}>
                   <span>Region</span>
                   <span>Delivery Time</span>
-                  <span>Charges</span>
+                  <span>Shipping Charges</span>
                 </div>
                 {shippingZones.map((zone, idx) => (
                   <div key={idx} className={styles.zonesRow}>
@@ -248,16 +230,37 @@ const ShippingPolicy = () => {
                   </div>
                 ))}
               </div>
-              <p className={styles.shippingNote}>* Free shipping on all orders above ₹{shippingInfo.freeShippingThreshold}</p>
+              <p className={styles.shippingNote}>* Free shipping applies automatically at checkout for orders above ₹{shippingInfo.freeShippingThreshold}</p>
+            </div>
+
+            <div className={styles.infoCard}>
+              <h2>📱 Order Tracking</h2>
+              <p>Once your order is dispatched, you will receive:</p>
+              <ul className={styles.processList}>
+                <li>📧 Email with tracking link and courier details</li>
+                <li>📱 SMS with tracking number on your registered mobile</li>
+                <li>🔗 Real-time tracking on courier partner's website</li>
+              </ul>
+              <p>You can also track your order status from <Link to="/orders">My Orders</Link> section.</p>
             </div>
           </div>
 
-          {/* Right Column - Sidebar */}
           <div className={styles.sidebar}>
             <div className={styles.sidebarCard}>
-              <h3>📞 Order Confirmation</h3>
-              <p>After placing your order, our team will call you within 24 hours to confirm and share payment details.</p>
+              <h3>🎁 Free Shipping Offer</h3>
+              <p>Enjoy free shipping on all orders above ₹{shippingInfo.freeShippingThreshold}. No coupon code needed - applied automatically!</p>
               <hr />
+              <div className={styles.contactInfo}>
+                <FiPackage />
+                <div>
+                  <strong>Cash on Delivery</strong>
+                  <span>Available across India with zero extra charges</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.sidebarCard}>
+              <h3>📞 Customer Support</h3>
               <div className={styles.contactInfo}>
                 <FiPhone />
                 <div>
@@ -272,28 +275,19 @@ const ShippingPolicy = () => {
                   <span>{shippingInfo.emailForOrders}</span>
                 </div>
               </div>
-            </div>
-
-            <div className={styles.sidebarCard}>
-              <h3>✅ Cash on Delivery</h3>
-              <p>COD available across India with zero extra charges.</p>
-              <div className={styles.codInfo}>
-                <FiCheckCircle />
-                <span>No extra COD fees</span>
-              </div>
-              <div className={styles.codInfo}>
-                <FiCheckCircle />
-                <span>Pay 50% advance, 50% on delivery</span>
-              </div>
-            </div>
-
-            <div className={styles.sidebarCard}>
-              <h3>⏰ Order Cut-off Time</h3>
-              <p>Orders placed before 2 PM are processed the same day.</p>
-              <div className={styles.cutoffTime}>
+              <div className={styles.contactInfo}>
                 <FiClock />
-                <span>Cut-off: 2:00 PM IST</span>
+                <div>
+                  <strong>Support Hours</strong>
+                  <span>Monday - Saturday, 10 AM - 7 PM</span>
+                </div>
               </div>
+            </div>
+
+            <div className={styles.sidebarCard}>
+              <h3>✅ Bulk Orders & Corporate Gifting</h3>
+              <p>For bulk orders and corporate gifting inquiries, contact us directly for special pricing and shipping arrangements.</p>
+              <Link to="/bulk-order" className={styles.bulkLink}>Request Bulk Quote →</Link>
             </div>
           </div>
         </div>

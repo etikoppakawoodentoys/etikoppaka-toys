@@ -1,0 +1,12 @@
+{
+  "appId": "com.etikoppaka.toys",
+  "appName": "Etikoppaka Toys",
+  "webDir": "build",
+  "server": {
+    "url": "https://etikoppakatoys.store",
+    "cleartext": true
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}

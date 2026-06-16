@@ -435,4 +435,549 @@ select:focus {
   box-shadow: 0 0 0 2px rgba(216, 179, 130, 0.2);
 }
 
-/* Rest of your existing styles remain the same */
+/* ============================================
+   SIZE MANAGEMENT STYLES - ADMIN PRODUCTS
+   ============================================ */
+
+/* Size Badge in Product Table */
+.sizeBadge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6D9 100%);
+  color: #1F5B3A;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid rgba(31, 91, 58, 0.2);
+}
+
+.standardBadge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  background: #F8F2E8;
+  color: #7A6B5A;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  border: 1px solid #E8DCC8;
+}
+
+/* Sizes Section in Modal */
+.sizesSection {
+  margin-bottom: 1.5rem;
+  background: #F8F2E8;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.sizesSection > label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3E2A1F;
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+}
+
+/* Sizes Table - Desktop */
+.sizesTable {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #E8DCC8;
+}
+
+.sizesHeader {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 0.5fr;
+  background: #1F5B3A;
+  color: white;
+  padding: 0.6rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.sizesHeader span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.sizesRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 0.5fr;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #E8DCC8;
+  transition: background 0.2s;
+}
+
+.sizesRow:hover {
+  background: #F8F2E8;
+}
+
+.sizesRow:last-child {
+  border-bottom: none;
+}
+
+.sizeCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sizeCheckbox input {
+  width: 16px;
+  height: 16px;
+  accent-color: #1F5B3A;
+  cursor: pointer;
+}
+
+.sizeCheckbox span {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #3E2A1F;
+}
+
+.sizesRow input {
+  width: 90%;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  transition: all 0.2s;
+}
+
+.sizesRow input:focus {
+  outline: none;
+  border-color: #D9B382;
+  box-shadow: 0 0 0 2px rgba(216, 179, 130, 0.2);
+}
+
+/* Checkbox Label */
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #3E2A1F;
+  padding: 0.3rem 0;
+}
+
+.checkboxLabel input {
+  width: 16px;
+  height: 16px;
+  accent-color: #1F5B3A;
+}
+
+/* Size Hint Text */
+.sizeHint {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin-top: 0.75rem;
+  text-align: center;
+  padding: 0.5rem;
+  background: #F8F2E8;
+  border-radius: 8px;
+}
+
+/* ============================================
+   MOBILE SIZE MANAGEMENT
+   ============================================ */
+
+.mobileSizesSection {
+  margin: 1rem 0;
+}
+
+.mobileSizesSection > label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3E2A1F;
+  margin-bottom: 0.75rem;
+}
+
+.mobileSizeRow {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr 1fr;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+  background: #F8F2E8;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.mobileSizeRow label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #3E2A1F;
+  cursor: pointer;
+}
+
+.mobileSizeRow label input {
+  width: 14px;
+  height: 14px;
+  accent-color: #1F5B3A;
+}
+
+.mobileSizeRow input {
+  padding: 0.5rem;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  background: white;
+  text-align: center;
+}
+
+.mobileSizeRow input:focus {
+  outline: none;
+  border-color: #D9B382;
+}
+
+/* Mobile Checkbox Group */
+.mobileCheckboxGroup {
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+}
+
+.mobileCheckboxGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #3E2A1F;
+  cursor: pointer;
+}
+
+.mobileCheckboxGroup input {
+  width: 16px;
+  height: 16px;
+  accent-color: #1F5B3A;
+}
+
+/* Mobile Image Section */
+.mobileImageSection {
+  margin: 1rem 0;
+}
+
+.mobileImageSection label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+.mobileImagePreview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.mobileImagePreviewItem {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #E8DCC8;
+  background: #F8F2E8;
+}
+
+.mobileImagePreviewItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobileImagePreviewItem button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.mobileUploadLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background: #F8F2E8;
+  border: 2px dashed #D9B382;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.6rem;
+  color: #C89B3C;
+  text-align: center;
+}
+
+.mobileSubmitBtn {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #1F5B3A 0%, #15452B 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* ============================================
+   SIZE VARIANTS IN PRODUCT CARD (ADMIN)
+   ============================================ */
+
+.sizeVariantBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  background: #E8F5E9;
+  color: #1F5B3A;
+  border-radius: 12px;
+  font-size: 0.65rem;
+  font-weight: 500;
+}
+
+.sizeVariantBadge::before {
+  content: '📏';
+  font-size: 0.6rem;
+}
+
+/* Price range display */
+.priceRange {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #9E1B1B;
+}
+
+.priceRange small {
+  font-size: 0.65rem;
+  color: #7A6B5A;
+  font-weight: normal;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes sizeAdded {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.sizesRow {
+  animation: sizeAdded 0.2s ease-out;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .sizesHeader {
+    display: none;
+  }
+  
+  .sizesRow {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 12px;
+    background: white;
+  }
+  
+  .sizeCheckbox {
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid #E8DCC8;
+  }
+  
+  .sizesRow input {
+    width: 100%;
+  }
+  
+  .sizeBadge, .standardBadge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileSizeRow {
+    grid-template-columns: 0.6fr 1fr 1fr;
+  }
+}
+/* Size Management Styles */
+.sizesSection {
+  margin-bottom: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.sizesSection > label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.sizesTable {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sizesHeader {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr 40px;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  background: #f5f5f5;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.sizesRow {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr 40px;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.sizeCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.sizeCheckbox input {
+  width: auto;
+  margin: 0;
+}
+
+.sizeCheckbox span {
+  font-size: 0.9rem;
+}
+
+.sizesRow input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+/* Mobile Size Styles */
+.mobileSizesSection {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.mobileSizesSection > label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.mobileSizeRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.mobileSizeRow label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.mobileSizeRow input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* Size Badges */
+.sizeBadge {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.sizeBadge span {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+.standardBadge {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+.mobileSizes {
+  font-size: 0.7rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+/* Checkbox Label */
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.checkboxLabel input {
+  width: auto;
+  margin: 0;
+}

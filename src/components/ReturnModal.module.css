@@ -1,0 +1,268 @@
+/* Return Modal - Desktop */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 85vh;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.modalHeader h3 {
+  font-size: 1.2rem;
+  color: #3E2A1F;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #7A6B5A;
+}
+
+.modalBody {
+  padding: 1.5rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.orderInfo {
+  background: #F8F2E8;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.orderInfo p {
+  margin: 0.25rem 0;
+  font-size: 0.8rem;
+}
+
+/* Form Groups */
+.formGroup {
+  margin-bottom: 1.25rem;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+/* Reasons Grid */
+.reasonsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.reasonBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem;
+  background: #F8F2E8;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reasonBtn:hover {
+  background: #E8DCC8;
+}
+
+.reasonBtn.selected {
+  background: #1F5B3A;
+  border-color: #1F5B3A;
+  color: white;
+}
+
+.reasonBtn.selected span:first-child {
+  color: white;
+}
+
+/* Textarea */
+.formGroup textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #D9B382;
+}
+
+/* Resolution Options */
+.resolutionOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.radioLabel input {
+  accent-color: #1F5B3A;
+}
+
+/* Image Upload */
+.imageUploadArea {
+  border: 2px dashed #E8DCC8;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.uploadLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #F8F2E8;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.imagePreview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.imagePreview img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Message */
+.message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+}
+
+.message.success {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.message.error {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+/* Modal Footer */
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #E8DCC8;
+}
+
+.cancelBtn {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: 1px solid #E8DCC8;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submitBtn {
+  padding: 0.5rem 1rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submitBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Mobile Modal */
+@media (max-width: 768px) {
+  .modalOverlay {
+    align-items: flex-end;
+  }
+  
+  .modalContent {
+    width: 100%;
+    max-height: 90vh;
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .reasonsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .reasonBtn {
+    padding: 0.8rem;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

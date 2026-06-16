@@ -216,18 +216,496 @@
   transform: translateY(-2px);
 }
 
-/* New Address Form */
+/* New Address Form - Premium UI */
+/* ============================================
+   IMPROVED ADDRESS FORM UI
+   ============================================ */
+
+/* New Address Form Container */
 .newAddressForm {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: #F8F2E8;
-  border-radius: 12px;
+  margin-top: 1.5rem;
+  padding: 1.75rem;
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFFBF5 100%);
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(200, 155, 60, 0.25);
+  transition: all 0.3s ease;
+}
+
+.newAddressForm:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  border-color: rgba(200, 155, 60, 0.4);
 }
 
 .newAddressForm h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2C1810;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: -0.3px;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #D8B36A;
+}
+
+.newAddressForm h3::before {
+  content: "🏠";
+  font-size: 1.3rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3E2A1F;
+  letter-spacing: 0.3px;
+}
+
+.formGroup label .required {
+  color: #9E1B1B;
+  margin-left: 0.2rem;
+}
+
+.formGroup input,
+.formGroup select {
+  padding: 0.75rem 1rem;
+  border: 2px solid #E8E0D5;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: white;
+  transition: all 0.25s ease;
+  color: #2C1810;
+}
+
+.formGroup input:hover,
+.formGroup select:hover {
+  border-color: #D9B382;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: #C49A6C;
+  box-shadow: 0 0 0 3px rgba(201, 154, 108, 0.15);
+}
+
+.formGroup input::placeholder {
+  color: #B8A99A;
+  font-size: 0.85rem;
+}
+
+.checkboxGroup {
+  margin: 1.25rem 0;
+  padding: 0.75rem 1rem;
+  background: rgba(217, 179, 130, 0.08);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.checkboxGroup:hover {
+  background: rgba(217, 179, 130, 0.12);
+}
+
+.checkboxGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: #2C1810;
+  user-select: none;
+  font-size: 0.85rem;
+}
+
+.checkboxGroup input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+  accent-color: #1F5B3A;
+}
+
+/* Form Actions - Buttons Container */
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 0.5rem;
+}
+
+/* Cancel Button */
+.cancelBtn {
+  padding: 0.75rem 1.8rem;
+  background: transparent;
+  color: #7A6B5A;
+  border: 2px solid #E8DCC8;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.25s ease;
+}
+
+.cancelBtn:hover {
+  background: #F8F2E8;
+  border-color: #D9B382;
+  color: #3E2A1F;
+  transform: translateY(-1px);
+}
+
+/* Save Address Button - Premium */
+.saveAddressBtn {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #1F5B3A 0%, #15452B 100%);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(31, 91, 58, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.saveAddressBtn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.saveAddressBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(31, 91, 58, 0.35);
+  background: linear-gradient(135deg, #236B45 0%, #1A5535 100%);
+}
+
+.saveAddressBtn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.saveAddressBtn:active {
+  transform: translateY(0);
+}
+
+.saveAddressBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Selected Address Info */
+.selectedAddressInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #F0F9F4 0%, #E8F5EF 100%);
+  border-radius: 16px;
+  color: #1F5B3A;
+  border: 1px solid rgba(31, 91, 58, 0.15);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.selectedAddressInfo svg {
+  font-size: 1.3rem;
+  filter: drop-shadow(0 2px 4px rgba(31, 91, 58, 0.15));
+}
+
+.selectedAddressInfo p {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ============================================
+   MOBILE ADDRESS FORM
+   ============================================ */
+
+@media (max-width: 768px) {
+  .newAddressForm {
+    padding: 1.25rem;
+    margin-top: 1rem;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .formGroup input,
+  .formGroup select {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.85rem;
+  }
+  
+  .formActions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .cancelBtn,
+  .saveAddressBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem 1.5rem;
+  }
+  
+  .checkboxGroup {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .selectedAddressInfo {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+/* ============================================
+   ADDRESS CARD IMPROVEMENTS
+   ============================================ */
+
+.addressCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid #E8DCC8;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  background: white;
+}
+
+.addressCard:hover {
+  border-color: #D9B382;
+  background: #FFF9F1;
+  transform: translateX(4px);
+}
+
+.addressCard.selected {
+  border-color: #1F5B3A;
+  background: linear-gradient(135deg, #F0F9F4 0%, #FFFFFF 100%);
+  box-shadow: 0 4px 12px rgba(31, 91, 58, 0.1);
+}
+
+.addressRadio {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #C89B3C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: white;
+  transition: all 0.2s;
+}
+
+.addressCard.selected .addressRadio {
+  border-color: #1F5B3A;
+}
+
+.addressRadio svg {
+  color: #1F5B3A;
+  font-size: 12px;
+}
+
+.addressDetails {
+  flex: 1;
+}
+
+.addressName {
+  font-weight: 700;
   font-size: 1rem;
   color: #3E2A1F;
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.addressMobile {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+  margin-bottom: 0.3rem;
+}
+
+.addressText {
+  font-size: 0.8rem;
+  color: #5C4B3A;
+  line-height: 1.4;
+}
+
+.addressLandmark {
+  font-size: 0.75rem;
+  color: #C89B3C;
+  margin: 0.2rem 0;
+}
+
+.addressLocation {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin-top: 0.2rem;
+}
+
+.defaultBadge {
+  position: absolute;
+  top: -10px;
+  right: 1rem;
+  background: linear-gradient(135deg, #C89B3C, #D9B382);
+  color: #3E2A1F;
+  padding: 0.2rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.addressActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.editAddress, .deleteAddress {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editAddress {
+  color: #3B82F6;
+}
+
+.editAddress:hover {
+  background: #DBEAFE;
+  transform: scale(1.05);
+}
+
+.deleteAddress {
+  color: #9E1B1B;
+}
+
+.deleteAddress:hover {
+  background: #FEE2E2;
+  transform: scale(1.05);
+}
+
+/* ============================================
+   ADD ADDRESS BUTTON
+   ============================================ */
+
+.addAddressBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.2rem;
+  background: #F8F2E8;
+  border: 2px solid #E8DCC8;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.addAddressBtn:hover {
+  background: #D9B382;
+  border-color: #C89B3C;
+  transform: translateY(-2px);
+}
+
+.addAddressBtn:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   ERROR STATES
+   ============================================ */
+
+.formGroup.error input,
+.formGroup.error select {
+  border-color: #E74C3C;
+  background-color: #FEF5F5;
+}
+
+.errorMessage {
+  color: #E74C3C;
+  font-size: 0.7rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+/* Cancel button (optional) */
+.cancelBtn {
+  padding: 0.75rem 1.8rem;
+  background: transparent;
+  color: #8B7355;
+  border: 2px solid #E8E0D5;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+/* Critical styles for address form */
+.newAddressForm {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #E8DCC8;
 }
 
 .formRow {
@@ -244,22 +722,29 @@
 }
 
 .formGroup label {
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: #3E2A1F;
 }
 
-.formGroup input, .formGroup select {
-  padding: 0.6rem;
-  border: 2px solid #E8DCC8;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  transition: all 0.3s;
+.required {
+  color: #9E1B1B;
 }
 
-.formGroup input:focus, .formGroup select:focus {
+.formGroup input,
+.formGroup select {
+  padding: 0.7rem 1rem;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
   outline: none;
-  border-color: #D9B382;
+  border-color: #C89B3C;
+  box-shadow: 0 0 0 2px rgba(200, 155, 60, 0.2);
 }
 
 .checkboxGroup {
@@ -271,41 +756,195 @@
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.checkboxGroup input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
 }
 
 .formActions {
   display: flex;
   justify-content: flex-end;
+  gap: 1rem;
   margin-top: 1rem;
 }
 
-.saveAddressBtn {
+.cancelBtn {
   padding: 0.6rem 1.2rem;
+  background: #F8F2E8;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.saveAddressBtn {
+  padding: 0.6rem 1.5rem;
   background: #1F5B3A;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .saveAddressBtn:hover {
   background: #15452B;
 }
 
+.cancelBtn:hover {
+  background: #E8DCC8;
+}
+
+@media (max-width: 768px) {
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .formActions {
+    flex-direction: column;
+  }
+  
+  .cancelBtn,
+  .saveAddressBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+.cancelBtn:hover {
+  background: #F5F0E8;
+  border-color: #D9B382;
+  color: #2C1810;
+}
+
 .selectedAddressInfo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background: #F0F9F4;
-  border-radius: 12px;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #F0F9F4 0%, #E8F5EF 100%);
+  border-radius: 16px;
   color: #1F5B3A;
+  border: 1px solid rgba(31, 91, 58, 0.2);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .checkIcon {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(31, 91, 58, 0.2));
+}
+
+.selectedAddressInfo p {
+  flex: 1;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .newAddressForm {
+    padding: 1rem;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .formActions {
+    flex-direction: column;
+  }
+  
+  .saveAddressBtn,
+  .cancelBtn {
+    width: 100%;
+  }
+  
+  .selectedAddressInfo {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Loading state for button */
+.saveAddressBtn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.saveAddressBtn.loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error state styling */
+.formGroup.error input,
+.formGroup.error select {
+  border-color: #E74C3C;
+  background-color: #FEF5F5;
+}
+
+.errorMessage {
+  color: #E74C3C;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Optional: Add floating label effect */
+.formGroup.floating {
+  position: relative;
+}
+
+.formGroup.floating input {
+  padding-top: 1.25rem;
+}
+
+.formGroup.floating label {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-size: 0.7rem;
+  opacity: 0.7;
 }
 
 /* Order Items */
@@ -1923,4 +2562,501 @@
 
 .razorpayContainer iframe {
   border-radius: 16px !important;
+}
+/* Delivery Options Styles */
+.courierOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.courierOption {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid #E8DCC8;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.courierOption:hover {
+  border-color: #D9B382;
+  background: #F8F2E8;
+}
+
+.courierOption.selected {
+  border-color: #1F5B3A;
+  background: #E8F5E9;
+}
+
+.courierRadio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #C89B3C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.courierRadio svg {
+  color: #1F5B3A;
+  font-size: 12px;
+}
+
+.courierDetails {
+  flex: 1;
+}
+
+.courierDetails strong {
+  display: block;
+  font-size: 0.9rem;
+  color: #3E2A1F;
+}
+
+.courierDetails span {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.courierPrice {
+  font-weight: bold;
+  color: #9E1B1B;
+}
+
+.deliveryWarning {
+  background: #FEF3C7;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: #D97706;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.deliveryUnavailable {
+  background: #FEE2E2;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #9E1B1B;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkingDelivery {
+  padding: 1rem;
+  text-align: center;
+  color: #7A6B5A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.loadingSpinnerSmall {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #E8DCC8;
+  border-top-color: #1F5B3A;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.deliveryErrorMsg {
+  background: #FEE2E2;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  color: #9E1B1B;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.checkingMsg {
+  font-size: 0.7rem;
+  color: #1F5B3A;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Mobile Courier Options */
+.mobileCourierOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobileCourierOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.mobileCourierOption.selected {
+  border-color: #1F5B3A;
+  background: #E8F5E9;
+}
+
+.mobileCourierInfo strong {
+  display: block;
+  font-size: 0.8rem;
+}
+
+.mobileCourierInfo span {
+  font-size: 0.65rem;
+  color: #7A6B5A;
+}
+
+.mobileCourierPrice {
+  font-weight: bold;
+  color: #9E1B1B;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.mobileCheckingDelivery {
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #7A6B5A;
+}
+
+.mobileDeliveryWarning {
+  background: #FEF3C7;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.65rem;
+  color: #D97706;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+/* ============================================
+   ADD THESE STYLES TO YOUR Checkout.module.css
+   (paste at the bottom of the file)
+   ============================================ */
+
+/* Gift tag inside order item row */
+.giftTag {
+  display: inline-block;
+  background: #FEF3C7;
+  color: #C89B3C;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+/* Gift messages summary box */
+.giftSummaryBox {
+  margin-top: 0.75rem;
+  background: #FFFDF0;
+  border: 1.5px dashed #C89B3C;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+}
+
+.giftSummaryTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #C89B3C;
+  margin-bottom: 0.4rem;
+}
+
+.giftSummaryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #F5E6B8;
+  font-size: 0.75rem;
+}
+
+.giftSummaryItem:last-child {
+  border-bottom: none;
+}
+
+.giftSummaryProduct {
+  font-weight: 600;
+  color: #3E2A1F;
+}
+
+.giftSummaryQuote {
+  color: #7A6B5A;
+  font-style: italic;
+}
+
+.giftSummaryQuote em {
+  color: #B0A090;
+}
+/* ============================================
+   DELIVERY CHARGE & FREE DELIVERY STYLES
+   ============================================ */
+
+/* Delivery fee row styling */
+.summaryRow .free {
+  color: #10B981;
+  font-weight: 700;
+  background: #E8F5E9;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* Delivery threshold message - Desktop */
+.deliveryThresholdMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #FFF3E0;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  margin: 0.5rem 0;
+  font-size: 0.75rem;
+  color: #D97706;
+  border-left: 3px solid #F59E0B;
+}
+
+.deliveryThresholdMessage svg {
+  font-size: 1rem;
+  color: #F59E0B;
+  flex-shrink: 0;
+}
+
+.deliveryThresholdMessage span {
+  flex: 1;
+}
+
+/* Delivery progress bar container */
+.deliveryProgressContainer {
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+}
+
+.deliveryProgressBar {
+  height: 6px;
+  background: #E8DCC8;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.deliveryProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #1F5B3A, #C89B3C);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.deliveryProgressText {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.deliveryProgressText span:first-child {
+  color: #1F5B3A;
+  font-weight: 500;
+}
+
+.deliveryProgressText span:last-child {
+  color: #D97706;
+}
+
+/* Delivery info card enhancements */
+.deliveryInfoCard {
+  background: #F8F2E8;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.deliveryInfoCard h4 {
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.deliveryInfoCard p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  line-height: 1.4;
+}
+
+/* Free delivery highlight badge */
+.freeDeliveryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #D1FAE5;
+  color: #065F46;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+/* Mobile specific delivery styles */
+.mobileSummaryRow .free {
+  color: #10B981;
+  font-weight: 700;
+  background: #E8F5E9;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.mobileDeliveryThreshold {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #FFF3E0;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  margin: 0.5rem 0;
+  font-size: 0.7rem;
+  color: #D97706;
+  border-left: 3px solid #F59E0B;
+}
+
+.mobileDeliveryThreshold svg {
+  font-size: 0.9rem;
+  color: #F59E0B;
+  flex-shrink: 0;
+}
+
+.mobileDeliveryProgressContainer {
+  margin: 0.5rem 0;
+}
+
+.mobileDeliveryProgressBar {
+  height: 4px;
+  background: #E8DCC8;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+}
+
+.mobileDeliveryProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #1F5B3A, #C89B3C);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.mobileDeliveryProgressText {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  color: #7A6B5A;
+}
+
+.mobileDeliveryProgressText span:first-child {
+  color: #1F5B3A;
+  font-weight: 500;
+}
+
+/* Delivery note in order summary */
+.deliveryNote {
+  font-size: 0.65rem;
+  color: #7A6B5A;
+  text-align: center;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #E8DCC8;
+}
+
+/* Cart summary delivery info */
+.deliverySummaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  font-size: 0.8rem;
+  color: #5C4B3A;
+}
+
+.deliverySummaryRow .deliveryAmount {
+  font-weight: 600;
+  color: #D97706;
+}
+
+.deliverySummaryRow .deliveryAmount.free {
+  color: #10B981;
+}
+
+/* Delivery info tooltip */
+.deliveryTooltip {
+  cursor: help;
+  border-bottom: 1px dashed #C89B3C;
+}
+
+.deliveryTooltip:hover {
+  color: #1F5B3A;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .deliveryThresholdMessage {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.7rem;
+  }
+  
+  .deliveryProgressText {
+    font-size: 0.65rem;
+  }
+  
+  .deliveryInfoCard {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .deliveryThresholdMessage {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  
+  .mobileDeliveryThreshold {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  
+  .deliveryProgressText {
+    flex-direction: column;
+    gap: 0.2rem;
+    text-align: center;
+  }
+  
+  .mobileDeliveryProgressText {
+    flex-direction: column;
+    gap: 0.2rem;
+    text-align: center;
+  }
 }

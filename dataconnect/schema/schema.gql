@@ -1,0 +1,35 @@
+type Product @table {
+  name: String!
+  description: String
+  price: Float!
+  stockQuantity: Int!
+  imageUrl: String
+  category: String
+  createdAt: Timestamp!
+}
+
+type Customer @table {
+  firstName: String!
+  lastName: String!
+  email: String!
+  phone: String
+  shippingAddress: String
+  createdAt: Timestamp!
+}
+
+type Order @table {
+  customer: Customer!
+  orderDate: Date!
+  status: String!
+  totalAmount: Float!
+  notes: String
+  createdAt: Timestamp!
+}
+
+type OrderItem @table {
+  order: Order!
+  product: Product!
+  quantity: Int!
+  unitPrice: Float!
+  lineItemTotal: Float
+}

@@ -43,6 +43,14 @@ const Footer = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Check if current path is an admin page
+  const isAdminPage = location.pathname.startsWith('/admin');
+
+  // Don't render footer on any admin page (desktop or mobile)
+  if (isAdminPage) {
+    return null;
+  }
+
   const handleSubscribe = async (e) => {
     e.preventDefault();
     
@@ -87,7 +95,7 @@ const Footer = () => {
     }
   };
 
-  // For desktop - always show footer
+  // For desktop - show footer only on non-admin pages
   if (!isMobile) {
     return (
       <footer className={styles.footer}>
@@ -128,7 +136,7 @@ const Footer = () => {
               {/* Brand Section */}
               <div className={styles.footerSection}>
                 <div className={styles.brand}>
-                  <img src="/logo.png" alt="Etikoppaka Toys" className={styles.logoImage} />
+                  <img src="/logo1.png" alt="Etikoppaka Toys" className={styles.logoImage} />
                   <h3 className={styles.brandName}>Etikoppaka Toys</h3>
                 </div>
                 <p className={styles.brandDesc}>
@@ -149,8 +157,7 @@ const Footer = () => {
                   <li><Link to="/"><FiHome className={styles.linkIcon} /> Home</Link></li>
                   <li><Link to="/products"><FiShoppingBag className={styles.linkIcon} /> Products</Link></li>
                   <li><Link to="/deals"><FiTag className={styles.linkIcon} /> Deals</Link></li>
-                  <li><Link to="/about">About Us</Link></li>
-                  <li><Link to="/contact">Contact Us</Link></li>
+                  <li><Link to="/contact">Contact Us</Link></li> 
                 </ul>
               </div>
 
@@ -176,10 +183,8 @@ const Footer = () => {
                   <p><FiClock className={styles.contactIcon} /> Mon-Sat: 10 AM - 7 PM</p>
                 </div>
                 <div className={styles.socialLinks}>
-                  <a href="#" className={styles.socialLink} aria-label="Facebook"><FiFacebook /></a>
-                  <a href="#" className={styles.socialLink} aria-label="Instagram"><FiInstagram /></a>
-                  <a href="#" className={styles.socialLink} aria-label="Twitter"><FiTwitter /></a>
-                  <a href="#" className={styles.socialLink} aria-label="YouTube"><FiYoutube /></a>
+                  <a href="https://www.instagram.com/etikoppaka_wooden_toys?igsh=eG1pb2R0aWZuMncw" className={styles.mobileSocialLink}><FiInstagram /></a>
+                  <a href="https://www.youtube.com/@EtikoppakaToys" className={styles.mobileSocialLink}><FiYoutube /></a>
                 </div>
               </div>
             </div>
@@ -196,7 +201,6 @@ const Footer = () => {
                 <span>Free Shipping*</span>
               </div>
             </div>
-            {/* Desktop Development Credit - Clickable Link */}
             <div className={styles.developerCredit}>
               <p>
                 Developed by{' '}
@@ -218,9 +222,9 @@ const Footer = () => {
   }
 
   // ============================================
-  // MOBILE FOOTER - Only show on Home page
+  // MOBILE FOOTER - Only show on home page (non-admin)
   // ============================================
-  // Only show mobile footer on home page
+  // Only show mobile footer on home page (and not on admin pages - already checked above)
   if (location.pathname !== '/') {
     return null;
   }
@@ -252,11 +256,12 @@ const Footer = () => {
         )}
       </div>
 
-      {/* Quick Links Grid - Mobile (Added Policy Links) */}
+      {/* Quick Links Grid - Mobile */}
       <div className={styles.mobileLinksGrid}>
         <Link to="/shipping"><FiTruck /> Shipping</Link>
         <Link to="/returns"><FiRefreshCw /> Returns</Link>
         <Link to="/faq"><FiHelpCircle /> FAQ</Link>
+        <Link to="/contact"><FiMail /> Contact</Link>
       </div>
 
       {/* Contact Info - Mobile */}
@@ -281,10 +286,8 @@ const Footer = () => {
 
       {/* Social Links - Mobile */}
       <div className={styles.mobileSocial}>
-        <a href="#" className={styles.mobileSocialLink}><FiFacebook /></a>
-        <a href="#" className={styles.mobileSocialLink}><FiInstagram /></a>
-        <a href="#" className={styles.mobileSocialLink}><FiTwitter /></a>
-        <a href="#" className={styles.mobileSocialLink}><FiYoutube /></a>
+        <a href="https://www.instagram.com/etikoppaka_wooden_toys?igsh=eG1pb2R0aWZuMncw" className={styles.mobileSocialLink}><FiInstagram /></a>
+        <a href="https://www.youtube.com/@EtikoppakaToys" className={styles.mobileSocialLink}><FiYoutube /></a>
       </div>
 
       {/* Brand & Copyright - Mobile */}

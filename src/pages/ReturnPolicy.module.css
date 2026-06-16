@@ -402,3 +402,267 @@
     display: none;
   }
 }
+/* ============================================
+   ADDITIONAL PROFESSIONAL STYLES FOR RETURNS
+   ============================================ */
+
+/* Refund Table */
+.refundTable {
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.refundRow {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #E8DCC8;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+}
+
+.refundRow:hover {
+  background: #F8F2E8;
+}
+
+.refundRow:last-child {
+  border-bottom: none;
+}
+
+.refundMethod {
+  font-weight: 600;
+  color: #3E2A1F;
+}
+
+.refundTimeline {
+  color: #1F5B3A;
+}
+
+.refundNote {
+  color: #7A6B5A;
+  font-size: 0.75rem;
+}
+
+.refundNoteText {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin-top: 0.5rem;
+}
+
+/* Return Address Box */
+.returnAddress {
+  background: #F8F2E8;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+.returnAddress strong {
+  display: block;
+  font-size: 0.8rem;
+  color: #3E2A1F;
+  margin-bottom: 0.25rem;
+}
+
+.returnAddress span {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  line-height: 1.4;
+}
+
+/* Return Shipping Info */
+.returnShippingInfo {
+  margin: 0.5rem 0;
+}
+
+.returnShippingInfo p {
+  font-size: 0.8rem;
+  color: #5C4B3A;
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 2px solid #C89B3C;
+}
+
+/* Replacement Info */
+.replacementInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #E8F5E9;
+  padding: 0.75rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+.replacementInfo svg {
+  color: #1F5B3A;
+  font-size: 1rem;
+}
+
+.replacementInfo span {
+  font-size: 0.75rem;
+  color: #3E2A1F;
+}
+
+/* Steps Grid */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.stepCard {
+  background: #F8F2E8;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.stepCard:hover {
+  transform: translateY(-3px);
+}
+
+.stepNumber {
+  width: 32px;
+  height: 32px;
+  background: #1F5B3A;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.stepCard h4 {
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  color: #3E2A1F;
+}
+
+.stepCard p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+/* Eligible/Not Eligible Lists */
+.eligibleList, .notEligibleList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.eligibleItem, .notEligibleItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem;
+  background: #F8F2E8;
+  border-radius: 10px;
+  font-size: 0.8rem;
+}
+
+.eligibleItem svg {
+  color: #10B981;
+  min-width: 18px;
+}
+
+.notEligibleItem svg {
+  color: #EF4444;
+  min-width: 18px;
+}
+
+/* Mobile Specific Additions for Returns */
+@media (max-width: 768px) {
+  .mobileSteps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .mobileStep {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: #F8F2E8;
+    border-radius: 12px;
+  }
+  
+  .mobileStepNumber {
+    width: 28px;
+    height: 28px;
+    background: #1F5B3A;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  
+  .mobileStep strong {
+    display: block;
+    font-size: 0.8rem;
+    color: #3E2A1F;
+  }
+  
+  .mobileStep span {
+    font-size: 0.7rem;
+    color: #7A6B5A;
+  }
+  
+  .mobileInfoCard ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .mobileInfoCard li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #E8DCC8;
+    font-size: 0.75rem;
+  }
+  
+  .mobileInfoCard li svg {
+    min-width: 16px;
+  }
+  
+  .mobileRefundMethod {
+    padding: 0.75rem;
+    background: #F8F2E8;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mobileRefundMethod strong {
+    display: block;
+    font-size: 0.8rem;
+    color: #3E2A1F;
+  }
+  
+  .mobileRefundDetail {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+    font-size: 0.65rem;
+    color: #7A6B5A;
+  }
+  
+  .mobileReturnNote {
+    font-size: 0.7rem;
+    color: #F59E0B;
+    margin-top: 0.5rem;
+  }
+}

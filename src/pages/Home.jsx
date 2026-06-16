@@ -19,9 +19,10 @@ import {
   FiHome,
   FiUser,
   FiShoppingCart,
-  FiAlertCircle
+  FiAlertCircle,
+  FiGlobe
 } from 'react-icons/fi';
-import { FaLeaf, FaPaintBrush, FaHandSpock, FaAward } from 'react-icons/fa';
+import { FaLeaf, FaPaintBrush, FaHandSpock, FaAward, FaWhatsapp } from 'react-icons/fa';
 import styles from './Home.module.css';
 
 const Home = () => {
@@ -124,13 +125,15 @@ const Home = () => {
                 className={styles.mobileHeroPoster}
               />
             </div>
-            <div className={styles.mobileHeroTextSection}>
-              <h1 className={styles.animateText}>Traditional Handcrafted Toys</h1>
-              <p className={styles.animateTextDelay}>Natural colors | Eco-friendly | GI Tagged</p>
-              <Link to="/products" className={styles.mobileHeroBtn}>
-                Explore Collection →
-              </Link>
-            </div>
+           <div className={styles.mobileHeroTextSection}>
+  <h1 className={styles.animateText}>
+    Traditional Handcrafted <span className={styles.highlight}>Etikoppaka</span> Toys
+  </h1>
+  <p className={styles.animateTextDelay}>Natural colors | Eco-friendly | GI Tagged</p>
+  <Link to="/products" className={styles.mobileHeroBtn}>
+    Explore Collection →
+  </Link>
+</div>
           </>
         )}
 
@@ -269,6 +272,65 @@ const Home = () => {
             </div>
           </div>
         )}
+
+       {/* Worldwide Delivery Section - Mobile */}
+{!searchQuery && (
+  <div className={styles.mobileWorldwideSection}>
+    <div className={styles.mobileWorldwideBadge}>
+      <FiGlobe /> Worldwide Delivery
+    </div>
+    <h3 className={styles.mobileWorldwideTitle}>
+      We Deliver <span>Worldwide</span>
+    </h3>
+    <p className={styles.mobileWorldwideSubtitle}>
+      For international orders, contact us directly for shipping quotes.
+    </p>
+
+    <div className={styles.mobileWorldwideGrid}>
+      <div className={styles.mobileWorldwideCard}>
+        <div className={styles.mobileWorldwideCardIcon}>🚚</div>
+        <h4>Global Shipping</h4>
+        <p>Worldwide delivery</p>
+      </div>
+      <div className={styles.mobileWorldwideCard}>
+        <div className={styles.mobileWorldwideCardIcon}>📦</div>
+        <h4>Safe Packaging</h4>
+        <p>Eco-friendly</p>
+      </div>
+      <div className={styles.mobileWorldwideCard}>
+        <div className={styles.mobileWorldwideCardIcon}>💬</div>
+        <h4>Contact Us</h4>
+        <p>Get custom quote</p>
+      </div>
+      <div className={styles.mobileWorldwideCard}>
+        <div className={styles.mobileWorldwideCardIcon}>🛡️</div>
+        <h4>Track Order</h4>
+        <p>Real-time tracking</p>
+      </div>
+    </div>
+
+    <div className={styles.mobileCountryTags}>
+      <span className={styles.mobileCountryTag}>🇺🇸 USA</span>
+      <span className={styles.mobileCountryTag}>🇬🇧 UK</span>
+      <span className={styles.mobileCountryTag}>🇦🇺 Australia</span>
+      <span className={styles.mobileCountryTag}>🇨🇦 Canada</span>
+      <span className={styles.mobileCountryTag}>🇩🇪 Germany</span>
+      <span className={styles.mobileCountryTag}>🇫🇷 France</span>
+      <span className={styles.mobileCountryTag}>🇯🇵 Japan</span>
+      <span className={styles.mobileCountryTag}>🇦🇪 UAE</span>
+      <span className={styles.mobileCountryTag}>➕ More</span>
+    </div>
+
+    <a 
+      href="https://wa.me/919154884214?text=Hello%2C%20I%27m%20interested%20in%20international%20shipping%20for%20your%20products.%20Please%20share%20details." 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className={styles.mobileWorldwideBtn}
+    >
+      <FaWhatsapp className={styles.whatsappIcon} /> Contact on WhatsApp
+    </a>
+  </div>
+)}
 
         <div className={styles.mobileBottomNav}>
           <Link to="/" className={styles.mobileNavItem}>
@@ -587,6 +649,75 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+     {/* Worldwide Delivery Section - Desktop */}
+<section className={styles.worldwideSection}>
+  <div className={styles.worldwideBgPattern}></div>
+  <div className={styles.worldwideGlow}></div>
+  <div className={styles.container}>
+    <div className={styles.worldwideContent}>
+      <div className={styles.worldwideBadge}>
+        <FiGlobe /> Worldwide Delivery
+      </div>
+      <h2 className={styles.worldwideTitle}>
+        We Deliver Our <span>Heritage</span> Worldwide
+      </h2>
+      <p className={styles.worldwideSubtitle}>
+        Experience the magic of Etikoppaka toys wherever you are. 
+        For international orders, please contact us directly for shipping quotes and custom orders.
+      </p>
+
+      <div className={styles.worldwideGrid}>
+        <div className={styles.worldwideCard}>
+          <div className={styles.worldwideCardIcon}>🚚</div>
+          <h4>International Shipping</h4>
+          <p>Doorstep delivery worldwide</p>
+        </div>
+        <div className={styles.worldwideCard}>
+          <div className={styles.worldwideCardIcon}>📦</div>
+          <h4>Secure Packaging</h4>
+          <p>Eco-friendly, safe packaging</p>
+        </div>
+        <div className={styles.worldwideCard}>
+          <div className={styles.worldwideCardIcon}>💬</div>
+          <h4>Contact Us</h4>
+          <p>Get custom shipping quote</p>
+        </div>
+        <div className={styles.worldwideCard}>
+          <div className={styles.worldwideCardIcon}>🛡️</div>
+          <h4>Track Your Order</h4>
+          <p>Real-time tracking available</p>
+        </div>
+      </div>
+
+      <div className={styles.worldwideCountries}>
+        <span className={styles.countryTag}>🇺🇸 USA</span>
+        <span className={styles.countryTag}>🇬🇧 UK</span>
+        <span className={styles.countryTag}>🇦🇺 Australia</span>
+        <span className={styles.countryTag}>🇨🇦 Canada</span>
+        <span className={styles.countryTag}>🇩🇪 Germany</span>
+        <span className={styles.countryTag}>🇫🇷 France</span>
+        <span className={styles.countryTag}>🇯🇵 Japan</span>
+        <span className={styles.countryTag}>🇦🇪 UAE</span>
+        <span className={styles.countryTag}>🇸🇬 Singapore</span>
+        <span className={styles.countryTag}>🇳🇿 New Zealand</span>
+        <span className={styles.countryTag}>🇮🇳 India</span>
+        <span className={styles.countryTag}>➕ 50+ Countries</span>
+      </div>
+
+      <div className={styles.worldwideCTA}>
+        <a 
+          href="https://wa.me/919154884214?text=Hello%2C%20I%27m%20interested%20in%20international%20shipping%20for%20your%20products.%20Please%20share%20details." 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={styles.worldwideBtn}
+        >
+          <FaWhatsapp className={styles.whatsappIcon} /> Contact on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
     </div>
   );
 };

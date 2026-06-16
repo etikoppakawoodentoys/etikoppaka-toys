@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../services/supabase';
-import { FiClock, FiTag, FiZap, FiGift, FiArrowRight, FiShoppingBag } from 'react-icons/fi';
-import { FaFire } from 'react-icons/fa';
+import { FiClock, FiTag, FiZap, FiGift, FiArrowRight, FiShoppingBag, FiBell, FiPackage } from 'react-icons/fi';
+import { FaFire, FaGift, FaRegClock } from 'react-icons/fa';
 import styles from './Deals.module.css';
 
 const Deals = () => {
@@ -63,13 +63,13 @@ const Deals = () => {
   };
 
   const getProductImage = (product) => {
-    if (product.images) {
+    if (product?.images) {
       try {
         const images = JSON.parse(product.images);
         if (images && images.length > 0) return images[0];
       } catch(e) {}
     }
-    return product.image_url || '/images/placeholder.jpg';
+    return product?.image_url || '/images/placeholder.jpg';
   };
 
   if (loading) {
@@ -82,7 +82,7 @@ const Deals = () => {
   }
 
   // ============================================
-  // MOBILE UI (Swiggy/Zomato/Zepto Style)
+  // MOBILE UI - 2 PER ROW GRID
   // ============================================
   if (isMobile) {
     return (
@@ -90,66 +90,104 @@ const Deals = () => {
         {/* Mobile Header */}
         <div className={styles.mobileHeader}>
           <h1>Hot Deals 🔥</h1>
-          <p>Limited time offers</p>
+          <p>Limited time offers on premium toys</p>
         </div>
 
-        {/* Mobile Deals List */}
-        <div className={styles.mobileDealsList}>
-          {deals.length === 0 ? (
-            <div className={styles.mobileNoDeals}>
-              <FiGift />
-              <p>No active deals</p>
-              <Link to="/products">Shop Now →</Link>
+        {/* Deals Grid - 2 Columns */}
+        {deals.length === 0 ? (
+          <div className={styles.mobileNoDealsPremium}>
+            <div className={styles.mobileNoDealsIcon}>
+              <FiBell />
+              <div className={styles.mobileNoDealsRing}></div>
             </div>
-          ) : (
-            deals.map((deal) => {
-              const timeRemaining = getTimeRemaining(deal.end_date);
-              const discount = calculateDiscount(deal.products?.price, deal.deal_price);
-              
-              return (
-                <Link to={`/product/${deal.product_id}`} key={deal.id} className={styles.mobileDealCard}>
-                  <div className={styles.mobileDealImage}>
-                    <img src={getProductImage(deal.products)} alt={deal.products?.name} />
-                    <div className={styles.mobileDiscountBadge}>-{discount}%</div>
-                    {!timeRemaining.isExpired && (
-                      <div className={styles.mobileTimerBadge}>
-                        <FiClock /> {timeRemaining.text}
-                      </div>
-                    )}
-                  </div>
-                  <div className={styles.mobileDealInfo}>
-                    <h3>{deal.products?.name}</h3>
-                    <div className={styles.mobilePrice}>
-                      <span className={styles.mobileOriginalPrice}>₹{deal.products?.price}</span>
-                      <span className={styles.mobileDealPrice}>₹{deal.deal_price}</span>
-                    </div>
-                    <div className={styles.mobileSavings}>
-                      Save ₹{deal.products?.price - deal.deal_price}
-                    </div>
-                  </div>
-                </Link>
-              );
-            })
-          )}
-        </div>
-
-        {/* Mobile Banner */}
-        {deals.length > 0 && (
-          <div className={styles.mobileBanner}>
-            <div className={styles.mobileBannerIcon}>🎨</div>
-            <div className={styles.mobileBannerText}>
-              <strong>Free Shipping</strong>
-              <span>on orders above ₹499</span>
+            <h3>No Active Deals at the Moment</h3>
+            <p>We're preparing amazing offers for you! Check back soon.</p>
+            <div className={styles.mobileNoDealsFeatures}>
+              <div className={styles.mobileFeature}>
+                <FiTag />
+                <span>Up to 50% Off</span>
+              </div>
+              <div className={styles.mobileFeature}>
+                <FiPackage />
+                <span>Free Shipping</span>
+              </div>
+              <div className={styles.mobileFeature}>
+                <FaRegClock />
+                <span>Limited Time</span>
+              </div>
             </div>
-            <Link to="/products">Shop →</Link>
+            <Link to="/products" className={styles.mobileNoDealsBtn}>
+              Explore Products <FiArrowRight />
+            </Link>
           </div>
+        ) : (
+          <>
+            <div className={styles.mobileDealsGrid}>
+              {deals.map((deal) => {
+                const timeRemaining = getTimeRemaining(deal.end_date);
+                const discount = calculateDiscount(deal.products?.price, deal.deal_price);
+                const isExpired = timeRemaining.isExpired;
+                
+                return (
+                  <Link to={`/product/${deal.product_id}`} key={deal.id} className={styles.mobileDealCard}>
+                    <div className={styles.mobileDealImage}>
+                      <img src={getProductImage(deal.products)} alt={deal.products?.name} />
+                      {!isExpired && (
+                        <div className={styles.mobileDiscountBadge}>-{discount}%</div>
+                      )}
+                      {!isExpired && (
+                        <div className={styles.mobileTimerBadge}>
+                          <FiClock /> {timeRemaining.text}
+                        </div>
+                      )}
+                      {deal.products?.stock_quantity === 0 && (
+                        <div className={styles.mobileSoldOutBadge}>Sold Out</div>
+                      )}
+                    </div>
+                    <div className={styles.mobileDealInfo}>
+                      <h3>{deal.products?.name}</h3>
+                      <div className={styles.mobilePriceRow}>
+                        <div className={styles.mobilePrice}>
+                          {!isExpired && (
+                            <span className={styles.mobileOriginalPrice}>₹{deal.products?.price}</span>
+                          )}
+                          <span className={styles.mobileDealPrice}>₹{deal.deal_price}</span>
+                        </div>
+                        {!isExpired && discount > 0 && (
+                          <div className={styles.mobileDiscountChip}>-{discount}%</div>
+                        )}
+                      </div>
+                      {!isExpired && (
+                        <div className={styles.mobileSavings}>
+                          Save ₹{deal.products?.price - deal.deal_price}
+                        </div>
+                      )}
+                      {isExpired && (
+                        <div className={styles.mobileExpiredBadge}>Deal Expired</div>
+                      )}
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Banner */}
+            <div className={styles.mobileBanner}>
+              <div className={styles.mobileBannerIcon}>🎁</div>
+              <div className={styles.mobileBannerText}>
+                <strong>Free Shipping</strong>
+                <span>on orders above ₹499</span>
+              </div>
+              <Link to="/products">Shop →</Link>
+            </div>
+          </>
         )}
       </div>
     );
   }
 
   // ============================================
-  // DESKTOP UI (Premium Traditional Style)
+  // DESKTOP UI
   // ============================================
   return (
     <div className={styles.dealsPage}>
@@ -178,15 +216,45 @@ const Deals = () => {
 
       <div className={styles.container}>
         {deals.length === 0 ? (
-          <div className={styles.noDeals}>
-            <div className={styles.noDealsIcon}>
-              <FiGift />
+          <div className={styles.noDealsPremium}>
+            <div className={styles.noDealsIconWrapper}>
+              <div className={styles.noDealsIconRing}>
+                <FiBell className={styles.noDealsBellIcon} />
+              </div>
             </div>
-            <h2>No Active Deals</h2>
-            <p>Check back soon for amazing offers!</p>
-            <Link to="/products" className={styles.shopBtn}>
-              Explore Products <FiArrowRight />
-            </Link>
+            <h2>No Active Deals Right Now</h2>
+            <p>We're cooking up some amazing offers for you! Stay tuned for exciting discounts on our traditional handcrafted toys.</p>
+            <div className={styles.noDealsFeatures}>
+              <div className={styles.noDealsFeature}>
+                <div className={styles.featureIcon}>🎯</div>
+                <div>
+                  <strong>Up to 50% Off</strong>
+                  <span>On selected items</span>
+                </div>
+              </div>
+              <div className={styles.noDealsFeature}>
+                <div className={styles.featureIcon}>🚚</div>
+                <div>
+                  <strong>Free Shipping</strong>
+                  <span>On orders above ₹499</span>
+                </div>
+              </div>
+              <div className={styles.noDealsFeature}>
+                <div className={styles.featureIcon}>✨</div>
+                <div>
+                  <strong>Limited Time</strong>
+                  <span>Don't miss out</span>
+                </div>
+              </div>
+            </div>
+            <div className={styles.noDealsActions}>
+              <Link to="/products" className={styles.noDealsShopBtn}>
+                <FiShoppingBag /> Shop All Products
+              </Link>
+              <Link to="/hampers" className={styles.noDealsHampersBtn}>
+                <FaGift /> Explore Gift Hampers
+              </Link>
+            </div>
           </div>
         ) : (
           <>
@@ -204,6 +272,7 @@ const Deals = () => {
               {deals.map((deal, index) => {
                 const timeRemaining = getTimeRemaining(deal.end_date);
                 const discount = calculateDiscount(deal.products?.price, deal.deal_price);
+                const isExpired = timeRemaining.isExpired;
                 
                 return (
                   <div 
@@ -218,7 +287,7 @@ const Deals = () => {
                         <FiTag className={styles.discountIcon} />
                         {discount}% OFF
                       </div>
-                      {!timeRemaining.isExpired && (
+                      {!isExpired && (
                         <div className={styles.timerBadge}>
                           <FiClock />
                           {timeRemaining.text} left
@@ -235,6 +304,9 @@ const Deals = () => {
                           </Link>
                         </div>
                       </div>
+                      {deal.products?.stock_quantity === 0 && (
+                        <div className={styles.soldOutBadge}>Sold Out</div>
+                      )}
                     </div>
 
                     <div className={styles.cardContent}>
@@ -251,17 +323,19 @@ const Deals = () => {
                         </div>
                       </div>
 
-                      <div className={styles.stockInfo}>
-                        <div className={styles.stockBar}>
-                          <div 
-                            className={styles.stockFill} 
-                            style={{ width: `${Math.min(100, (deal.products?.stock_quantity / 50) * 100)}%` }}
-                          />
+                      {deal.products?.stock_quantity > 0 && deal.products?.stock_quantity < 20 && (
+                        <div className={styles.stockInfo}>
+                          <div className={styles.stockBar}>
+                            <div 
+                              className={styles.stockFill} 
+                              style={{ width: `${Math.min(100, (deal.products?.stock_quantity / 50) * 100)}%` }}
+                            />
+                          </div>
+                          <span className={styles.stockText}>
+                            Only {deal.products?.stock_quantity} left in stock
+                          </span>
                         </div>
-                        <span className={styles.stockText}>
-                          Only {deal.products?.stock_quantity} left in stock
-                        </span>
-                      </div>
+                      )}
 
                       <Link to={`/product/${deal.product_id}`} className={styles.shopNowBtn}>
                         <FiShoppingBag />

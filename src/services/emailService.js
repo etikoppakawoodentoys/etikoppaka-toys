@@ -23,7 +23,7 @@ const callEmailFunction = async (type, to, data) => {
       return false
     }
     
-    console.log(`✅ Email sent successfully:`, result.id)
+    console.log(`✅ Email sent successfully`)
     return true
   } catch (error) {
     console.error(`❌ Failed to send email:`, error)
@@ -31,32 +31,49 @@ const callEmailFunction = async (type, to, data) => {
   }
 }
 
-export const sendOrderConfirmation = async (orderDetails, customerEmail, customerName) => {
+export const sendOrderConfirmation = async (orderDetails, customerEmail, customerName, options = {}) => {
   return callEmailFunction('order_confirmation', customerEmail, {
     orderNumber: orderDetails.order_number,
     customerName: customerName,
     totalAmount: orderDetails.total_amount,
-    items: orderDetails.items,
-    shippingAddress: orderDetails.shipping_address
+    items: orderDetails.items,           // items now include gift_packing, gift_quote, gift_charge
+    shippingAddress: orderDetails.shipping_address,
+    paymentMethod: options.paymentMethod || 'COD',
+    giftCharges: orderDetails.gift_charges || 0,  // total gift packing charge for this order
+    deliveryCharge: options.deliveryCharge || 0, 
   })
 }
 
-export const sendOrderStatusUpdate = async (orderNumber, status, customerEmail, customerName, totalAmount, shippingAddress) => {
+export const sendOrderStatusUpdate = async (
+  orderNumber, status, customerEmail, customerName,
+  totalAmount, shippingAddress, oldStatus = null, trackingUrl = null
+) => {
   return callEmailFunction('order_status_update', customerEmail, {
     orderNumber,
     status,
     customerName,
     totalAmount: totalAmount || 0,
-    shippingAddress: shippingAddress || ''
+    shippingAddress: shippingAddress || '',
+    oldStatus,
+    trackingUrl,
   })
 }
 
 export const sendAdminNotification = async (orderDetails, customerDetails) => {
-  console.log('Admin notification handled by edge function automatically')
-  return true
+  return callEmailFunction('admin_notification', 'etikoppakawoodentoys@gmail.com', {
+    orderNumber: orderDetails.order_number,
+    customerName: customerDetails.name,
+    customerEmail: customerDetails.email,
+    customerPhone: customerDetails.mobile,
+    totalAmount: orderDetails.total_amount,
+    items: orderDetails.items,           // items now include gift_packing, gift_quote, gift_charge
+    shippingAddress: orderDetails.shipping_address,
+    paymentMethod: customerDetails.paymentMethod || orderDetails.payment_method || 'COD',
+    giftCharges: orderDetails.gift_charges || 0,
+    deliveryCharge: orderDetails.delivery_charge || 0, 
+  })
 }
 
-// NEW: Send bulk order notification
 export const sendBulkOrderNotification = async (orderDetails, customerDetails) => {
   return callEmailFunction('bulk_order', customerDetails.email, {
     orderNumber: orderDetails.order_number,
@@ -71,6 +88,10 @@ export const sendBulkOrderNotification = async (orderDetails, customerDetails) =
     budgetRange: orderDetails.budget_range,
     expectedDeliveryDate: orderDetails.expected_delivery_date,
     additionalRequirements: orderDetails.additional_requirements,
-    createdAt: orderDetails.created_at
+    createdAt: orderDetails.created_at,
   })
+}
+
+export const sendEmailNotification = async (type, to, data) => {
+  return callEmailFunction(type, to, data)
 }

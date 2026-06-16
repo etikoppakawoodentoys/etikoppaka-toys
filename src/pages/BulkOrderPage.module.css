@@ -778,3 +778,344 @@
   align-items: center;
   gap: 0.5rem;
 }
+/* ============================================
+   BOTTOM BAR FIX FOR MOBILE
+   ============================================ */
+
+/* Main mobile container - ensure proper spacing */
+.mobileBulkPage {
+  min-height: 100vh;
+  background: #F8F2E8;
+  padding-bottom: 0; /* Reset padding */
+  position: relative;
+}
+
+/* Wrapper for all mobile content - add bottom padding for bottom bar */
+.mobileBulkContent {
+  padding-bottom: 85px; /* Space for fixed bottom navigation bar */
+}
+
+/* Ensure the last element has proper spacing */
+.mobileWhatsappCta {
+  margin-bottom: 20px;
+}
+
+/* Additional padding for very tall content */
+@media (max-width: 768px) {
+  .mobileBulkContent {
+    padding-bottom: 95px; /* Extra padding for safety on some devices */
+  }
+  
+  /* For iPhone X and above with home indicator */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .mobileBulkContent {
+      padding-bottom: calc(85px + env(safe-area-inset-bottom));
+    }
+  }
+}
+
+/* Fix for success toast positioning - don't overlap with bottom bar */
+.mobileSuccessToast {
+  position: fixed;
+  bottom: 80px; /* Position above bottom bar */
+  left: 16px;
+  right: 16px;
+  background: #1F5B3A;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: slideUp 0.3s ease;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure error message doesn't get hidden */
+.mobileErrorMessage {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+/* Make sure forms are fully visible when focused */
+.mobileFormGroup input:focus,
+.mobileFormGroup select:focus,
+.mobileFormGroup textarea:focus {
+  scroll-margin-bottom: 100px; /* Ensure focused input is visible above bottom bar */
+}
+
+/* Optional: Add a small spacer at the very end for extra safety */
+.mobileBulkContent::after {
+  content: '';
+  display: block;
+  height: 10px;
+}
+
+/* Fix for the submit button - ensure it's clickable above bottom bar */
+.mobileSubmitBtn {
+  margin-bottom: 10px;
+}
+
+/* Adjust product grid for better visibility */
+.mobileProductCard {
+  margin-bottom: 4px;
+}
+
+/* Ensure the WhatsApp CTA has enough space */
+.mobileWhatsappCta {
+  margin-bottom: 0;
+  padding-bottom: 10px;
+}
+
+/* For better scrolling experience */
+.mobileBulkPage {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Fix for very small screens (e.g., iPhone SE) */
+@media (max-width: 380px) {
+  .mobileBulkContent {
+    padding-bottom: 100px;
+  }
+  
+  .mobileSuccessToast {
+    bottom: 85px;
+  }
+}
+
+/* For landscape mode on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .mobileBulkContent {
+    padding-bottom: 70px;
+  }
+  
+  .mobileSuccessToast {
+    bottom: 65px;
+  }
+}
+/* ============================================
+   LOGIN REQUIRED STYLES - DESKTOP
+   ============================================ */
+
+.desktopLoginRequired {
+  background: linear-gradient(135deg, #FFF3E0 0%, #FFE8CC 100%);
+  border-left: 4px solid #F59E0B;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.desktopLoginRequiredContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.desktopLoginIcon {
+  font-size: 2rem;
+  color: #F59E0B;
+}
+
+.desktopLoginRequiredContent strong {
+  font-size: 1rem;
+  color: #3E2A1F;
+  display: block;
+}
+
+.desktopLoginRequiredContent p {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+}
+
+.desktopLoginBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.desktopLoginBtn:hover {
+  background: #15452B;
+  transform: translateY(-2px);
+}
+
+/* Desktop Login Prompt (when form is hidden) */
+.desktopLoginPrompt {
+  background: white;
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.desktopLoginPromptContent {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.desktopLoginPromptIcon {
+  font-size: 4rem;
+  color: #D9B382;
+  margin-bottom: 1rem;
+}
+
+.desktopLoginPromptContent h3 {
+  font-size: 1.3rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+.desktopLoginPromptContent p {
+  color: #7A6B5A;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.desktopLoginPromptBtn {
+  padding: 0.75rem 2rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.desktopLoginPromptBtn:hover {
+  background: #15452B;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   LOGIN REQUIRED STYLES - MOBILE
+   ============================================ */
+
+.mobileLoginRequired {
+  background: linear-gradient(135deg, #FFF3E0 0%, #FFE8CC 100%);
+  border-left: 4px solid #F59E0B;
+  margin: 1rem;
+  padding: 0.875rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mobileLoginIcon {
+  font-size: 1.5rem;
+  color: #F59E0B;
+}
+
+.mobileLoginRequired strong {
+  font-size: 0.85rem;
+  color: #3E2A1F;
+  display: block;
+}
+
+.mobileLoginRequired p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.mobileLoginBtn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #1F5B3A;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.6rem;
+  background: rgba(31, 91, 58, 0.1);
+  border-radius: 40px;
+}
+
+/* Mobile Login Prompt */
+.mobileLoginPrompt {
+  background: white;
+  margin: 1rem;
+  padding: 2rem 1.5rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.mobileLoginPromptContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobileLoginPromptIcon {
+  font-size: 3rem;
+  color: #D9B382;
+  margin-bottom: 0.75rem;
+}
+
+.mobileLoginPromptContent h3 {
+  font-size: 1.1rem;
+  color: #3E2A1F;
+  margin-bottom: 0.5rem;
+}
+
+.mobileLoginPromptContent p {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin-bottom: 1rem;
+}
+
+.mobileLoginPromptBtn {
+  padding: 0.6rem 1.2rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Loading Container */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #E8DCC8;
+  border-top-color: #1F5B3A;
+  border-right-color: #C89B3C;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

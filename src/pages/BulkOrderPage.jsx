@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../services/supabase';
-import { FiPackage, FiTruck, FiShield, FiClock, FiCheck, FiArrowRight, FiMail, FiPhone, FiMapPin, FiDollarSign, FiCalendar, FiUpload, FiX, FiMessageCircle, FiSend } from 'react-icons/fi';
+import { FiPackage, FiTruck, FiShield, FiClock, FiCheck, FiArrowRight, FiMail, FiPhone, FiMapPin, FiDollarSign, FiCalendar, FiUpload, FiX, FiMessageCircle, FiSend, FiUser, FiLogIn } from 'react-icons/fi';
 import { FaWhatsapp, FaEnvelope, FaPhone, FaRupeeSign } from 'react-icons/fa';
 import { sendBulkOrderNotification } from '../services/emailService';
 import styles from './BulkOrderPage.module.css';
@@ -13,6 +14,10 @@ const BulkOrderPage = () => {
   const [bulkProducts, setBulkProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',
@@ -38,8 +43,39 @@ const BulkOrderPage = () => {
   }, []);
 
   useEffect(() => {
+    checkAuth();
     fetchBulkProducts();
   }, []);
+
+  const checkAuth = async () => {
+    setIsCheckingAuth(true);
+    const { data: { user } } = await supabase.auth.getUser();
+    setIsLoggedIn(!!user);
+    
+    if (user) {
+      // Pre-fill form with user data
+      const { data: profile } = await supabase
+        .from('users')
+        .select('name, email, mobile')
+        .eq('id', user.id)
+        .single();
+      
+      if (profile) {
+        setFormData(prev => ({
+          ...prev,
+          full_name: profile.name || '',
+          email: profile.email || '',
+          phone: profile.mobile || '',
+        }));
+      } else {
+        setFormData(prev => ({
+          ...prev,
+          email: user.email || '',
+        }));
+      }
+    }
+    setIsCheckingAuth(false);
+  };
 
   const fetchBulkProducts = async () => {
     const { data, error } = await supabase
@@ -79,6 +115,14 @@ const BulkOrderPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Check if user is logged in
+    if (!isLoggedIn) {
+      setErrorMessage('Please login to submit a bulk order request');
+      setTimeout(() => setErrorMessage(''), 5000);
+      return;
+    }
+    
     if (!validateForm()) return;
 
     setLoading(true);
@@ -86,6 +130,12 @@ const BulkOrderPage = () => {
     
     try {
       const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        setErrorMessage('Session expired. Please login again.');
+        setLoading(false);
+        return;
+      }
       
       // Prepare the data exactly matching the table columns
       const orderData = {
@@ -100,7 +150,7 @@ const BulkOrderPage = () => {
         budget_range: formData.budget_range || null,
         expected_delivery_date: formData.expected_delivery_date || null,
         additional_requirements: formData.additional_requirements || null,
-        user_id: user?.id || null,
+        user_id: user.id,
         status: 'pending'
       };
 
@@ -125,19 +175,16 @@ const BulkOrderPage = () => {
         setShowSuccess(true);
         
         // Reset form
-        setFormData({
-          full_name: '',
-          email: '',
-          phone: '',
+        setFormData(prev => ({
+          ...prev,
           company_name: '',
           gst_number: '',
           product_interest: '',
           quantity: '',
-          quantity_unit: 'pieces',
           budget_range: '',
           expected_delivery_date: '',
           additional_requirements: '',
-        });
+        }));
         
         // Send email notification (don't await, let it run in background)
         try {
@@ -165,227 +212,253 @@ const BulkOrderPage = () => {
 
   const handleWhatsAppInquiry = () => {
     const message = `Hi, I'm interested in bulk ordering products from your store. Please share more details about wholesale pricing.`;
-    window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/919154884214?text=${encodeURIComponent(message)}`, '_blank');
   };
 
+  const handleLoginRedirect = () => {
+    navigate('/login', { state: { from: '/bulk-orders' } });
+  };
+
+  // Show loading state while checking auth
+  if (isCheckingAuth) {
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.loadingSpinner}></div>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  // Mobile UI
   if (isMobile) {
     return (
       <div className={styles.mobileBulkPage}>
-        {/* Mobile Hero Section */}
-        <div className={styles.mobileHero}>
-          <div className={styles.mobileHeroIcon}>🎁</div>
-          <h1>Bulk Orders</h1>
-          <p>Get special wholesale pricing for bulk quantities</p>
-        </div>
+        <div className={styles.mobileBulkContent}>
+          {/* Login Required Banner - Show if not logged in */}
+          {!isLoggedIn && (
+            <div className={styles.mobileLoginRequired}>
+              <div className={styles.mobileLoginIcon}>
+                <FiUser />
+              </div>
+              <div>
+                <strong>Login Required</strong>
+                <p>Please login to submit bulk order requests</p>
+              </div>
+              <button onClick={handleLoginRedirect} className={styles.mobileLoginBtn}>
+                Login <FiLogIn />
+              </button>
+            </div>
+          )}
 
-        {/* Error Message */}
-        {errorMessage && (
-          <div className={styles.mobileErrorMessage}>
-            ❌ {errorMessage}
+          {/* Mobile Hero Section */}
+          <div className={styles.mobileHero}>
+            <div className={styles.mobileHeroIcon}>🎁</div>
+            <h1>Bulk Orders</h1>
+            <p>Get special wholesale pricing for bulk quantities</p>
           </div>
-        )}
 
-        {/* Success Toast */}
-        {showSuccess && submittedOrder && (
-          <div className={styles.mobileSuccessToast}>
-            <FiCheck />
-            <div>
-              <strong>Request Submitted!</strong>
-              <p>Order #{submittedOrder.order_number} - We'll contact you within 24 hours.</p>
+          {/* Error Message */}
+          {errorMessage && (
+            <div className={styles.mobileErrorMessage}>
+              ❌ {errorMessage}
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Features */}
-        <div className={styles.mobileFeatures}>
-          <div className={styles.mobileFeatureCard}>
-            <span>🎯</span>
-            <div>
-              <strong>Min. Order</strong>
-              <span>50 pieces</span>
+          {/* Success Toast */}
+          {showSuccess && submittedOrder && (
+            <div className={styles.mobileSuccessToast}>
+              <FiCheck />
+              <div>
+                <strong>Request Submitted!</strong>
+                <p>Order #{submittedOrder.order_number} - We'll contact you within 24 hours.</p>
+              </div>
             </div>
-          </div>
-          <div className={styles.mobileFeatureCard}>
-            <span>💰</span>
-            <div>
-              <strong>Discount</strong>
-              <span>Up to 40% off</span>
-            </div>
-          </div>
-          <div className={styles.mobileFeatureCard}>
-            <span>🚚</span>
-            <div>
-              <strong>Shipping</strong>
-              <span>Free above ₹25k</span>
-            </div>
-          </div>
-          <div className={styles.mobileFeatureCard}>
-            <span>⚡</span>
-            <div>
-              <strong>Delivery</strong>
-              <span>15-20 days</span>
-            </div>
-          </div>
-        </div>
+          )}
 
-        {/* Bulk Products */}
-        {bulkProducts.length > 0 && (
-          <div className={styles.mobileBulkProducts}>
-            <h2>Popular for Bulk Orders</h2>
-            <div className={styles.mobileProductGrid}>
-              {bulkProducts.map(product => (
-                <div key={product.id} className={styles.mobileProductCard}>
-                  <img src={product.image_url || '/images/placeholder.jpg'} alt={product.name} />
-                  <h3>{product.name}</h3>
-                  <p className={styles.mobileBulkPrice}>From ₹{Math.floor(product.price * 0.7)}/piece</p>
+          {/* Features */}
+          <div className={styles.mobileFeatures}>
+            <div className={styles.mobileFeatureCard}>
+              <span>🎯</span>
+              <div>
+                <strong>Min. Order</strong>
+                <span>50 pieces</span>
+              </div>
+            </div>
+            <div className={styles.mobileFeatureCard}>
+              <span>💰</span>
+              <div>
+                <strong>Discount</strong>
+                <span>Up to 30% off</span>
+              </div>
+            </div>
+            <div className={styles.mobileFeatureCard}>
+              <span>🚚</span>
+              <div>
+                <strong>Shipping</strong>
+                <span>Free above ₹25k</span>
+              </div>
+            </div>
+            <div className={styles.mobileFeatureCard}>
+              <span>⚡</span>
+              <div>
+                <strong>Delivery</strong>
+                <span>15-20 days</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bulk Products */}
+          {bulkProducts.length > 0 && (
+            <div className={styles.mobileBulkProducts}>
+              <h2>Popular for Bulk Orders</h2>
+              <div className={styles.mobileProductGrid}>
+                {bulkProducts.map(product => (
+                  <div key={product.id} className={styles.mobileProductCard}>
+                    <img src={product.image_url || '/images/placeholder.jpg'} alt={product.name} />
+                    <h3>{product.name}</h3>
+                    <p className={styles.mobileBulkPrice}>From ₹{Math.floor(product.price * 0.7)}/piece</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Inquiry Form - Only show if logged in */}
+          {isLoggedIn ? (
+            <div className={styles.mobileFormSection}>
+              <h2>Request a Quote</h2>
+              <p>Fill the form and we'll get back to you within 24 hours</p>
+              
+              <form onSubmit={handleSubmit} className={styles.mobileForm}>
+                <div className={styles.mobileFormGroup}>
+                  <input
+                    type="text"
+                    name="full_name"
+                    placeholder="Full Name *"
+                    value={formData.full_name}
+                    onChange={handleChange}
+                    className={errors.full_name ? styles.error : ''}
+                  />
+                  {errors.full_name && <span className={styles.errorMsg}>{errors.full_name}</span>}
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
 
-        {/* Inquiry Form */}
-        <div className={styles.mobileFormSection}>
-          <h2>Request a Quote</h2>
-          <p>Fill the form and we'll get back to you within 24 hours</p>
-          
-          <form onSubmit={handleSubmit} className={styles.mobileForm}>
-            <div className={styles.mobileFormGroup}>
-              <input
-                type="text"
-                name="full_name"
-                placeholder="Full Name *"
-                value={formData.full_name}
-                onChange={handleChange}
-                className={errors.full_name ? styles.error : ''}
-              />
-              {errors.full_name && <span className={styles.errorMsg}>{errors.full_name}</span>}
-            </div>
+                <div className={styles.mobileFormGroup}>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address *"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={errors.email ? styles.error : ''}
+                  />
+                  {errors.email && <span className={styles.errorMsg}>{errors.email}</span>}
+                </div>
 
-            <div className={styles.mobileFormGroup}>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address *"
-                value={formData.email}
-                onChange={handleChange}
-                className={errors.email ? styles.error : ''}
-              />
-              {errors.email && <span className={styles.errorMsg}>{errors.email}</span>}
-            </div>
+                <div className={styles.mobileFormGroup}>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone Number *"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className={errors.phone ? styles.error : ''}
+                  />
+                  {errors.phone && <span className={styles.errorMsg}>{errors.phone}</span>}
+                </div>
 
-            <div className={styles.mobileFormGroup}>
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone Number *"
-                value={formData.phone}
-                onChange={handleChange}
-                className={errors.phone ? styles.error : ''}
-              />
-              {errors.phone && <span className={styles.errorMsg}>{errors.phone}</span>}
-            </div>
+                <div className={styles.mobileFormGroup}>
+                  <input
+                    type="text"
+                    name="product_interest"
+                    placeholder="Product(s) you're interested in *"
+                    value={formData.product_interest}
+                    onChange={handleChange}
+                    className={errors.product_interest ? styles.error : ''}
+                  />
+                  {errors.product_interest && <span className={styles.errorMsg}>{errors.product_interest}</span>}
+                </div>
 
-            <div className={styles.mobileFormRow}>
-              <div className={styles.mobileFormGroup}>
-                <input
-                  type="text"
-                  name="company_name"
-                  placeholder="Company Name (Optional)"
-                  value={formData.company_name}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className={styles.mobileFormGroup}>
-                <input
-                  type="text"
-                  name="gst_number"
-                  placeholder="GST Number (Optional)"
-                  value={formData.gst_number}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
+                <div className={styles.mobileFormRow}>
+                  <div className={styles.mobileFormGroup}>
+                    <input
+                      type="number"
+                      name="quantity"
+                      placeholder="Quantity *"
+                      value={formData.quantity}
+                      onChange={handleChange}
+                      className={errors.quantity ? styles.error : ''}
+                    />
+                    {errors.quantity && <span className={styles.errorMsg}>{errors.quantity}</span>}
+                  </div>
+                  <div className={styles.mobileFormGroup}>
+                    <select name="quantity_unit" value={formData.quantity_unit} onChange={handleChange}>
+                      <option value="pieces">Pieces</option>
+                      <option value="pairs">Pairs</option>
+                      <option value="sets">Sets</option>
+                      <option value="dozens">Dozens</option>
+                    </select>
+                  </div>
+                </div>
 
-            <div className={styles.mobileFormGroup}>
-              <input
-                type="text"
-                name="product_interest"
-                placeholder="Product(s) you're interested in *"
-                value={formData.product_interest}
-                onChange={handleChange}
-                className={errors.product_interest ? styles.error : ''}
-              />
-              {errors.product_interest && <span className={styles.errorMsg}>{errors.product_interest}</span>}
-            </div>
+                <div className={styles.mobileFormRow}>
+                  <div className={styles.mobileFormGroup}>
+                    <select name="budget_range" value={formData.budget_range} onChange={handleChange}>
+                      <option value="">Select Budget Range</option>
+                      <option value="< ₹10,000">Less than ₹10,000</option>
+                      <option value="₹10,000 - ₹25,000">₹10,000 - ₹25,000</option>
+                      <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
+                      <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
+                      <option value="> ₹1,00,000">More than ₹1,00,000</option>
+                    </select>
+                  </div>
+                  <div className={styles.mobileFormGroup}>
+                    <input
+                      type="date"
+                      name="expected_delivery_date"
+                      placeholder="Expected Delivery Date"
+                      value={formData.expected_delivery_date}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
 
-            <div className={styles.mobileFormRow}>
-              <div className={styles.mobileFormGroup}>
-                <input
-                  type="number"
-                  name="quantity"
-                  placeholder="Quantity *"
-                  value={formData.quantity}
-                  onChange={handleChange}
-                  className={errors.quantity ? styles.error : ''}
-                />
-                {errors.quantity && <span className={styles.errorMsg}>{errors.quantity}</span>}
-              </div>
-              <div className={styles.mobileFormGroup}>
-                <select name="quantity_unit" value={formData.quantity_unit} onChange={handleChange}>
-                  <option value="pieces">Pieces</option>
-                  <option value="pairs">Pairs</option>
-                  <option value="sets">Sets</option>
-                  <option value="dozens">Dozens</option>
-                </select>
-              </div>
-            </div>
+                <div className={styles.mobileFormGroup}>
+                  <textarea
+                    name="additional_requirements"
+                    placeholder="Additional requirements or specifications..."
+                    rows="4"
+                    value={formData.additional_requirements}
+                    onChange={handleChange}
+                  />
+                </div>
 
-            <div className={styles.mobileFormRow}>
-              <div className={styles.mobileFormGroup}>
-                <select name="budget_range" value={formData.budget_range} onChange={handleChange}>
-                  <option value="">Select Budget Range</option>
-                  <option value="< ₹10,000">Less than ₹10,000</option>
-                  <option value="₹10,000 - ₹25,000">₹10,000 - ₹25,000</option>
-                  <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
-                  <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
-                  <option value="> ₹1,00,000">More than ₹1,00,000</option>
-                </select>
-              </div>
-              <div className={styles.mobileFormGroup}>
-                <input
-                  type="date"
-                  name="expected_delivery_date"
-                  placeholder="Expected Delivery Date"
-                  value={formData.expected_delivery_date}
-                  onChange={handleChange}
-                />
+                <button type="submit" className={styles.mobileSubmitBtn} disabled={loading}>
+                  {loading ? 'Submitting...' : 'Submit Bulk Order Request'}
+                </button>
+              </form>
+            </div>
+          ) : (
+            // Show login prompt if not logged in
+            <div className={styles.mobileLoginPrompt}>
+              <div className={styles.mobileLoginPromptContent}>
+                <FiUser className={styles.mobileLoginPromptIcon} />
+                <h3>Login to Submit Request</h3>
+                <p>Please login to submit bulk order inquiries and get special wholesale pricing.</p>
+                <button onClick={handleLoginRedirect} className={styles.mobileLoginPromptBtn}>
+                  Login / Sign Up
+                </button>
               </div>
             </div>
+          )}
 
-            <div className={styles.mobileFormGroup}>
-              <textarea
-                name="additional_requirements"
-                placeholder="Additional requirements or specifications..."
-                rows="4"
-                value={formData.additional_requirements}
-                onChange={handleChange}
-              />
+          {/* WhatsApp CTA */}
+          <div className={styles.mobileWhatsappCta}>
+            <div className={styles.mobileWhatsappContent}>
+              <p>Need help with your bulk order?</p>
+              <button onClick={handleWhatsAppInquiry} className={styles.mobileWhatsappBtn}>
+                <FaWhatsapp /> Chat on WhatsApp
+              </button>
             </div>
-
-            <button type="submit" className={styles.mobileSubmitBtn} disabled={loading}>
-              {loading ? 'Submitting...' : 'Submit Bulk Order Request'}
-            </button>
-          </form>
-        </div>
-
-        {/* WhatsApp CTA */}
-        <div className={styles.mobileWhatsappCta}>
-          <div className={styles.mobileWhatsappContent}>
-            <p>Need help with your bulk order?</p>
-            <button onClick={handleWhatsAppInquiry} className={styles.mobileWhatsappBtn}>
-              <FaWhatsapp /> Chat on WhatsApp
-            </button>
           </div>
         </div>
       </div>
@@ -395,6 +468,22 @@ const BulkOrderPage = () => {
   // Desktop UI
   return (
     <div className={styles.desktopBulkPage}>
+      {/* Login Required Banner - Show if not logged in */}
+      {!isLoggedIn && (
+        <div className={styles.desktopLoginRequired}>
+          <div className={styles.desktopLoginRequiredContent}>
+            <FiUser className={styles.desktopLoginIcon} />
+            <div>
+              <strong>Login Required</strong>
+              <p>Please login to submit bulk order requests and get wholesale pricing</p>
+            </div>
+            <button onClick={handleLoginRedirect} className={styles.desktopLoginBtn}>
+              Login Now <FiLogIn />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <div className={styles.desktopHero}>
         <div className={styles.desktopHeroContent}>
@@ -407,7 +496,7 @@ const BulkOrderPage = () => {
               <p>Minimum Order</p>
             </div>
             <div className={styles.heroStat}>
-              <span>40%</span>
+              <span>30%</span>
               <p>Discount Up To</p>
             </div>
             <div className={styles.heroStat}>
@@ -452,7 +541,7 @@ const BulkOrderPage = () => {
           <div className={styles.feature}>
             <FaRupeeSign className={styles.featureIcon} />
             <h3>Best Prices</h3>
-            <p>Get up to 40% discount on bulk orders</p>
+            <p>Get up to 30% discount on bulk orders</p>
           </div>
           <div className={styles.feature}>
             <FiTruck className={styles.featureIcon} />
@@ -481,6 +570,11 @@ const BulkOrderPage = () => {
                   <p className={styles.bulkPriceText}>Starting from ₹{Math.floor(product.price * 0.7)}/piece*</p>
                   <button 
                     onClick={() => {
+                      if (!isLoggedIn) {
+                        setErrorMessage('Please login to request a quote');
+                        setTimeout(() => setErrorMessage(''), 3000);
+                        return;
+                      }
                       setFormData(prev => ({ ...prev, product_interest: product.name }));
                       document.getElementById('quoteForm').scrollIntoView({ behavior: 'smooth' });
                     }}
@@ -494,154 +588,168 @@ const BulkOrderPage = () => {
           </div>
         )}
 
-        {/* Quote Form Section */}
-        <div id="quoteForm" className={styles.desktopFormSection}>
-          <div className={styles.formContainer}>
-            <div className={styles.formInfo}>
-              <h2>Request a Quote</h2>
-              <p>Fill out the form and our team will get back to you within 24 hours with a custom quote.</p>
-              <div className={styles.formInfoList}>
-                <div><FiCheck /> Custom pricing for bulk orders</div>
-                <div><FiCheck /> Free sample inspection available</div>
-                <div><FiCheck /> Pan India shipping</div>
-                <div><FiCheck /> GST invoice provided</div>
+        {/* Quote Form Section - Only show if logged in */}
+        {isLoggedIn ? (
+          <div id="quoteForm" className={styles.desktopFormSection}>
+            <div className={styles.formContainer}>
+              <div className={styles.formInfo}>
+                <h2>Request a Quote</h2>
+                <p>Fill out the form and our team will get back to you within 24 hours with a custom quote.</p>
+                <div className={styles.formInfoList}>
+                  <div><FiCheck /> Custom pricing for bulk orders</div>
+                  <div><FiCheck /> Free sample inspection available</div>
+                  <div><FiCheck /> Pan India shipping</div>
+                  <div><FiCheck /> GST invoice provided</div>
+                </div>
               </div>
+              
+              <form onSubmit={handleSubmit} className={styles.desktopForm}>
+                <div className={styles.formRow}>
+                  <div className={styles.formGroup}>
+                    <input
+                      type="text"
+                      name="full_name"
+                      placeholder="Full Name *"
+                      value={formData.full_name}
+                      onChange={handleChange}
+                      className={errors.full_name ? styles.error : ''}
+                    />
+                    {errors.full_name && <span className={styles.errorMsg}>{errors.full_name}</span>}
+                  </div>
+                  <div className={styles.formGroup}>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address *"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={errors.email ? styles.error : ''}
+                    />
+                    {errors.email && <span className={styles.errorMsg}>{errors.email}</span>}
+                  </div>
+                </div>
+
+                <div className={styles.formRow}>
+                  <div className={styles.formGroup}>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number *"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className={errors.phone ? styles.error : ''}
+                    />
+                    {errors.phone && <span className={styles.errorMsg}>{errors.phone}</span>}
+                  </div>
+                  <div className={styles.formGroup}>
+                    <input
+                      type="text"
+                      name="company_name"
+                      placeholder="Company Name (Optional)"
+                      value={formData.company_name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.formRow}>
+                  <div className={styles.formGroup}>
+                    <input
+                      type="text"
+                      name="gst_number"
+                      placeholder="GST Number (Optional)"
+                      value={formData.gst_number}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <input
+                      type="text"
+                      name="product_interest"
+                      placeholder="Product(s) you're interested in *"
+                      value={formData.product_interest}
+                      onChange={handleChange}
+                      className={errors.product_interest ? styles.error : ''}
+                    />
+                    {errors.product_interest && <span className={styles.errorMsg}>{errors.product_interest}</span>}
+                  </div>
+                </div>
+
+                <div className={styles.formRow}>
+                  <div className={styles.formGroup}>
+                    <input
+                      type="number"
+                      name="quantity"
+                      placeholder="Quantity *"
+                      value={formData.quantity}
+                      onChange={handleChange}
+                      className={errors.quantity ? styles.error : ''}
+                    />
+                    {errors.quantity && <span className={styles.errorMsg}>{errors.quantity}</span>}
+                  </div>
+                  <div className={styles.formGroup}>
+                    <select name="quantity_unit" value={formData.quantity_unit} onChange={handleChange}>
+                      <option value="pieces">Pieces</option>
+                      <option value="pairs">Pairs</option>
+                      <option value="sets">Sets</option>
+                      <option value="dozens">Dozens</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className={styles.formRow}>
+                  <div className={styles.formGroup}>
+                    <select name="budget_range" value={formData.budget_range} onChange={handleChange}>
+                      <option value="">Select Budget Range</option>
+                      <option value="< ₹10,000">Less than ₹10,000</option>
+                      <option value="₹10,000 - ₹25,000">₹10,000 - ₹25,000</option>
+                      <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
+                      <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
+                      <option value="> ₹1,00,000">More than ₹1,00,000</option>
+                    </select>
+                  </div>
+                  <div className={styles.formGroup}>
+                    <input
+                      type="date"
+                      name="expected_delivery_date"
+                      placeholder="Expected Delivery Date"
+                      value={formData.expected_delivery_date}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <textarea
+                    name="additional_requirements"
+                    placeholder="Additional requirements or specifications (size, color, design preferences)..."
+                    rows="4"
+                    value={formData.additional_requirements}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <button type="submit" className={styles.submitBtn} disabled={loading}>
+                  {loading ? 'Submitting Request...' : 'Submit Bulk Order Request'}
+                </button>
+              </form>
             </div>
-            
-            <form onSubmit={handleSubmit} className={styles.desktopForm}>
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
-                  <input
-                    type="text"
-                    name="full_name"
-                    placeholder="Full Name *"
-                    value={formData.full_name}
-                    onChange={handleChange}
-                    className={errors.full_name ? styles.error : ''}
-                  />
-                  {errors.full_name && <span className={styles.errorMsg}>{errors.full_name}</span>}
-                </div>
-                <div className={styles.formGroup}>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address *"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={errors.email ? styles.error : ''}
-                  />
-                  {errors.email && <span className={styles.errorMsg}>{errors.email}</span>}
-                </div>
-              </div>
-
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone Number *"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className={errors.phone ? styles.error : ''}
-                  />
-                  {errors.phone && <span className={styles.errorMsg}>{errors.phone}</span>}
-                </div>
-                <div className={styles.formGroup}>
-                  <input
-                    type="text"
-                    name="company_name"
-                    placeholder="Company Name (Optional)"
-                    value={formData.company_name}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
-                  <input
-                    type="text"
-                    name="gst_number"
-                    placeholder="GST Number (Optional)"
-                    value={formData.gst_number}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className={styles.formGroup}>
-                  <input
-                    type="text"
-                    name="product_interest"
-                    placeholder="Product(s) you're interested in *"
-                    value={formData.product_interest}
-                    onChange={handleChange}
-                    className={errors.product_interest ? styles.error : ''}
-                  />
-                  {errors.product_interest && <span className={styles.errorMsg}>{errors.product_interest}</span>}
-                </div>
-              </div>
-
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
-                  <input
-                    type="number"
-                    name="quantity"
-                    placeholder="Quantity *"
-                    value={formData.quantity}
-                    onChange={handleChange}
-                    className={errors.quantity ? styles.error : ''}
-                  />
-                  {errors.quantity && <span className={styles.errorMsg}>{errors.quantity}</span>}
-                </div>
-                <div className={styles.formGroup}>
-                  <select name="quantity_unit" value={formData.quantity_unit} onChange={handleChange}>
-                    <option value="pieces">Pieces</option>
-                    <option value="pairs">Pairs</option>
-                    <option value="sets">Sets</option>
-                    <option value="dozens">Dozens</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
-                  <select name="budget_range" value={formData.budget_range} onChange={handleChange}>
-                    <option value="">Select Budget Range</option>
-                    <option value="< ₹10,000">Less than ₹10,000</option>
-                    <option value="₹10,000 - ₹25,000">₹10,000 - ₹25,000</option>
-                    <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
-                    <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
-                    <option value="> ₹1,00,000">More than ₹1,00,000</option>
-                  </select>
-                </div>
-                <div className={styles.formGroup}>
-                  <input
-                    type="date"
-                    name="expected_delivery_date"
-                    placeholder="Expected Delivery Date"
-                    value={formData.expected_delivery_date}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <div className={styles.formGroup}>
-                <textarea
-                  name="additional_requirements"
-                  placeholder="Additional requirements or specifications (size, color, design preferences)..."
-                  rows="4"
-                  value={formData.additional_requirements}
-                  onChange={handleChange}
-                />
-              </div>
-
-              <button type="submit" className={styles.submitBtn} disabled={loading}>
-                {loading ? 'Submitting Request...' : 'Submit Bulk Order Request'}
-              </button>
-            </form>
           </div>
-        </div>
+        ) : (
+          // Show login prompt if not logged in
+          <div className={styles.desktopLoginPrompt}>
+            <div className={styles.desktopLoginPromptContent}>
+              <FiUser className={styles.desktopLoginPromptIcon} />
+              <h3>Login to Request a Quote</h3>
+              <p>Please login to submit bulk order inquiries and get special wholesale pricing.</p>
+              <button onClick={handleLoginRedirect} className={styles.desktopLoginPromptBtn}>
+                Login / Sign Up
+              </button>
+            </div>
+          </div>
+        )}
 
-        {/* WhatsApp Section */}
+        {/* WhatsApp Section - Always visible */}
         <div className={styles.desktopWhatsappSection}>
           <div className={styles.whatsappContent}>
             <div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../services/supabase';
-import { FiSearch, FiFilter, FiGrid, FiList, FiArrowRight, FiHeart, FiEye, FiX, FiStar, FiChevronRight } from 'react-icons/fi';
+import { FiSearch, FiFilter, FiGrid, FiList, FiArrowRight, FiHeart, FiEye, FiX, FiStar, FiChevronRight, FiGift } from 'react-icons/fi';
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import styles from './Products.module.css';
 
@@ -54,18 +54,20 @@ const Products = () => {
   };
 
   const fetchCategories = async () => {
-    const { data, error } = await supabase
-      .from('products')
-      .select('category')
-      .not('category', 'is', null);
+  const { data, error } = await supabase
+    .from('categories')
+    .select('name')
+    .eq('is_active', true)
+    .order('display_order', { ascending: true });
 
-    if (data && !error) {
-      const uniqueCategories = ['All', ...new Set(data.map(p => p.category).filter(Boolean))];
-      setCategories(uniqueCategories);
-    } else {
-      setCategories(['All', 'Traditional Toys', 'Educational Toys', 'Decorative Items', 'Pull Along Toys', 'Rattles', 'Puzzles', 'Animal Figures']);
-    }
-  };
+  if (data && !error) {
+    const categoryNames = ['All', ...data.map(cat => cat.name)];
+    setCategories(categoryNames);
+  } else {
+    // Fallback categories
+    setCategories(['All', 'Traditional Toys', 'Educational Toys', 'Kids', 'Decorative Items', 'Pull Along Toys', 'Rattles', 'Puzzles', 'Animal Figures']);
+  }
+};
 
   const filterAndSortProducts = () => {
     let filtered = [...products];
@@ -138,6 +140,21 @@ const Products = () => {
   if (isMobile) {
     return (
       <div className={styles.mobileProductsPage}>
+        {/* Hamper Branding Section - Mobile */}
+        <Link to="/hampers" className={styles.mobileHamperBranding}>
+          <div className={styles.mobileHamperIcon}>
+            <FiGift />
+          </div>
+          <div className={styles.mobileHamperContent}>
+            <span className={styles.mobileHamperTag}>✨ Special Offer</span>
+            <h3>Select Hamper for Your Loved Ones</h3>
+            <p>Curated gift sets for every occasion 🎁</p>
+          </div>
+          <div className={styles.mobileHamperArrow}>
+            <FiChevronRight />
+          </div>
+        </Link>
+
         <div className={styles.mobileHeader}>
           <h1>Our Collection</h1>
           <button className={styles.filterChip} onClick={() => setShowFilters(true)}>
@@ -181,7 +198,11 @@ const Products = () => {
 
         <div className={styles.mobileProductsGrid}>
           {filteredProducts.map((product) => (
-            <Link to={`/product/${product.id}`} key={product.id} className={styles.mobileProductCard}>
+            <Link 
+              to={`/product/${product.id}`} 
+              key={product.id} 
+              className={styles.mobileProductCard}
+            >
               <div className={styles.mobileProductImage}>
                 <img src={getProductImage(product)} alt={product.name} />
                 {product.is_bulk_order && <span className={styles.mobileBulkBadge}>Bulk</span>}
@@ -264,6 +285,36 @@ const Products = () => {
   // ============================================
   return (
     <div className={styles.productsPage}>
+      {/* Hamper Branding Section - Desktop */}
+      <Link to="/hampers" className={styles.hamperBranding}>
+        <div className={styles.hamperBrandingBg}></div>
+        <div className={styles.hamperBrandingContent}>
+          <div className={styles.hamperBrandingIcon}>
+            <FiGift />
+            <span className={styles.hamperBrandingBadge}>🎁 Gift Special</span>
+          </div>
+          <div className={styles.hamperBrandingText}>
+            <h2>Select Hamper for <span>Your Loved Ones</span></h2>
+            <p>Beautifully curated gift hampers perfect for birthdays, anniversaries, festivals & special occasions</p>
+            <div className={styles.hamperFeatures}>
+              <span>✨ Premium Quality</span>
+              <span>🎀 Customizable</span>
+              <span>🚚 Free Delivery</span>
+              <span>💝 Best Prices</span>
+            </div>
+          </div>
+          <div className={styles.hamperBrandingBtn}>
+            Explore Hampers <FiChevronRight />
+          </div>
+        </div>
+        <div className={styles.hamperBrandingDecor}>
+          <div className={styles.decorCircle1}></div>
+          <div className={styles.decorCircle2}></div>
+          <div className={styles.decorStar}>⭐</div>
+          <div className={styles.decorStar2}>✨</div>
+        </div>
+      </Link>
+
       <div className={styles.heroBanner}>
         <div className={styles.heroPattern}></div>
         <div className={styles.bannerContent}>
@@ -390,18 +441,6 @@ const Products = () => {
                 </div>
               </div>
             </div>
-
-            <div className={styles.filterGroup}>
-              <h4>Availability</h4>
-              <label className={styles.checkboxItem}>
-                <input type="checkbox" />
-                <span>In Stock Only</span>
-              </label>
-              <label className={styles.checkboxItem}>
-                <input type="checkbox" />
-                <span>Bulk Orders Available</span>
-              </label>
-            </div>
           </aside>
 
           <div className={styles.productsContent}>
@@ -445,12 +484,6 @@ const Products = () => {
                       </div>
                       <div className={styles.cardContent}>
                         <h3>{product.name}</h3>
-                        <div className={styles.rating}>
-                          <div className={styles.stars}>
-                            <FaStar /><FaStar /><FaStar /><FaStar /><FaStarHalfAlt />
-                          </div>
-                          <span>(24 reviews)</span>
-                        </div>
                         <p className={styles.productDesc}>{product.description?.substring(0, 60)}...</p>
                         <div className={styles.cardFooter}>
                           <div className={styles.priceInfo}>

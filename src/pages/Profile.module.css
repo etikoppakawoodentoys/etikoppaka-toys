@@ -1,265 +1,515 @@
+/* ============================================
+   DESKTOP PROFILE - AMAZON/FLIPKART STYLE
+   ============================================ */
+
 .profilePage {
-  padding: 3rem 0;
-  min-height: 60vh;
-  background: #F8F2E8;
+  background: #F5F5F5;
+  min-height: 100vh;
+  padding: 1rem 0;
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-.pageTitle {
-  font-size: 2rem;
-  color: #9E1B1B;
-  margin-bottom: 2rem;
-  font-family: 'Georgia', serif;
-  text-align: center;
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #7A6B5A;
+  margin-bottom: 1.5rem;
 }
 
+.breadcrumb a {
+  color: #1F5B3A;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #C89B3C;
+}
+
+.current {
+  color: #3E2A1F;
+  font-weight: 500;
+}
+
+/* Message */
 .message {
-  padding: 1rem;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
 }
 
 .message.success {
   background: #D1FAE5;
-  color: #1F5B3A;
+  color: #065F46;
+  border-left: 4px solid #10B981;
 }
 
 .message.error {
   background: #FEE2E2;
-  color: #9E1B1B;
+  color: #991B1B;
+  border-left: 4px solid #EF4444;
 }
 
+/* Profile Layout */
 .profileLayout {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-.profileCard {
+/* Sidebar - Amazon Style */
+.profileSidebar {
+  width: 280px;
+  flex-shrink: 0;
   background: white;
-  border-radius: 24px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s;
+  border-radius: 8px;
+  padding: 1.5rem;
+  height: fit-content;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 80px;
 }
 
-.profileCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+.sidebarUser {
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #E8DCC8;
+  margin-bottom: 1rem;
 }
 
-.cardHeader {
+.sidebarAvatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 auto 0.75rem;
+}
+
+.sidebarUserInfo h4 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: #3E2A1F;
+}
+
+.sidebarUserInfo p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin: 0.2rem 0;
+  word-break: break-all;
+}
+
+.sidebarEditBtn {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background: none;
+  border: 1px solid #E8DCC8;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  transition: all 0.2s;
+}
+
+.sidebarEditBtn:hover {
+  background: #F8F2E8;
+  border-color: #C89B3C;
+}
+
+/* Sidebar Menu */
+.sidebarMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.sidebarMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  color: #3E2A1F;
+  text-decoration: none;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.sidebarMenuItem:hover {
+  background: #F8F2E8;
+}
+
+.sidebarMenuItem.active {
+  background: #F8F2E8;
+  color: #1F5B3A;
+  font-weight: 500;
+}
+
+.sidebarLogoutBtn {
+  width: 100%;
+  padding: 0.6rem;
+  background: none;
+  border: 1px solid #FEE2E2;
+  border-radius: 6px;
+  color: #9E1B1B;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.sidebarLogoutBtn:hover {
+  background: #FEE2E2;
+}
+
+/* Main Content */
+.profileMain {
+  flex: 1;
+}
+
+.sectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #D8B36A;
+  margin-bottom: 1rem;
 }
 
-.cardHeader h2 {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.3rem;
+.sectionHeader h2 {
+  font-size: 1.2rem;
   color: #3E2A1F;
 }
 
-.editBtn, .addAddressBtn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: #D9B382;
-  color: #3E2A1F;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s;
-}
-
-.editBtn:hover, .addAddressBtn:hover {
-  background: #C89B3C;
-  transform: translateY(-2px);
-}
-
-.profileForm {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.formGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.formGroup label {
-  font-weight: 500;
-  color: #3E2A1F;
-}
-
-.formGroup input, .formGroup textarea, .formGroup select {
-  padding: 0.75rem;
-  border: 2px solid #E8DCC8;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: all 0.3s;
-}
-
-.formGroup input:focus, .formGroup textarea:focus, .formGroup select:focus {
-  outline: none;
-  border-color: #D9B382;
-  box-shadow: 0 0 0 3px rgba(216, 179, 130, 0.2);
-}
-
-.formGroup input.readonly {
-  background: #F8F2E8;
-  cursor: not-allowed;
-}
-
-.fieldNote {
+.sectionHeader p {
   font-size: 0.75rem;
   color: #7A6B5A;
 }
 
-.formActions {
+/* Orders Section */
+.ordersSection {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Order Card */
+.orderCard {
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.orderCard:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.orderCardHeader {
   display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #F8F2E8;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.orderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.orderDate {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.orderNumber {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3E2A1F;
+}
+
+/* Status Badge */
+.orderStatusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.orderCardBody {
+  padding: 1rem;
+}
+
+.orderProduct {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.orderProduct:last-child {
+  border-bottom: none;
+}
+
+.orderProductInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderProductDetails h4 {
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  color: #3E2A1F;
+}
+
+.orderProductDetails p {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.orderProductPrice {
+  font-weight: 600;
+  color: #9E1B1B;
+}
+
+.moreItems {
+  font-size: 0.7rem;
+  color: #7A6B5A;
   margin-top: 0.5rem;
 }
 
-.cancelBtn, .saveBtn {
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s;
-}
-
-.cancelBtn {
+.orderCardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
   background: #F8F2E8;
-  color: #3E2A1F;
-  border: none;
+  border-top: 1px solid #E8DCC8;
 }
 
-.saveBtn {
+.orderTotal span {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+}
+
+.orderTotal strong {
+  font-size: 1rem;
+  color: #3E2A1F;
+  margin-left: 0.5rem;
+}
+
+.viewOrderBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: #1F5B3A;
+  text-decoration: none;
+}
+
+.viewOrderBtn:hover {
+  color: #C89B3C;
+}
+
+/* No Orders State */
+.noOrders, .noAddresses {
+  text-align: center;
+  padding: 3rem;
+  color: #7A6B5A;
+  background: white;
+  border-radius: 8px;
+}
+
+.noOrders h3, .noAddresses h3 {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #3E2A1F;
+}
+
+.shopNowBtn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.5rem;
+  background: #1F5B3A;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.shopNowBtn:hover {
+  background: #15452B;
+}
+
+/* Addresses Section */
+.addressesSection {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.addAddressBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 1rem;
   background: #1F5B3A;
   color: white;
   border: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.saveBtn:hover:not(:disabled) {
+.addAddressBtn:hover {
   background: #15452B;
-  transform: translateY(-2px);
 }
 
-.saveBtn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Addresses Styles */
-.addressesList {
-  display: flex;
-  flex-direction: column;
+.addressesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1rem;
 }
 
+/* Address Card */
 .addressCard {
-  border: 2px solid #E8DCC8;
-  border-radius: 16px;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
   padding: 1rem;
   position: relative;
-  transition: all 0.3s;
+  transition: all 0.2s;
+  background: white;
 }
 
-.addressCard.defaultAddress {
-  border-color: #C89B3C;
-  background: linear-gradient(135deg, #FFF9F1, #F8F2E8);
+.addressCard:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.addressCard.defaultCard {
+  border-color: #1F5B3A;
+  background: #E8F5E9;
 }
 
 .defaultBadge {
   position: absolute;
   top: -10px;
   right: 1rem;
-  background: #C89B3C;
+  background: #1F5B3A;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 500;
+}
+
+.addressName {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
   color: #3E2A1F;
-  padding: 0.2rem 0.8rem;
-  border-radius: 50px;
+}
+
+.addressPhone, .addressLine, .addressLocation {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin: 0.2rem 0;
+}
+
+.addressLandmark {
   font-size: 0.7rem;
-  font-weight: bold;
-}
-
-.addressContent {
-  margin-bottom: 1rem;
-}
-
-.addressContent p {
-  margin: 0.25rem 0;
-  color: #5C4B3A;
-  font-size: 0.9rem;
-}
-
-.addressContent p strong {
-  color: #3E2A1F;
+  color: #C89B3C;
+  margin: 0.2rem 0;
 }
 
 .addressActions {
   display: flex;
   gap: 0.5rem;
-  justify-content: flex-end;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #E8DCC8;
 }
 
-.setDefaultBtn, .editAddressBtn, .deleteAddressBtn {
-  padding: 0.25rem 0.75rem;
-  border: none;
-  border-radius: 8px;
+.setDefaultBtn, .editBtn, .deleteBtn {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.6rem;
+  background: none;
+  border: 1px solid #E8DCC8;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 0.8rem;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
-.setDefaultBtn {
-  background: #D9B382;
-  color: #3E2A1F;
+.setDefaultBtn:hover {
+  background: #E8F5E9;
+  border-color: #1F5B3A;
 }
 
-.editAddressBtn {
-  background: #DBEAFE;
-  color: #3B82F6;
+.editBtn:hover {
+  background: #F8F2E8;
+  border-color: #C89B3C;
 }
 
-.deleteAddressBtn {
+.deleteBtn:hover {
   background: #FEE2E2;
+  border-color: #9E1B1B;
   color: #9E1B1B;
 }
 
-.setDefaultBtn:hover, .editAddressBtn:hover, .deleteAddressBtn:hover {
-  transform: translateY(-2px);
+/* Loading State */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
 }
 
-.noAddresses {
-  text-align: center;
-  padding: 2rem;
-  color: #7A6B5A;
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #E8DCC8;
+  border-top-color: #1F5B3A;
+  border-right-color: #C89B3C;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-/* Modal Styles */
-.modal {
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Modal */
+.modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -270,17 +520,15 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  animation: fadeIn 0.3s;
 }
 
-.modalContent {
+.modalContainer {
   background: white;
-  border-radius: 24px;
+  border-radius: 12px;
   width: 90%;
-  max-width: 700px;
-  max-height: 90vh;
-  overflow-y: auto;
-  animation: scaleIn 0.3s;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow: auto;
 }
 
 .modalHeader {
@@ -288,23 +536,32 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  border-bottom: 2px solid #D8B36A;
+  border-bottom: 1px solid #E8DCC8;
 }
 
 .modalHeader h3 {
+  font-size: 1.1rem;
   color: #3E2A1F;
 }
 
-.closeBtn {
+.modalClose {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  color: #9E1B1B;
+  color: #7A6B5A;
 }
 
-.addressForm {
+.modalBody {
   padding: 1.5rem;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #E8DCC8;
 }
 
 .formRow {
@@ -314,392 +571,441 @@
   margin-bottom: 1rem;
 }
 
-.checkbox {
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  color: #3E2A1F;
+  font-weight: 500;
+}
+
+.formGroup input, .formGroup select {
+  padding: 0.6rem;
+  border: 1px solid #E8DCC8;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  transition: border-color 0.2s;
+}
+
+.formGroup input:focus, .formGroup select:focus {
+  outline: none;
+  border-color: #C89B3C;
+}
+
+.disabledInput {
+  background: #F8F2E8;
+  cursor: not-allowed;
+}
+
+.fieldNote {
+  font-size: 0.65rem;
+  color: #7A6B5A;
+  margin-top: 0.25rem;
+}
+
+.checkboxLabel {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  font-size: 0.8rem;
 }
 
-.checkbox input {
-  width: auto;
+.cancelBtn {
+  padding: 0.6rem 1.2rem;
+  background: none;
+  border: 1px solid #E8DCC8;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
 }
 
-.modalActions {
+.cancelBtn:hover {
+  background: #F8F2E8;
+}
+
+.saveBtn {
+  padding: 0.6rem 1.2rem;
+  background: #1F5B3A;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
   display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-  margin-top: 1.5rem;
-}
-
-.loadingContainer {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 400px;
+  gap: 0.3rem;
+  transition: background 0.2s;
 }
 
-.loadingSpinner {
-  width: 50px;
-  height: 50px;
-  border: 3px solid #E8DCC8;
-  border-top-color: #9E1B1B;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.saveBtn:hover {
+  background: #15452B;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.saveBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 0 1rem;
-  }
-  
-  .cardHeader {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-  
-  .formRow {
-    grid-template-columns: 1fr;
-  }
-  
-  .addressActions {
-    flex-wrap: wrap;
-  }
-  
-  .profileCard {
-    padding: 1.5rem;
-  }
-}
 /* ============================================
-   MOBILE PROFILE STYLES
+   MOBILE PROFILE - AMAZON/FLIPKART STYLE
    ============================================ */
 
 .mobileProfile {
   min-height: 100vh;
-  background: #F8F2E8;
-  padding: 12px 16px 80px;
+  background: #F5F5F5;
+  padding-bottom: 80px;
 }
 
+/* Mobile Header */
 .mobileHeader {
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.mobileHeaderTop {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  padding: 0.75rem 1rem;
 }
 
-.mobileBackBtn {
+.mobileHomeBtn {
   background: none;
   border: none;
-  font-size: 1.5rem;
-  color: #3E2A1F;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
-.mobileHeader h1 {
   font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.mobileHeaderTop h1 {
+  font-size: 1.1rem;
   color: #3E2A1F;
+  margin: 0;
 }
 
-.mobilePlaceholder {
-  width: 40px;
-}
-
-/* Mobile Tabs */
-.mobileTabs {
-  display: flex;
-  gap: 8px;
-  background: white;
-  padding: 4px;
-  border-radius: 50px;
-  margin-bottom: 16px;
-}
-
-.mobileTab {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 10px;
+.mobileLogoutBtn {
   background: none;
   border: none;
-  border-radius: 50px;
-  font-size: 0.8rem;
-  color: #7A6B5A;
+  font-size: 1.1rem;
+  color: #9E1B1B;
   cursor: pointer;
+  padding: 0.5rem;
 }
 
-.mobileTab.active {
-  background: #1F5B3A;
-  color: white;
-}
-
-/* Profile Tab */
+/* Mobile Profile Card */
 .mobileProfileCard {
   background: white;
-  border-radius: 20px;
-  padding: 20px;
-}
-
-.mobileProfileInfo {
+  padding: 1rem;
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 1rem;
+  position: relative;
+  border-bottom: 1px solid #E8DCC8;
 }
 
 .mobileProfileAvatar {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   background: linear-gradient(135deg, #1F5B3A, #15452B);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
-.mobileProfileDetails h3 {
-  font-size: 1rem;
-  color: #3E2A1F;
-  margin-bottom: 4px;
+.mobileProfileInfo {
+  flex: 1;
 }
 
-.mobileProfileDetails p {
+.mobileProfileInfo h3 {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  color: #3E2A1F;
+}
+
+.mobileProfileInfo p {
   font-size: 0.7rem;
+  color: #7A6B5A;
+  margin: 0.2rem 0;
+}
+
+.mobileEditBtn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  background: none;
+  border: none;
+  font-size: 0.7rem;
+  color: #1F5B3A;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+/* Mobile Stats */
+.mobileStats {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: white;
+  margin-top: 0.5rem;
+}
+
+.mobileStat {
+  flex: 1;
+  text-align: center;
+  padding: 0.6rem;
+  background: #F8F2E8;
+  border-radius: 8px;
+}
+
+.mobileStat svg {
+  font-size: 1.2rem;
+  color: #1F5B3A;
+}
+
+.mobileStat span {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #3E2A1F;
+  margin-top: 0.2rem;
+}
+
+.mobileStat small {
+  font-size: 0.65rem;
   color: #7A6B5A;
 }
 
-.mobileEditProfileBtn {
-  width: 100%;
-  padding: 10px;
-  background: #D9B382;
-  color: #3E2A1F;
+/* Mobile Tabs */
+.mobileTabs {
+  display: flex;
+  background: white;
+  margin-top: 0.5rem;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.mobileTab {
+  flex: 1;
+  padding: 0.75rem;
+  background: none;
   border: none;
-  border-radius: 30px;
+  font-size: 0.8rem;
+  color: #7A6B5A;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  cursor: pointer;
+  gap: 0.3rem;
+  transition: all 0.2s;
 }
 
-.mobileEditForm {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid #E8DCC8;
+.mobileTab.active {
+  color: #1F5B3A;
+  border-bottom: 2px solid #1F5B3A;
 }
 
-.mobileEditForm input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #E8DCC8;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  font-size: 0.8rem;
-}
-
-.mobileEditActions {
-  display: flex;
-  gap: 10px;
-}
-
-.mobileCancelBtn, .mobileSaveBtn {
-  flex: 1;
-  padding: 10px;
-  border-radius: 30px;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.mobileCancelBtn {
-  background: #F8F2E8;
-  color: #3E2A1F;
-  border: none;
-}
-
-.mobileSaveBtn {
-  background: #1F5B3A;
-  color: white;
-  border: none;
-}
-
-/* Orders Tab */
-.mobileOrdersList {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* Mobile Orders List */
+.mobileOrdersList, .mobileAddressesList {
+  padding: 1rem;
 }
 
 .mobileOrderItem {
   background: white;
-  border-radius: 16px;
-  padding: 16px;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .mobileOrderHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .mobileOrderNumber {
   font-weight: 600;
-  color: #9E1B1B;
   font-size: 0.8rem;
+  color: #3E2A1F;
 }
 
 .mobileOrderDate {
   font-size: 0.7rem;
   color: #7A6B5A;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .mobileOrderTotal {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 12px;
-  padding-top: 8px;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
   border-top: 1px solid #E8DCC8;
 }
 
-.mobileOrderTotal strong {
-  color: #9E1B1B;
-}
-
 .mobileViewOrderBtn {
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem;
+  background: #F8F2E8;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  background: #F8F2E8;
-  padding: 8px;
-  border-radius: 30px;
-  text-decoration: none;
-  color: #3E2A1F;
-  font-size: 0.7rem;
+  gap: 0.3rem;
 }
 
-/* Addresses Tab */
-.mobileAddressesList {
+.mobileOrderDetails {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #E8DCC8;
+}
+
+.mobileOrderDetailItem {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  margin-bottom: 0.5rem;
+  color: #5C4B3A;
 }
 
+/* Mobile Address Item */
 .mobileAddressItem {
   background: white;
-  border-radius: 16px;
-  padding: 16px;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
   position: relative;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .mobileDefaultTag {
   position: absolute;
-  top: -8px;
-  right: 16px;
-  background: #C89B3C;
+  top: 0.5rem;
+  right: 1rem;
+  background: #1F5B3A;
   color: white;
-  padding: 2px 8px;
-  border-radius: 20px;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
   font-size: 0.6rem;
 }
 
-.mobileAddressContent {
-  margin-bottom: 12px;
+.mobileAddressContent p {
+  margin: 0.2rem 0;
+  font-size: 0.75rem;
+  color: #3E2A1F;
 }
 
-.mobileAddressContent p {
-  font-size: 0.75rem;
-  color: #5C4B3A;
-  margin: 4px 0;
+.mobileAddressContent p strong {
+  font-size: 0.85rem;
 }
 
 .mobileAddressActions {
   display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-  padding-top: 8px;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
   border-top: 1px solid #E8DCC8;
 }
 
 .mobileAddressActions button {
+  flex: 1;
+  padding: 0.4rem;
   background: none;
-  border: none;
+  border: 1px solid #E8DCC8;
+  border-radius: 4px;
   font-size: 0.7rem;
   cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 20px;
-}
-
-.mobileAddressActions button:first-child {
-  background: #DBEAFE;
-  color: #3B82F6;
-}
-
-.mobileAddressActions button:nth-child(2) {
-  background: #D9B382;
-  color: #3E2A1F;
-}
-
-.mobileAddressActions button:last-child {
-  background: #FEE2E2;
-  color: #9E1B1B;
 }
 
 .mobileAddAddressBtn {
   width: 100%;
-  padding: 12px;
-  background: #1F5B3A;
-  color: white;
-  border: none;
-  border-radius: 30px;
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  margin-top: 8px;
+  gap: 0.3rem;
+  font-size: 0.8rem;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
-/* Mobile Modal */
+.mobileAddAddressBtn:hover {
+  background: #F8F2E8;
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  background: white;
+  margin: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.mobileMenu a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #3E2A1F;
+  text-decoration: none;
+  border-bottom: 1px solid #E8DCC8;
+  font-size: 0.8rem;
+}
+
+.mobileMenu a:last-child {
+  border-bottom: none;
+}
+
+/* Mobile Empty Orders */
+.mobileEmptyOrders {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  margin: 1rem;
+}
+
+.mobileShopBtn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #1F5B3A;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+/* Mobile Modal (Bottom Sheet) */
 .mobileModal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: flex-end;
   z-index: 1000;
@@ -708,382 +1014,740 @@
 .mobileModalContent {
   background: white;
   width: 100%;
-  border-radius: 20px 20px 0 0;
+  border-radius: 16px 16px 0 0;
   max-height: 85vh;
-  overflow-y: auto;
+  overflow: auto;
   animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .mobileModalHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
+  padding: 1rem;
   border-bottom: 1px solid #E8DCC8;
 }
 
+.mobileModalHeader h3 {
+  font-size: 1rem;
+  color: #3E2A1F;
+}
+
+.mobileModalHeader button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #7A6B5A;
+}
+
 .mobileModalBody {
-  padding: 16px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .mobileModalBody input, .mobileModalBody select {
-  width: 100%;
-  padding: 10px;
+  padding: 0.7rem;
   border: 1px solid #E8DCC8;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  font-size: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  width: 100%;
 }
 
 .mobileCheckbox {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.7rem;
-  margin: 10px 0;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.mobileModalActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.mobileCancelBtn, .mobileSaveBtn {
+  flex: 1;
+  padding: 0.7rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.mobileCancelBtn {
+  background: none;
+  border: 1px solid #E8DCC8;
+}
+
+.mobileSaveBtn {
+  background: #1F5B3A;
+  color: white;
+  border: none;
 }
 
 .mobileSaveAddressBtn {
   width: 100%;
-  padding: 12px;
+  padding: 0.7rem;
   background: #1F5B3A;
   color: white;
   border: none;
-  border-radius: 30px;
-  margin-top: 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
   cursor: pointer;
+  margin-top: 0.5rem;
 }
 
-.mobileEmptyOrders {
-  text-align: center;
-  padding: 40px;
-  background: white;
-  border-radius: 20px;
-}
-
-.mobileEmptyOrders svg {
-  font-size: 3rem;
-  color: #D9B382;
-  margin-bottom: 12px;
-}
-
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
+/* Mobile Message */
 .mobileMessage {
-  padding: 12px;
-  border-radius: 12px;
-  margin-bottom: 16px;
+  margin: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
   font-size: 0.8rem;
-  text-align: center;
 }
 
 .mobileMessage.success {
   background: #D1FAE5;
-  color: #1F5B3A;
+  color: #065F46;
 }
 
 .mobileMessage.error {
   background: #FEE2E2;
-  color: #9E1B1B;
+  color: #991B1B;
 }
 
-/* Order Status Badge */
-.orderStatusBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
-  border-radius: 20px;
-  font-size: 0.65rem;
-  font-weight: 500;
-}
-
-/* Hide desktop on mobile, hide mobile on desktop */
+/* Responsive */
 @media (max-width: 768px) {
+  .container {
+    padding: 0;
+  }
+  
   .profilePage {
-    display: none;
+    padding: 0;
   }
 }
-
-@media (min-width: 769px) {
-  .mobileProfile {
-    display: none;
-  }
+/* Returns Section Styles */
+.returnsSection {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
-/* ============================================
-   MY ORDERS SECTION - DESKTOP PROFILE
-   ============================================ */
 
-/* Orders Card */
-.profileCard .ordersList {
+.noReturns {
+  text-align: center;
+  padding: 3rem;
+  color: #7A6B5A;
+}
+
+.noReturns h3 {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #3E2A1F;
+}
+
+.returnsList {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.orderItem {
-  background: #F8F9FA;
+.returnCard {
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.returnCard:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.returnCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #F8F2E8;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.returnInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.returnOrderNumber {
+  font-weight: 600;
+  color: #1F5B3A;
+}
+
+.returnDate {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.returnCardBody {
+  padding: 1rem;
+}
+
+.returnDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.returnRow {
+  font-size: 0.8rem;
+}
+
+.returnRow strong {
+  color: #3E2A1F;
+  min-width: 120px;
+  display: inline-block;
+}
+
+.returnRow span, .returnRow p {
+  color: #5C4B3A;
+}
+
+.returnAdminMessage {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background: #F8F2E8;
+  border-radius: 8px;
+}
+
+.returnAdminMessage strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.returnAdminMessage p {
+  font-size: 0.75rem;
+  color: #3E2A1F;
+}
+
+.returnStatusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* Mobile Returns Styles */
+.mobileReturnsList {
+  padding: 0.5rem;
+}
+
+.mobileReturnItem {
+  background: white;
   border-radius: 12px;
   padding: 1rem;
-  transition: all 0.3s;
-  border: 1px solid #E8DCC8;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.orderItem:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
-}
-
-.orderItemHeader {
+.mobileReturnHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
+}
+
+.mobileReturnNumber {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #1F5B3A;
+}
+
+.mobileReturnDate {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  margin-bottom: 0.5rem;
+}
+
+.mobileReturnReason, .mobileReturnResolution {
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+  color: #5C4B3A;
+}
+
+.mobileReturnMessage {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: #F8F2E8;
+  border-radius: 8px;
+}
+
+.mobileReturnMessage strong {
+  display: block;
+  font-size: 0.7rem;
+  margin-bottom: 0.25rem;
+}
+
+.mobileReturnMessage p {
+  font-size: 0.7rem;
+  color: #3E2A1F;
+}
+
+.mobileEmptyReturns {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  margin: 1rem;
+}
+
+.mobileEmptyReturns h4 {
+  margin: 0.5rem 0;
+  color: #3E2A1F;
+}
+
+.mobileEmptyReturns p {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+}
+
+/* Update stats grid for 3 items */
+.mobileStats {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: white;
+  margin-top: 0.5rem;
+}
+
+.mobileStat {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem;
+  background: #F8F2E8;
+  border-radius: 8px;
+}
+
+.mobileStat svg {
+  font-size: 1.2rem;
+  color: #1F5B3A;
+}
+
+.mobileStat span {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #3E2A1F;
+  margin-top: 0.2rem;
+}
+
+.mobileStat small {
+  font-size: 0.65rem;
+  color: #7A6B5A;
+}
+/* ============================================
+   BULK ORDERS SECTION - DESKTOP
+   ============================================ */
+
+.bulkSection {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.noBulkOrders {
+  text-align: center;
+  padding: 3rem;
+  color: #7A6B5A;
+}
+
+.noBulkOrders svg {
+  color: #D9B382;
+  margin-bottom: 1rem;
+}
+
+.noBulkOrders h3 {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #3E2A1F;
+}
+
+.noBulkOrders p {
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
+
+.bulkOrdersList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bulkOrderCard {
+  border: 1px solid #E8DCC8;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.bulkOrderCard:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bulkOrderCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #F8F2E8;
+  border-bottom: 1px solid #E8DCC8;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.orderItemHeader .orderNumber {
-  font-weight: 600;
-  color: #9E1B1B;
-  font-size: 0.85rem;
-  background: rgba(158, 27, 27, 0.1);
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
+.bulkOrderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-/* Order Status Badge */
-.orderStatusBadge {
+.bulkOrderNumber {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #1F5B3A;
+}
+
+.bulkOrderDate {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.bulkStatusBadge {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.3rem;
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
-.orderStatusBadge.pending {
+/* Bulk Status Colors */
+.bulkStatusBadge.pending {
   background: #FEF3C7;
   color: #F59E0B;
 }
 
-.orderStatusBadge.accepted {
-  background: #D1FAE5;
-  color: #1F5B3A;
-}
-
-.orderStatusBadge.shipped {
+.bulkStatusBadge.processing {
   background: #DBEAFE;
   color: #3B82F6;
 }
 
-.orderStatusBadge.transit {
+.bulkStatusBadge.quoted {
   background: #EDE9FE;
   color: #8B5CF6;
 }
 
-.orderStatusBadge.out_for_delivery {
-  background: #FCE7F3;
-  color: #EC4899;
+.bulkStatusBadge.approved {
+  background: #D1FAE5;
+  color: #10B981;
 }
 
-.orderStatusBadge.delivered {
-  background: #D1FAE5;
+.bulkStatusBadge.completed {
+  background: #A7F3D0;
   color: #059669;
 }
 
-.orderStatusBadge.cancelled {
+.bulkStatusBadge.cancelled {
   background: #FEE2E2;
-  color: #9E1B1B;
+  color: #EF4444;
 }
 
-.orderItemDate {
-  font-size: 0.7rem;
-  color: #7A6B5A;
-  margin-bottom: 0.5rem;
+.bulkOrderCardBody {
+  padding: 1rem;
+}
+
+.bulkOrderGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.bulkOrderRow {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.25rem;
 }
 
-.orderItemTotal {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #1F5B3A;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-  background: #E8F5E9;
-  padding: 0.2rem 0.75rem;
-  border-radius: 20px;
-}
-
-.viewOrderBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
+.bulkOrderRow strong {
   font-size: 0.7rem;
-  color: #C89B3C;
-  text-decoration: none;
-  margin-top: 0.5rem;
-  transition: all 0.3s;
-}
-
-.viewOrderBtn:hover {
-  color: #9E1B1B;
-  gap: 0.5rem;
-}
-
-.noOrders {
-  text-align: center;
-  padding: 2rem;
   color: #7A6B5A;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
-.noOrders p {
-  margin-bottom: 0.5rem;
-}
-
-.noOrders a {
-  color: #1F5B3A;
-  text-decoration: none;
+.bulkOrderRow span {
+  font-size: 0.85rem;
+  color: #3E2A1F;
   font-weight: 500;
 }
 
-.noOrders a:hover {
-  text-decoration: underline;
-}
-
-.viewAllOrdersBtn {
-  font-size: 0.75rem;
-  color: #9E1B1B;
-  text-decoration: none;
+.bulkOrderRowFull {
+  grid-column: span 2;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.25rem;
-  transition: all 0.3s;
-}
-
-.viewAllOrdersBtn:hover {
-  gap: 0.5rem;
-  color: #C89B3C;
-}
-
-/* Order Items List within Profile */
-.orderItemsList {
-  margin-top: 0.5rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid #E8DCC8;
-}
-
-.orderItemProduct {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.75rem;
-  padding: 0.25rem 0;
-  color: #5C4B3A;
-}
-
-.orderItemProductName {
-  flex: 1;
-}
-
-.orderItemProductQty {
-  margin: 0 1rem;
-  color: #C89B3C;
-}
-
-.orderItemProductPrice {
-  font-weight: 500;
-  color: #1F5B3A;
-}
-
-/* Order Summary in Profile */
-.orderSummaryProfile {
-  background: #F8F2E8;
-  border-radius: 8px;
-  padding: 0.75rem;
-  margin-top: 0.5rem;
-}
-
-.orderSummaryRow {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.7rem;
-  padding: 0.25rem 0;
-}
-
-.orderSummaryTotal {
-  font-weight: bold;
-  color: #9E1B1B;
-  border-top: 1px solid #E8DCC8;
-  padding-top: 0.5rem;
   margin-top: 0.25rem;
 }
 
-/* Responsive for smaller desktops */
-@media (max-width: 1024px) {
-  .orderItemHeader {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.bulkOrderRowFull strong {
+  font-size: 0.7rem;
+  color: #7A6B5A;
+  font-weight: 500;
+  text-transform: uppercase;
 }
-.profileCard {
+
+.bulkOrderRowFull p {
+  font-size: 0.8rem;
+  color: #5C4B3A;
+  line-height: 1.4;
+}
+
+.bulkAdminNote {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #E8F5E9;
+  border-radius: 8px;
+  border-left: 3px solid #1F5B3A;
+}
+
+.bulkAdminNote strong {
+  display: block;
+  font-size: 0.75rem;
+  color: #1F5B3A;
+  margin-bottom: 0.5rem;
+}
+
+.bulkAdminNote p {
+  font-size: 0.75rem;
+  color: #5C4B3A;
+  line-height: 1.4;
+}
+
+/* ============================================
+   BULK ORDERS - MOBILE
+   ============================================ */
+
+.mobileBulkList {
+  padding: 0.75rem;
+}
+
+.mobileEmptyBulk {
+  text-align: center;
+  padding: 2rem;
   background: white;
-  border-radius: 20px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s;
+  border-radius: 12px;
+  margin: 1rem;
 }
 
-.profileCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+.mobileEmptyBulk svg {
+  color: #D9B382;
+  margin-bottom: 0.5rem;
 }
 
-.cardHeader {
+.mobileEmptyBulk h4 {
+  font-size: 0.9rem;
+  color: #3E2A1F;
+  margin: 0.5rem 0;
+}
+
+.mobileEmptyBulk p {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+  margin-bottom: 1rem;
+}
+
+.mobileBulkItem {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.mobileBulkHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #D8B36A;
+  margin-bottom: 0.5rem;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.cardHeader h2 {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.1rem;
-  color: #3E2A1F;
-  margin: 0;
-}
-/* Mobile Logout Button */
-.mobileLogoutBtn {
-  width: 100%;
-  padding: 12px;
-  background: #FEE2E2;
-  color: #9E1B1B;
-  border: none;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  margin-top: 12px;
-  cursor: pointer;
-  transition: all 0.3s;
+.mobileBulkNumber {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #1F5B3A;
 }
 
-.mobileLogoutBtn:active {
-  transform: scale(0.98);
-  background: #9E1B1B;
+.mobileBulkStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.mobileBulkStatus.pending {
+  background: #FEF3C7;
+  color: #F59E0B;
+}
+
+.mobileBulkStatus.processing {
+  background: #DBEAFE;
+  color: #3B82F6;
+}
+
+.mobileBulkStatus.quoted {
+  background: #EDE9FE;
+  color: #8B5CF6;
+}
+
+.mobileBulkStatus.approved {
+  background: #D1FAE5;
+  color: #10B981;
+}
+
+.mobileBulkStatus.completed {
+  background: #A7F3D0;
+  color: #059669;
+}
+
+.mobileBulkStatus.cancelled {
+  background: #FEE2E2;
+  color: #EF4444;
+}
+
+.mobileBulkDate {
+  font-size: 0.65rem;
+  color: #7A6B5A;
+  margin-bottom: 0.5rem;
+}
+
+.mobileBulkDetail {
+  font-size: 0.7rem;
+  margin-bottom: 0.3rem;
+  color: #5C4B3A;
+}
+
+.mobileBulkDetail strong {
+  color: #3E2A1F;
+}
+
+.mobileBulkAdminNote {
+  margin-top: 0.75rem;
+  padding: 0.6rem;
+  background: #E8F5E9;
+  border-radius: 8px;
+}
+
+.mobileBulkAdminNote strong {
+  display: block;
+  font-size: 0.7rem;
+  color: #1F5B3A;
+  margin-bottom: 0.3rem;
+}
+
+.mobileBulkAdminNote p {
+  font-size: 0.7rem;
+  color: #5C4B3A;
+  line-height: 1.4;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .bulkOrderGrid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .bulkOrderRowFull {
+    grid-column: span 1;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .bulkOrderGrid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+/* Add to existing sectionHeader styles */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.sectionHeader .addAddressBtn,
+.sectionHeader .newRequestBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: #1F5B3A;
   color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.sectionHeader .addAddressBtn:hover,
+.sectionHeader .newRequestBtn:hover {
+  background: #15452B;
+  transform: translateY(-1px);
+}
+
+/* Mobile responsive for section header */
+@media (max-width: 768px) {
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .sectionHeader .addAddressBtn,
+  .sectionHeader .newRequestBtn {
+    width: 100%;
+    justify-content: center;
+  }
 }

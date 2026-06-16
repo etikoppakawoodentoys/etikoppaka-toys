@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../services/supabase';
 import { 
@@ -18,7 +18,8 @@ import {
   FiCalendar,
   FiThumbsUp,
   FiChevronLeft,
-  FiChevronRight
+  FiChevronRight,
+  FiCheckCircle
 } from 'react-icons/fi';
 import { FaLeaf, FaHandSpock, FaAward, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import styles from './ProductDetail.module.css';
@@ -33,7 +34,8 @@ const ProductDetail = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedSize, setSelectedSize] = useState('Standard');
+  const [selectedSizePrice, setSelectedSizePrice] = useState(0);
   const [addingToCart, setAddingToCart] = useState(false);
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
@@ -44,6 +46,10 @@ const ProductDetail = () => {
   const [reviewMessage, setReviewMessage] = useState('');
   const [showShareTooltip, setShowShareTooltip] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [showAddToCartToast, setShowAddToCartToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [canWriteReview, setCanWriteReview] = useState(false);
+  const [userReview, setUserReview] = useState(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -62,8 +68,11 @@ const ProductDetail = () => {
   useEffect(() => {
     if (product) {
       fetchReviews();
+      if (user) {
+        checkIfUserCanReview();
+      }
     }
-  }, [product]);
+  }, [product, user]);
 
   const getCurrentUser = async () => {
     const { data: { user } } = await supabase.auth.getUser();
@@ -75,6 +84,46 @@ const ProductDetail = () => {
         .eq('id', user.id)
         .single();
       setUserProfile(data);
+    }
+  };
+
+  const checkIfUserCanReview = async () => {
+    if (!user) {
+      setCanWriteReview(false);
+      return;
+    }
+
+    // Check if user has purchased this product (order delivered)
+    const { data, error } = await supabase
+      .from('orders')
+      .select(`
+        id,
+        status,
+        order_items!inner (product_id)
+      `)
+      .eq('user_id', user.id)
+      .eq('status', 'delivered')
+      .eq('order_items.product_id', id);
+
+    if (data && data.length > 0) {
+      setCanWriteReview(true);
+    } else {
+      setCanWriteReview(false);
+    }
+
+    // Check if user has already reviewed this product
+    const { data: existingReview } = await supabase
+      .from('reviews')
+      .select('*')
+      .eq('product_id', id)
+      .eq('user_id', user.id)
+      .single();
+
+    if (existingReview) {
+      setUserReview(existingReview);
+      setCanWriteReview(false);
+    } else {
+      setUserReview(null);
     }
   };
 
@@ -122,21 +171,25 @@ const ProductDetail = () => {
         .from('products')
         .select('*')
         .neq('id', id)
-        .limit(4);
+        .limit(6);
       
       if (related) {
         setRelatedProducts(related);
       }
       
-      const { data: sizes } = await supabase
-        .from('product_sizes')
-        .select('*')
-        .eq('product_id', id);
+      let productSizes = [];
+      if (data.has_sizes && data.sizes) {
+        try {
+          productSizes = typeof data.sizes === 'string' ? JSON.parse(data.sizes) : data.sizes;
+        } catch(e) {}
+      }
       
-      if (sizes && sizes.length > 0) {
-        setSelectedSize(sizes[0].size);
+      if (productSizes.length > 0) {
+        setSelectedSize(productSizes[0].size);
+        setSelectedSizePrice(productSizes[0].price);
       } else {
         setSelectedSize('Standard');
+        setSelectedSizePrice(data.price);
       }
     }
     setLoading(false);
@@ -190,6 +243,7 @@ const ProductDetail = () => {
       setReviewText('');
       setReviewRating(5);
       await fetchReviews();
+      await checkIfUserCanReview();
       setShowReviews(true);
     }
 
@@ -198,11 +252,6 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = async () => {
-    // Check if product is out of stock
-    if (product.stock_quantity === 0) {
-      return;
-    }
-
     if (!user) {
       navigate('/login');
       return;
@@ -210,12 +259,14 @@ const ProductDetail = () => {
 
     setAddingToCart(true);
 
+    const sizeToSave = product.has_sizes ? selectedSize : 'Standard';
+
     const { data: existingItem } = await supabase
       .from('cart_items')
       .select('*')
       .eq('user_id', user.id)
       .eq('product_id', product.id)
-      .eq('size', selectedSize)
+      .eq('size', sizeToSave)
       .single();
 
     if (existingItem) {
@@ -230,18 +281,38 @@ const ProductDetail = () => {
           user_id: user.id,
           product_id: product.id,
           quantity: quantity,
-          size: selectedSize
+          size: sizeToSave
         });
     }
 
     setAddingToCart(false);
     
+    setToastMessage(`${product.name} (${sizeToSave}) added to cart!`);
+    setShowAddToCartToast(true);
+    setTimeout(() => {
+      setShowAddToCartToast(false);
+    }, 3000);
+    
+    const event = new CustomEvent('itemAddedToCart', {
+      detail: {
+        productName: product.name,
+        quantity: quantity
+      }
+    });
+    window.dispatchEvent(event);
+    
     const btn = document.querySelector(`.${styles.addToCartBtn}`);
-    const originalText = btn?.innerHTML;
+    const mobileBtn = document.querySelector(`.${styles.mobileAddToCartBtn}`);
     if (btn) {
       btn.innerHTML = '✓ Added to Cart!';
       setTimeout(() => {
-        btn.innerHTML = originalText;
+        btn.innerHTML = '<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M15.55 13c.75 0 1.41-.41 1.75-1.03l3.58-6.49A.996.996 0 0 0 20.01 4H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"></path></svg> Add to Cart';
+      }, 2000);
+    }
+    if (mobileBtn) {
+      mobileBtn.innerHTML = '✓ Added to Cart!';
+      setTimeout(() => {
+        mobileBtn.innerHTML = '<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M15.55 13c.75 0 1.41-.41 1.75-1.03l3.58-6.49A.996.996 0 0 0 20.01 4H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"></path></svg> Add to Cart';
       }, 2000);
     }
   };
@@ -249,27 +320,48 @@ const ProductDetail = () => {
   const handleShare = async () => {
     const shareUrl = window.location.href;
     const productName = product?.name || 'Product';
+    const productDesc = product?.description || 'Check out this beautiful handcrafted toy from Etikoppaka Toys!';
     
-    if (navigator.share) {
+    if (navigator.share && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       try {
         await navigator.share({
           title: productName,
-          text: `Check out this beautiful product from Etikoppaka Toys!`,
+          text: productDesc.substring(0, 100),
           url: shareUrl,
         });
       } catch (err) {
-        console.log('Share cancelled or failed:', err);
+        copyToClipboard(shareUrl);
       }
     } else {
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-        setShowShareTooltip(true);
-        setTimeout(() => setShowShareTooltip(false), 2000);
-      } catch (err) {
-        console.error('Failed to copy:', err);
-        alert('Press Ctrl+C to copy the link');
-      }
+      copyToClipboard(shareUrl);
     }
+  };
+
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setShowShareTooltip(true);
+      setTimeout(() => setShowShareTooltip(false), 2000);
+    } catch (err) {
+      fallbackCopyToClipboard(text);
+    }
+  };
+
+  const fallbackCopyToClipboard = (text) => {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      setShowShareTooltip(true);
+      setTimeout(() => setShowShareTooltip(false), 2000);
+    } catch (err) {
+      alert('Press Ctrl+C to copy the link: ' + text);
+    }
+    document.body.removeChild(textarea);
   };
 
   const nextImage = () => {
@@ -307,6 +399,65 @@ const ProductDetail = () => {
     return stars;
   };
 
+  const getAvailableSizes = () => {
+    if (product?.has_sizes && product?.sizes) {
+      try {
+        return typeof product.sizes === 'string' ? JSON.parse(product.sizes) : product.sizes;
+      } catch(e) {
+        return [];
+      }
+    }
+    return [];
+  };
+
+  const availableSizes = getAvailableSizes();
+
+  // Memoize Review Form to prevent re-renders
+  const ReviewFormComponent = useMemo(() => {
+    if (!showReviews || !canWriteReview || userReview) return null;
+    
+    return (
+      <div className={isMobile ? styles.mobileWriteReview : styles.writeReviewForm}>
+        <h4>Write Your Review</h4>
+        {reviewMessage && (
+          <div className={`${styles.reviewMessage} ${reviewMessage.includes('success') ? styles.success : styles.error}`}>
+            {reviewMessage}
+          </div>
+        )}
+        <div className={styles.ratingInput}>
+          <label>Rating</label>
+          <div className={styles.ratingStars}>
+            {[1, 2, 3, 4, 5].map(star => (
+              <button key={star} type="button" onClick={() => setReviewRating(star)}>
+                {star <= reviewRating ? <FaStar className={styles.activeStar} /> : <FaStar className={styles.inactiveStar} />}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className={styles.reviewInput}>
+          <label>Your Review</label>
+          <textarea
+            rows="3"
+            value={reviewText}
+            onChange={(e) => {
+              e.preventDefault();
+              setReviewText(e.target.value);
+            }}
+            onClick={(e) => e.stopPropagation()}
+            onFocus={(e) => {
+              e.stopPropagation();
+            }}
+            placeholder="Share your experience with this product..."
+            className={styles.reviewTextarea}
+          />
+        </div>
+        <button onClick={handleSubmitReview} disabled={submittingReview} className={styles.submitReviewBtn}>
+          {submittingReview ? 'Submitting...' : 'Submit Review'}
+        </button>
+      </div>
+    );
+  }, [showReviews, canWriteReview, userReview, isMobile, reviewMessage, reviewRating, reviewText, submittingReview]);
+
   if (loading) {
     return (
       <div className={styles.loadingContainer}>
@@ -331,13 +482,21 @@ const ProductDetail = () => {
     );
   }
 
+  const currentPrice = selectedSizePrice || product.price;
+
   // ============================================
-  // MOBILE UI (All Images Visible with Horizontal Scroll)
+  // MOBILE UI
   // ============================================
   if (isMobile) {
     return (
       <div className={styles.mobileProductDetail}>
-        {/* Mobile Header */}
+        {showAddToCartToast && (
+          <div className={styles.mobileAddToCartToast}>
+            <FiCheckCircle />
+            <span>{toastMessage}</span>
+          </div>
+        )}
+
         <div className={styles.mobileHeader}>
           <button onClick={() => navigate(-1)} className={styles.mobileBackBtn}>
             <FiArrowLeft />
@@ -348,9 +507,7 @@ const ProductDetail = () => {
           </button>
         </div>
 
-        {/* Mobile Image Gallery - All Images Visible */}
         <div className={styles.mobileImageGallery}>
-          {/* Horizontal scrollable thumbnails */}
           <div className={styles.mobileImageScroll}>
             {productImages.map((img, idx) => (
               <div 
@@ -363,7 +520,6 @@ const ProductDetail = () => {
             ))}
           </div>
           
-          {/* Main selected image */}
           <div className={styles.mobileMainImage}>
             <img src={productImages[currentImageIndex]} alt={product.name} />
             {product.is_bulk_order && <span className={styles.mobileBulkBadge}>Bulk Order</span>}
@@ -372,7 +528,6 @@ const ProductDetail = () => {
             </button>
           </div>
           
-          {/* Image indicators */}
           {productImages.length > 1 && (
             <div className={styles.mobileImageIndicators}>
               {productImages.map((_, idx) => (
@@ -386,14 +541,13 @@ const ProductDetail = () => {
           )}
         </div>
 
-        {/* Mobile Product Info */}
         <div className={styles.mobileProductInfo}>
           <h2>{product.name}</h2>
           <div className={styles.mobileRating}>
             <div className={styles.mobileStars}>{renderStars(calculateAverageRating())}</div>
             <span>({reviews.length} reviews)</span>
           </div>
-          <div className={styles.mobilePrice}>₹{product.price}</div>
+          <div className={styles.mobilePrice}>₹{currentPrice}</div>
           
           <div className={styles.mobileStock}>
             {product.stock_quantity > 0 ? (
@@ -407,23 +561,27 @@ const ProductDetail = () => {
             <p>{product.description || 'This beautiful handcrafted toy is made with natural colors and sustainable wood.'}</p>
           </div>
 
-          {/* Size Selection */}
-          <div className={styles.mobileSizeSection}>
-            <label>Select Size</label>
-            <div className={styles.mobileSizeOptions}>
-              {['Small', 'Medium', 'Large', 'Extra Large'].map(size => (
-                <button
-                  key={size}
-                  className={`${styles.mobileSizeBtn} ${selectedSize === size ? styles.active : ''}`}
-                  onClick={() => setSelectedSize(size)}
-                >
-                  {size}
-                </button>
-              ))}
+          {availableSizes.length > 0 && (
+            <div className={styles.mobileSizeSection}>
+              <label>Select Size</label>
+              <div className={styles.mobileSizeOptions}>
+                {availableSizes.map(size => (
+                  <button
+                    key={size.size}
+                    className={`${styles.mobileSizeBtn} ${selectedSize === size.size ? styles.active : ''}`}
+                    onClick={() => {
+                      setSelectedSize(size.size);
+                      setSelectedSizePrice(size.price);
+                    }}
+                  >
+                    {size.size}
+                    <span className={styles.mobileSizePrice}>₹{size.price}</span>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Quantity Selection */}
           <div className={styles.mobileQuantitySection}>
             <label>Quantity</label>
             <div className={styles.mobileQuantityControl}>
@@ -437,7 +595,6 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          {/* UPDATED: Mobile Add to Cart Button with Out of Stock styling */}
           <button 
             className={styles.mobileAddToCartBtn}
             onClick={handleAddToCart}
@@ -448,11 +605,10 @@ const ProductDetail = () => {
             {product.stock_quantity === 0 ? (
               'Out of Stock'
             ) : (
-              addingToCart ? 'Adding...' : `Add to Cart • ₹${product.price * quantity}`
+              addingToCart ? 'Adding...' : `Add to Cart • ₹${currentPrice * quantity}`
             )}
           </button>
 
-          {/* Delivery Info */}
           <div className={styles.mobileDeliveryInfo}>
             <div className={styles.mobileDeliveryItem}>
               <FiTruck />
@@ -469,38 +625,21 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* Reviews Section */}
+        {/* Reviews Section - Mobile */}
         <div className={styles.mobileReviews}>
           <div className={styles.mobileReviewsHeader}>
             <h3>Customer Reviews</h3>
-            <button onClick={() => setShowReviews(!showReviews)}>
-              {showReviews ? 'Cancel' : 'Write a Review'}
-            </button>
+            {canWriteReview && !userReview && (
+              <button onClick={() => setShowReviews(!showReviews)}>
+                {showReviews ? 'Cancel' : 'Write a Review'}
+              </button>
+            )}
+            {userReview && (
+              <span className={styles.reviewedBadge}>✓ You reviewed this</span>
+            )}
           </div>
 
-          {showReviews && (
-            <div className={styles.mobileWriteReview}>
-              <div className={styles.mobileRatingSelect}>
-                <label>Your Rating</label>
-                <div className={styles.mobileRatingStars}>
-                  {[1, 2, 3, 4, 5].map(star => (
-                    <button key={star} onClick={() => setReviewRating(star)}>
-                      {star <= reviewRating ? <FaStar className={styles.activeStar} /> : <FaStar className={styles.inactiveStar} />}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <textarea
-                rows="3"
-                placeholder="Share your experience with this product..."
-                value={reviewText}
-                onChange={(e) => setReviewText(e.target.value)}
-              />
-              <button onClick={handleSubmitReview} disabled={submittingReview}>
-                {submittingReview ? 'Submitting...' : 'Submit Review'}
-              </button>
-            </div>
-          )}
+          {ReviewFormComponent}
 
           <div className={styles.mobileReviewsList}>
             {reviews.length > 0 ? (
@@ -521,6 +660,9 @@ const ProductDetail = () => {
                     </span>
                   </div>
                   <p>{review.comment}</p>
+                  {review.user_id === user?.id && (
+                    <span className={styles.yourReviewBadge}>Your Review</span>
+                  )}
                 </div>
               ))
             ) : (
@@ -529,15 +671,18 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div className={styles.mobileRelated}>
-            <h3>You May Also Like</h3>
+            <div className={styles.mobileRelatedHeader}>
+              <h3>You May Also Like</h3>
+            </div>
             <div className={styles.mobileRelatedScroll}>
               {relatedProducts.map((relatedProduct) => (
                 <Link to={`/product/${relatedProduct.id}`} key={relatedProduct.id} className={styles.mobileRelatedCard}>
-                  <img src={parseProductImages(relatedProduct)[0] || relatedProduct.image_url || '/images/placeholder.jpg'} alt={relatedProduct.name} />
-                  <div>
+                  <div className={styles.mobileRelatedImage}>
+                    <img src={parseProductImages(relatedProduct)[0] || relatedProduct.image_url || '/images/placeholder.jpg'} alt={relatedProduct.name} />
+                  </div>
+                  <div className={styles.mobileRelatedInfo}>
                     <h4>{relatedProduct.name}</h4>
                     <p>₹{relatedProduct.price}</p>
                   </div>
@@ -551,11 +696,18 @@ const ProductDetail = () => {
   }
 
   // ============================================
-  // DESKTOP UI (Premium Traditional Style)
+  // DESKTOP UI
   // ============================================
   return (
     <div className={styles.productDetailPage}>
       <div className={styles.container}>
+        {showAddToCartToast && (
+          <div className={styles.addToCartToast}>
+            <FiCheckCircle />
+            <span>{toastMessage}</span>
+          </div>
+        )}
+
         <div className={styles.breadcrumb}>
           <Link to="/">Home</Link>
           <span>/</span>
@@ -565,7 +717,6 @@ const ProductDetail = () => {
         </div>
 
         <div className={styles.productLayout}>
-          {/* Left Column - Image Gallery */}
           <div className={styles.productGallery}>
             <div className={styles.mainImage}>
               <img src={productImages[currentImageIndex]} alt={product.name} />
@@ -602,7 +753,6 @@ const ProductDetail = () => {
             )}
           </div>
 
-          {/* Right Column - Product Info */}
           <div className={styles.productInfo}>
             <h1 className={styles.productName}>{product.name}</h1>
             
@@ -612,7 +762,7 @@ const ProductDetail = () => {
             </div>
 
             <div className={styles.priceSection}>
-              <span className={styles.currentPrice}>₹{product.price}</span>
+              <span className={styles.currentPrice}>₹{currentPrice}</span>
             </div>
 
             <div className={styles.stockInfo}>
@@ -629,22 +779,28 @@ const ProductDetail = () => {
               <p>{product.description || 'This beautiful handcrafted toy is made with natural colors and sustainable wood. Each piece is unique and tells a story of traditional Indian craftsmanship.'}</p>
             </div>
 
-            <div className={styles.sizeSection}>
-              <div className={styles.sizeHeader}>
-                <span>Size</span>
+            {availableSizes.length > 0 && (
+              <div className={styles.sizeSection}>
+                <div className={styles.sizeHeader}>
+                  <span>Select Size</span>
+                </div>
+                <div className={styles.sizeOptions}>
+                  {availableSizes.map(size => (
+                    <button
+                      key={size.size}
+                      className={`${styles.sizeBtn} ${selectedSize === size.size ? styles.active : ''}`}
+                      onClick={() => {
+                        setSelectedSize(size.size);
+                        setSelectedSizePrice(size.price);
+                      }}
+                    >
+                      {size.size}
+                      <span className={styles.sizePrice}>₹{size.price}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className={styles.sizeOptions}>
-                {['Small', 'Medium', 'Large', 'Extra Large'].map(size => (
-                  <button
-                    key={size}
-                    className={`${styles.sizeBtn} ${selectedSize === size ? styles.active : ''}`}
-                    onClick={() => setSelectedSize(size)}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </div>
+            )}
 
             <div className={styles.quantitySection}>
               <div className={styles.quantityHeader}>
@@ -661,7 +817,6 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            {/* UPDATED: Desktop Add to Cart Button with Out of Stock styling */}
             <button 
               className={styles.addToCartBtn}
               onClick={handleAddToCart}
@@ -672,7 +827,7 @@ const ProductDetail = () => {
               {product.stock_quantity === 0 ? (
                 'Out of Stock'
               ) : (
-                addingToCart ? 'Adding...' : 'Add to Cart'
+                addingToCart ? 'Adding...' : `Add to Cart - ₹${currentPrice * quantity}`
               )}
             </button>
 
@@ -722,47 +877,21 @@ const ProductDetail = () => {
                 <div className={styles.avgStars}>{renderStars(calculateAverageRating())}</div>
                 <span>{reviews.length} reviews</span>
               </div>
-              <button 
-                className={styles.writeReviewBtn}
-                onClick={() => setShowReviews(!showReviews)}
-              >
-                {showReviews ? 'Cancel' : 'Write Review'}
-              </button>
+              {canWriteReview && !userReview && (
+                <button 
+                  className={styles.writeReviewBtn}
+                  onClick={() => setShowReviews(!showReviews)}
+                >
+                  {showReviews ? 'Cancel' : 'Write Review'}
+                </button>
+              )}
+              {userReview && (
+                <span className={styles.reviewedBadgeDesktop}>✓ You have reviewed this product</span>
+              )}
             </div>
           </div>
 
-          {showReviews && (
-            <div className={styles.writeReviewForm}>
-              <h4>Write Your Review</h4>
-              {reviewMessage && (
-                <div className={`${styles.reviewMessage} ${reviewMessage.includes('success') ? styles.success : styles.error}`}>
-                  {reviewMessage}
-                </div>
-              )}
-              <div className={styles.ratingInput}>
-                <label>Rating</label>
-                <div className={styles.ratingStars}>
-                  {[1, 2, 3, 4, 5].map(star => (
-                    <button key={star} onClick={() => setReviewRating(star)}>
-                      {star <= reviewRating ? <FaStar className={styles.activeStar} /> : <FaStar className={styles.inactiveStar} />}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className={styles.reviewInput}>
-                <label>Your Review</label>
-                <textarea
-                  rows="3"
-                  value={reviewText}
-                  onChange={(e) => setReviewText(e.target.value)}
-                  placeholder="Share your experience with this product..."
-                />
-              </div>
-              <button onClick={handleSubmitReview} disabled={submittingReview}>
-                {submittingReview ? 'Submitting...' : 'Submit Review'}
-              </button>
-            </div>
-          )}
+          {ReviewFormComponent}
 
           <div className={styles.reviewsList}>
             {reviews.length > 0 ? (
@@ -783,6 +912,9 @@ const ProductDetail = () => {
                     </span>
                   </div>
                   <p className={styles.reviewComment}>{review.comment}</p>
+                  {review.user_id === user?.id && (
+                    <span className={styles.yourReviewBadgeDesktop}>Your Review</span>
+                  )}
                 </div>
               ))
             ) : (
@@ -793,7 +925,6 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* Related Products - Desktop */}
         {relatedProducts.length > 0 && (
           <div className={styles.relatedSection}>
             <div className={styles.relatedHeader}>

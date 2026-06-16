@@ -181,9 +181,16 @@ const Signup = () => {
         </div>
 
         {/* Mobile Footer */}
-        <div className={styles.mobileFooter}>
-          <p>By signing up, you agree to our Terms of Service & Privacy Policy</p>
-        </div>
+       <div className={styles.terms}>
+  By signing up, you agree to our{" "}
+  <Link to="/terms" target="_blank" className={styles.termsLink}>
+    Terms of Service
+  </Link>{" "}
+  and{" "}
+  <Link to="/privacy" target="_blank" className={styles.termsLink}>
+    Privacy Policy
+  </Link>
+</div>
       </div>
     );
   }
@@ -281,8 +288,15 @@ const Signup = () => {
             </div>
 
             <div className={styles.terms}>
-              By signing up, you agree to our Terms of Service and Privacy Policy
-            </div>
+  By signing up, you agree to our{" "}
+  <Link to="/terms" target="_blank" className={styles.termsLink}>
+    Terms of Service
+  </Link>{" "}
+  and{" "}
+  <Link to="/privacy" target="_blank" className={styles.termsLink}>
+    Privacy Policy
+  </Link>
+</div>
           </div>
         </div>
       </div>

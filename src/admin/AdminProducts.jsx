@@ -5,6 +5,7 @@ import styles from './AdminProducts.module.css';
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -22,22 +23,9 @@ const AdminProducts = () => {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
 
-  // Categories list
-  const categories = [
-    'Traditional Toys',
-    'Educational Toys',
-    'Decorative Items',
-    'Pull Along Toys',
-    'Rattles',
-    'Puzzles',
-    'Animal Figures',
-    'Musical Toys',
-    'Stacking Toys',
-    'Riding Toys'
-  ];
-
   useEffect(() => {
     fetchProducts();
+    fetchCategories();
   }, []);
 
   const fetchProducts = async () => {
@@ -50,6 +38,34 @@ const AdminProducts = () => {
       setProducts(data);
     }
     setLoading(false);
+  };
+
+  const fetchCategories = async () => {
+    const { data, error } = await supabase
+      .from('categories')
+      .select('name')
+      .eq('is_active', true)
+      .order('display_order', { ascending: true });
+
+    if (data && !error) {
+      const categoryNames = data.map(cat => cat.name);
+      setCategories(categoryNames);
+    } else {
+      // Fallback to default categories if table doesn't exist or error
+      setCategories([
+        'Traditional Toys',
+        'Educational Toys',
+        'Decorative Items',
+        'Pull Along Toys',
+        'Kids',
+        'Rattles',
+        'Puzzles',
+        'Animal Figures',
+        'Musical Toys',
+        'Stacking Toys',
+        'Riding Toys'
+      ]);
+    }
   };
 
   const uploadImage = async (file) => {

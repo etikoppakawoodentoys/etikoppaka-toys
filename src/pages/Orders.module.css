@@ -878,3 +878,1996 @@
     display: none;
   }
 }
+/* ============================================
+   RETURN BUTTON STYLES - DESKTOP
+   ============================================ */
+
+.returnBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #F8F2E8;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #1F5B3A;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.returnBtn:hover {
+  background: #1F5B3A;
+  border-color: #1F5B3A;
+  color: white;
+}
+
+.returnBtn:active {
+  transform: scale(0.98);
+}
+
+.returnBtn svg {
+  font-size: 0.85rem;
+}
+
+/* Disabled state for return button */
+.returnBtn:disabled {
+  background: #E8DCC8;
+  border-color: #E8DCC8;
+  color: #7A6B5A;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.returnBtn:disabled:hover {
+  background: #E8DCC8;
+  color: #7A6B5A;
+}
+
+/* ============================================
+   RETURN BUTTON STYLES - MOBILE
+   ============================================ */
+
+.mobileReturnBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background: #F8F2E8;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #1F5B3A;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+}
+
+.mobileReturnBtn:hover {
+  background: #1F5B3A;
+  border-color: #1F5B3A;
+  color: white;
+}
+
+.mobileReturnBtn:active {
+  transform: scale(0.97);
+}
+
+.mobileReturnBtn svg {
+  font-size: 0.8rem;
+}
+
+/* Disabled state for mobile return button */
+.mobileReturnBtn:disabled {
+  background: #E8DCC8;
+  border-color: #E8DCC8;
+  color: #7A6B5A;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   ORDER FOOTER ACTIONS - UPDATE EXISTING STYLES
+   ============================================ */
+
+/* Update existing orderActions to accommodate return button */
+.orderActions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Update existing trackBtn and invoiceBtn styles */
+.trackBtn, .invoiceBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #F8F2E8;
+  border: 1px solid #E8DCC8;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #3E2A1F;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.trackBtn:hover, .invoiceBtn:hover {
+  background: #E8DCC8;
+}
+
+/* Mobile Order Footer - All buttons */
+.mobileOrderFooter {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #E8DCC8;
+}
+
+.mobileTrackBtn, .mobileInvoiceBtn, .mobileReturnBtn {
+  flex: 1;
+  min-width: 80px;
+}
+
+/* Return button specific state when order is not eligible */
+.mobileReturnBtn:disabled {
+  opacity: 0.6;
+}
+
+/* Return button tooltip/popup styles */
+.returnInfoPopup {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3E2A1F;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  white-space: nowrap;
+  z-index: 10;
+  margin-bottom: 5px;
+}
+
+.returnInfoPopup::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: #3E2A1F transparent transparent transparent;
+}
+
+/* Return success badge */
+.returnRequestedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #D1FAE5;
+  color: #065F46;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 500;
+}
+
+.returnPendingBadge {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.returnApprovedBadge {
+  background: #DBEAFE;
+  color: #2563EB;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .orderActions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .trackBtn, .invoiceBtn, .returnBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .mobileTrackBtn, .mobileInvoiceBtn, .mobileReturnBtn {
+    font-size: 0.65rem;
+    padding: 0.4rem 0.5rem;
+  }
+}
+/* Pay Now Button Styles */
+.payNowBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #1F5B3A 0%, #15452B 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payNowBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 91, 58, 0.3);
+}
+
+.payNowBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mobilePayNowBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background: linear-gradient(135deg, #1F5B3A 0%, #15452B 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex: 1;
+}
+
+.mobilePayNowBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Badge Styles */
+.badgeGroup {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mobileBadgeGroup {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.codBadgeDesktop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #FEF3C7;
+  color: #F59E0B;
+}
+
+.paidBadgeDesktop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.mobileCodBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  background: #FEF3C7;
+  color: #F59E0B;
+}
+
+.mobilePaidBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.paidBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #D1FAE5;
+  color: #059669;
+}
+
+.codBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #FEF3C7;
+  color: #F59E0B;
+}
+/* Gift Packing Styles */
+.giftIconDesktop {
+  font-size: 11px;
+  color: #D9B382;
+  margin-left: 5px;
+}
+
+.giftSummaryDesktop {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #FEF8F0;
+  border-radius: 8px;
+  border-left: 3px solid #D9B382;
+}
+
+.giftHeaderDesktop {
+  font-size: 11px;
+  font-weight: 600;
+  color: #3E2A1F;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.giftMessageDesktop {
+  font-size: 10px;
+  color: #7A6B5A;
+  margin-bottom: 4px;
+  padding-left: 10px;
+}
+
+.giftMessageDesktop strong {
+  color: #3E2A1F;
+}
+
+.giftTotalNote {
+  font-size: 10px;
+  color: #D9B382;
+  margin-left: 8px;
+  font-weight: normal;
+}
+
+/* Mobile Gift Styles */
+.mobileGiftIcon {
+  font-size: 10px;
+  margin-left: 3px;
+}
+
+.mobileGiftSummary {
+  margin-top: 8px;
+  padding: 8px;
+  background: #FEF8F0;
+  border-radius: 8px;
+  border-left: 2px solid #D9B382;
+}
+
+.mobileGiftHeader {
+  font-size: 10px;
+  font-weight: 600;
+  color: #3E2A1F;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mobileGiftMessage {
+  font-size: 9px;
+  color: #7A6B5A;
+  margin-bottom: 3px;
+  padding-left: 8px;
+  word-break: break-word;
+}
+
+.mobileGiftMessage strong {
+  color: #3E2A1F;
+}
+/* ============================================
+   REVIEW MODAL STYLES - FOR ORDERS PAGE
+   ============================================ */
+
+/* Modal Overlay */
+.reviewModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Container */
+.reviewModalContent {
+  background: white;
+  border-radius: 28px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: slideUp 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom Scrollbar for Modal */
+.reviewModalContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.reviewModalContent::-webkit-scrollbar-track {
+  background: #F8F2E8;
+  border-radius: 3px;
+}
+
+.reviewModalContent::-webkit-scrollbar-thumb {
+  background: #D9B382;
+  border-radius: 3px;
+}
+
+.reviewModalContent::-webkit-scrollbar-thumb:hover {
+  background: #C89B3C;
+}
+
+/* Modal Header */
+.reviewModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #E8DCC8;
+  background: linear-gradient(135deg, #FFF9F1, #F8F2E8);
+  border-radius: 28px 28px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.reviewModalHeader h3 {
+  font-size: 18px;
+  color: #3E2A1F;
+  font-weight: 700;
+  margin: 0;
+}
+
+.reviewProductName {
+  font-size: 13px;
+  color: #D9B382;
+  font-weight: 500;
+  margin-left: 6px;
+}
+
+.reviewModalClose {
+  background: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #7A6B5A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.reviewModalClose:hover {
+  background: #F8F2E8;
+  transform: scale(1.05);
+}
+
+.reviewModalClose:active {
+  transform: scale(0.95);
+}
+
+/* Modal Body */
+.reviewModalBody {
+  padding: 24px;
+}
+
+/* Message Alert Styles */
+.reviewModalMessage {
+  padding: 12px 16px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reviewModalMessage.success {
+  background: #D1FAE5;
+  color: #065F46;
+  border-left: 4px solid #10B981;
+}
+
+.reviewModalMessage.error {
+  background: #FEE2E2;
+  color: #991B1B;
+  border-left: 4px solid #EF4444;
+}
+
+/* Rating Section */
+.reviewRatingSection {
+  margin-bottom: 24px;
+}
+
+.reviewRatingSection label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3E2A1F;
+  margin-bottom: 12px;
+}
+
+.reviewStars {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.ratingStarBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 32px;
+  transition: all 0.2s ease;
+  padding: 0;
+  margin: 0;
+}
+
+.ratingStarBtn:hover {
+  transform: scale(1.15);
+}
+
+.ratingStarBtn:active {
+  transform: scale(0.95);
+}
+
+.activeStar {
+  color: #FFD700;
+  filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+}
+
+.inactiveStar {
+  color: #E8DCC8;
+}
+
+/* Review Text Section */
+.reviewTextSection {
+  margin-bottom: 24px;
+}
+
+.reviewTextSection label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3E2A1F;
+  margin-bottom: 12px;
+}
+
+.reviewTextarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #E8DCC8;
+  border-radius: 16px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.2s ease;
+  background: #FEFCF8;
+  line-height: 1.5;
+  min-height: 120px;
+}
+
+.reviewTextarea:focus {
+  outline: none;
+  border-color: #D9B382;
+  box-shadow: 0 0 0 4px rgba(216, 179, 130, 0.15);
+  background: white;
+}
+
+.reviewTextarea::placeholder {
+  color: #C4B5A5;
+  font-weight: 400;
+}
+
+/* Modal Actions - Buttons */
+.reviewModalActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.deleteReviewBtn {
+  flex: 1;
+  padding: 14px 20px;
+  background: #FEE2E2;
+  color: #DC2626;
+  border: none;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deleteReviewBtn:hover:not(:disabled) {
+  background: #FECACA;
+  transform: translateY(-2px);
+}
+
+.deleteReviewBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitReviewBtn {
+  flex: 2;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submitReviewBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(31, 91, 58, 0.3);
+}
+
+.submitReviewBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.deleteReviewBtn:disabled,
+.submitReviewBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading state for buttons */
+.submitReviewBtn.loading,
+.deleteReviewBtn.loading {
+  position: relative;
+  color: transparent;
+}
+
+.submitReviewBtn.loading::after,
+.deleteReviewBtn.loading::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 50%;
+  left: 50%;
+  margin-left: -9px;
+  margin-top: -9px;
+  border: 2px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .reviewModalContent {
+    width: 92%;
+    max-height: 80vh;
+    border-radius: 24px;
+  }
+  
+  .reviewModalHeader {
+    padding: 16px 20px;
+  }
+  
+  .reviewModalHeader h3 {
+    font-size: 16px;
+  }
+  
+  .reviewProductName {
+    font-size: 11px;
+    display: block;
+    margin-top: 4px;
+    margin-left: 0;
+  }
+  
+  .reviewModalBody {
+    padding: 20px;
+  }
+  
+  .reviewStars {
+    gap: 8px;
+  }
+  
+  .ratingStarBtn {
+    font-size: 28px;
+  }
+  
+  .reviewTextarea {
+    padding: 12px 14px;
+    font-size: 13px;
+    min-height: 100px;
+  }
+  
+  .deleteReviewBtn,
+  .submitReviewBtn {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+  .reviewModalActions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .deleteReviewBtn,
+  .submitReviewBtn {
+    width: 100%;
+    padding: 12px;
+  }
+  
+  .ratingStarBtn {
+    font-size: 24px;
+  }
+  
+  .reviewStars {
+    gap: 6px;
+  }
+  
+  .reviewTextarea {
+    min-height: 80px;
+    padding: 10px 12px;
+  }
+  
+  .reviewModalHeader {
+    padding: 14px 16px;
+  }
+  
+  .reviewModalBody {
+    padding: 16px;
+  }
+  
+  .reviewModalMessage {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   WRITE REVIEW BUTTON STYLES
+   ============================================ */
+
+/* Mobile Write Review Button */
+.mobileWriteReviewBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #FF9A9E, #FF6B6B);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.mobileWriteReviewBtn:active {
+  transform: scale(0.98);
+}
+
+.mobileWriteReviewBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Desktop Write Review Button */
+.writeReviewBtnDesktop {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #FF9A9E, #FF6B6B);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.writeReviewBtnDesktop:hover {
+  background: linear-gradient(135deg, #FF6B6B, #EE5A24);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.writeReviewBtnDesktop:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   ORDER FOOTER BUTTONS (Mobile)
+   ============================================ */
+
+.mobileOrderFooter {
+  padding: 12px;
+  border-top: 1px solid #E8DCC8;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobileOrderTotal {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #E8DCC8;
+  margin-bottom: 8px;
+}
+
+.mobileOrderTotal span {
+  font-size: 13px;
+  color: #7A6B5A;
+}
+
+.mobileOrderTotal strong {
+  font-size: 18px;
+  color: #9E1B1B;
+}
+
+.mobilePayNowBtn,
+.mobileTrackBtn,
+.mobileInvoiceBtn,
+.mobileReturnBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.mobilePayNowBtn {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+}
+
+.mobileTrackBtn {
+  background: #D9B382;
+  color: #3E2A1F;
+}
+
+.mobileInvoiceBtn {
+  background: #1F5B3A;
+  color: white;
+}
+
+.mobileReturnBtn {
+  background: #FEF3C7;
+  color: #D97706;
+  border: 1px solid #FDE68A;
+}
+
+.mobilePayNowBtn:active,
+.mobileTrackBtn:active,
+.mobileInvoiceBtn:active,
+.mobileReturnBtn:active {
+  transform: scale(0.98);
+}
+
+.mobileReturnBtn:disabled {
+  background: #E8DCC8;
+  color: #7A6B5A;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ============================================
+   ORDER ACTIONS (Desktop)
+   ============================================ */
+
+.orderActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.payNowBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payNowBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 91, 58, 0.3);
+}
+
+.trackBtn,
+.invoiceBtn,
+.returnBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trackBtn {
+  background: #D9B382;
+  color: #3E2A1F;
+}
+
+.trackBtn:hover {
+  background: #C89B3C;
+  transform: translateY(-2px);
+}
+
+.invoiceBtn {
+  background: #1F5B3A;
+  color: white;
+}
+
+.invoiceBtn:hover {
+  background: #15452B;
+  transform: translateY(-2px);
+}
+
+.returnBtn {
+  background: #FEF3C7;
+  color: #D97706;
+  border: 1px solid #FDE68A;
+}
+
+.returnBtn:hover:not(:disabled) {
+  background: #FDE68A;
+  transform: translateY(-2px);
+}
+
+.returnBtn:disabled {
+  background: #E8DCC8;
+  color: #7A6B5A;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   SUCCESS MESSAGE STYLES
+   ============================================ */
+
+.mobileSuccessMessage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #D1FAE5;
+  color: #1F5B3A;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.successMessage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #D1FAE5;
+  color: #1F5B3A;
+  padding: 14px 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+}
+/* ============================================
+   MOBILE BUTTON LAYOUT - 2 PER ROW
+   ============================================ */
+
+.mobileOrderFooter {
+  padding: 12px;
+  border-top: 1px solid #E8DCC8;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobileButtonRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.mobileOrderTotal {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #E8DCC8;
+  margin-bottom: 4px;
+}
+
+.mobileOrderTotal span {
+  font-size: 13px;
+  color: #7A6B5A;
+}
+
+.mobileOrderTotal strong {
+  font-size: 18px;
+  color: #9E1B1B;
+}
+
+/* Button base styles */
+.mobilePayNowBtn,
+.mobileTrackBtn,
+.mobileInvoiceBtn,
+.mobileWriteReviewBtn,
+.mobileReturnBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border: none;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+/* Individual button colors */
+.mobilePayNowBtn {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+}
+
+.mobileTrackBtn {
+  background: #D9B382;
+  color: #3E2A1F;
+}
+
+.mobileInvoiceBtn {
+  background: #1F5B3A;
+  color: white;
+}
+
+.mobileWriteReviewBtn {
+  background: linear-gradient(135deg, #FF9A9E, #FF6B6B);
+  color: white;
+}
+
+.mobileReturnBtn {
+  background: #FEF3C7;
+  color: #D97706;
+  border: 1px solid #FDE68A;
+}
+
+/* Disabled state */
+.mobileReturnBtn:disabled,
+.mobilePayNowBtn:disabled {
+  background: #E8DCC8;
+  color: #7A6B5A;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Active state for touch feedback */
+.mobilePayNowBtn:active,
+.mobileTrackBtn:active,
+.mobileInvoiceBtn:active,
+.mobileWriteReviewBtn:active,
+.mobileReturnBtn:active {
+  transform: scale(0.97);
+}
+
+/* Responsive for very small screens */
+@media (max-width: 480px) {
+  .mobileButtonRow {
+    gap: 8px;
+  }
+  
+  .mobilePayNowBtn,
+  .mobileTrackBtn,
+  .mobileInvoiceBtn,
+  .mobileWriteReviewBtn,
+  .mobileReturnBtn {
+    padding: 10px 6px;
+    font-size: 11px;
+  }
+  
+  .mobilePayNowBtn svg,
+  .mobileTrackBtn svg,
+  .mobileInvoiceBtn svg,
+  .mobileWriteReviewBtn svg,
+  .mobileReturnBtn svg {
+    font-size: 13px;
+  }
+}
+/* Review Already Exists Message */
+.reviewModalMessage.warning {
+  background: #FEF3C7;
+  color: #D97706;
+  border-left: 4px solid #F59E0B;
+}
+
+.review-existing-content {
+  text-align: center;
+  padding: 10px;
+}
+
+.review-existing-content p {
+  margin: 10px 0;
+}
+
+.review-existing-review {
+  background: #F8F2E8;
+  padding: 15px;
+  border-radius: 12px;
+  margin: 15px 0;
+}
+
+.review-existing-review .review-text {
+  font-style: italic;
+  color: #5C4B3A;
+}
+
+.review-existing-review .review-rating {
+  color: #FFD700;
+  margin-top: 8px;
+}
+/* ============================================
+   MOBILE ORDER FOOTER BUTTONS - 2 PER ROW
+   ============================================ */
+
+.mobileOrderFooter {
+  padding: 16px;
+  border-top: 1px solid #E8DCC8;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #FFFFFF;
+  border-radius: 0 0 16px 16px;
+}
+
+.mobileOrderTotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #E8DCC8;
+  margin-bottom: 4px;
+}
+
+.mobileOrderTotal span {
+  font-size: 14px;
+  color: #7A6B5A;
+  font-weight: 500;
+}
+
+.mobileOrderTotal strong {
+  font-size: 20px;
+  color: #9E1B1B;
+  font-weight: 800;
+}
+
+/* Button Row - ALWAYS 2 COLUMNS */
+.mobileButtonRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Button base styles */
+.mobilePayNowBtn,
+.mobileTrackBtn,
+.mobileInvoiceBtn,
+.mobileWriteReviewBtn,
+.mobileReturnBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 8px;
+  border: none;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: center;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+/* Button icons */
+.mobilePayNowBtn svg,
+.mobileTrackBtn svg,
+.mobileInvoiceBtn svg,
+.mobileWriteReviewBtn svg,
+.mobileReturnBtn svg {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* Button text */
+.mobilePayNowBtn span,
+.mobileTrackBtn span,
+.mobileInvoiceBtn span,
+.mobileWriteReviewBtn span,
+.mobileReturnBtn span {
+  flex-shrink: 0;
+}
+
+/* Individual button colors */
+.mobilePayNowBtn {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+}
+
+.mobileTrackBtn {
+  background: #D9B382;
+  color: #3E2A1F;
+}
+
+.mobileInvoiceBtn {
+  background: #1F5B3A;
+  color: white;
+}
+
+.mobileWriteReviewBtn {
+  background: linear-gradient(135deg, #FF9A9E, #FF6B6B);
+  color: white;
+}
+
+.mobileReturnBtn {
+  background: #FEF3C7;
+  color: #D97706;
+  border: 1px solid #FDE68A;
+}
+
+/* Disabled state */
+.mobileReturnBtn:disabled,
+.mobilePayNowBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Active state for touch feedback */
+.mobilePayNowBtn:active,
+.mobileTrackBtn:active,
+.mobileInvoiceBtn:active,
+.mobileWriteReviewBtn:active,
+.mobileReturnBtn:active {
+  transform: scale(0.97);
+}
+
+/* Special case when Pay Now is not shown - ensure Track button spans properly */
+.mobileButtonRow:first-child {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* If Pay Now is hidden, Track button still stays in its column */
+.mobileButtonRow:has(button:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.mobileButtonRow:has(button:only-child) button {
+  grid-column: span 1;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .mobileOrderFooter {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .mobileOrderTotal {
+    padding: 8px 0;
+  }
+  
+  .mobileOrderTotal span {
+    font-size: 13px;
+  }
+  
+  .mobileOrderTotal strong {
+    font-size: 18px;
+  }
+  
+  .mobileButtonRow {
+    gap: 8px;
+  }
+  
+  .mobilePayNowBtn,
+  .mobileTrackBtn,
+  .mobileInvoiceBtn,
+  .mobileWriteReviewBtn,
+  .mobileReturnBtn {
+    padding: 10px 6px;
+    font-size: 12px;
+  }
+  
+  .mobilePayNowBtn svg,
+  .mobileTrackBtn svg,
+  .mobileInvoiceBtn svg,
+  .mobileWriteReviewBtn svg,
+  .mobileReturnBtn svg {
+    font-size: 14px;
+  }
+}
+
+/* Very small screens - stack vertically */
+@media (max-width: 360px) {
+  .mobileButtonRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .mobileButtonRow:has(button:only-child) {
+    grid-template-columns: 1fr;
+  }
+  
+  .mobilePayNowBtn,
+  .mobileTrackBtn,
+  .mobileInvoiceBtn,
+  .mobileWriteReviewBtn,
+  .mobileReturnBtn {
+    padding: 10px 12px;
+  }
+}
+.mobileButtonRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.mobilePayNowBtn,
+.mobileTrackBtn,
+.mobileInvoiceBtn,
+.mobileWriteReviewBtn,
+.mobileReturnBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  border: none;
+}
+
+.mobilePayNowBtn {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+}
+
+.mobileTrackBtn {
+  background: #D9B382;
+  color: #3E2A1F;
+}
+
+.mobileInvoiceBtn {
+  background: #1F5B3A;
+  color: white;
+}
+
+.mobileWriteReviewBtn {
+  background: linear-gradient(135deg, #FF9A9E, #FF6B6B);
+  color: white;
+}
+
+.mobileReturnBtn {
+  background: #FEF3C7;
+  color: #D97706;
+  border: 1px solid #FDE68A;
+}
+
+.mobileReturnBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .mobileButtonRow {
+    gap: 8px;
+  }
+  
+  .mobilePayNowBtn,
+  .mobileTrackBtn,
+  .mobileInvoiceBtn,
+  .mobileWriteReviewBtn,
+  .mobileReturnBtn {
+    padding: 10px 6px;
+    font-size: 11px;
+  }
+}
+/* ============================================
+   HAMPER ITEM STYLES
+   ============================================ */
+
+.hamperBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #1F5B3A;
+  background: #D1FAE5;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-left: 6px;
+  font-weight: 500;
+}
+
+.mobileHamperBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9px;
+  color: #1F5B3A;
+  background: #D1FAE5;
+  padding: 2px 6px;
+  border-radius: 20px;
+  margin-left: 4px;
+  font-weight: 500;
+}
+/* ============================================
+   DELIVERY CHARGE STYLES - DESKTOP
+   ============================================ */
+
+/* Delivery charge row in order total */
+.orderTotal {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.orderTotal span {
+  color: #7A6B5A;
+  font-size: 0.9rem;
+}
+
+.orderTotal strong {
+  color: #9E1B1B;
+  font-size: 1.2rem;
+}
+
+.deliveryNote {
+  font-size: 0.7rem;
+  color: #D97706;
+  margin-left: 0.5rem;
+  font-weight: normal;
+}
+
+.freeDeliveryNote {
+  font-size: 0.7rem;
+  color: #10B981;
+  margin-left: 0.5rem;
+  font-weight: normal;
+  background: #D1FAE5;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* Delivery fee styling in tracking section */
+.deliveryItem .deliveryAmount {
+  font-weight: 600;
+}
+
+.deliveryItem .freeDelivery {
+  color: #10B981;
+  font-weight: 600;
+}
+
+.deliveryItem .paidDelivery {
+  color: #D97706;
+  font-weight: 600;
+}
+
+/* Delivery info row enhancement */
+.deliveryItem {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.deliveryItem svg {
+  color: #C89B3C;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.deliveryItem strong {
+  display: block;
+  font-size: 0.8rem;
+  color: #3E2A1F;
+  margin-bottom: 0.2rem;
+}
+
+.deliveryItem p {
+  font-size: 0.8rem;
+  color: #7A6B5A;
+  margin-top: 0.25rem;
+}
+
+/* ============================================
+   MOBILE DELIVERY CHARGE DISPLAY - FIX
+   ============================================ */
+
+/* Mobile Order Total with Delivery */
+.mobileOrderTotal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid #E8DCC8;
+  width: 100%;
+}
+
+.mobileOrderTotalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.mobileOrderTotalRow span {
+  font-size: 0.75rem;
+  color: #7A6B5A;
+}
+
+.mobileOrderTotalRow strong {
+  font-size: 1rem;
+  color: #9E1B1B;
+  font-weight: 700;
+}
+
+/* Delivery Badge */
+.mobileDeliveryBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.mobileDeliveryBadge.free {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.mobileDeliveryBadge.paid {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+/* Delivery Info Row in Order Details */
+.mobileInfoRow {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 0.7rem;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.mobileInfoRow:last-child {
+  border-bottom: none;
+}
+
+.mobileInfoRow svg {
+  color: #C89B3C;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.mobileInfoRow .mobileInfoLabel {
+  font-weight: 600;
+  color: #3E2A1F;
+  min-width: 85px;
+}
+
+.mobileInfoRow .mobileInfoValue {
+  color: #5C4B3A;
+  flex: 1;
+}
+
+.mobileInfoRow .freeDelivery {
+  color: #10B981;
+  font-weight: 600;
+}
+
+.mobileInfoRow .paidDelivery {
+  color: #D97706;
+  font-weight: 600;
+}
+
+/* Mobile Button Row Fix */
+.mobileButtonRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.mobilePayNowBtn,
+.mobileTrackBtn,
+.mobileInvoiceBtn,
+.mobileWriteReviewBtn,
+.mobileReturnBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 8px;
+  border: none;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Make sure buttons are visible */
+.mobilePayNowBtn {
+  background: linear-gradient(135deg, #1F5B3A, #15452B);
+  color: white;
+}
+
+.mobileTrackBtn {
+  background: #D9B382;
+  color: #3E2A1F;
+}
+
+.mobileInvoiceBtn {
+  background: #1F5B3A;
+  color: white;
+}
+
+.mobileWriteReviewBtn {
+  background: linear-gradient(135deg, #FF9A9E, #FF6B6B);
+  color: white;
+}
+
+.mobileReturnBtn {
+  background: #FEF3C7;
+  color: #D97706;
+  border: 1px solid #FDE68A;
+}
+
+.mobileReturnBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .mobileButtonRow {
+    gap: 8px;
+  }
+  
+  .mobilePayNowBtn,
+  .mobileTrackBtn,
+  .mobileInvoiceBtn,
+  .mobileWriteReviewBtn,
+  .mobileReturnBtn {
+    padding: 8px 6px;
+    font-size: 0.65rem;
+  }
+  
+  .mobileInfoRow .mobileInfoLabel {
+    min-width: 75px;
+  }
+}
+/* ============================================
+   FREE DELIVERY THRESHOLD MESSAGE (Optional)
+   ============================================ */
+
+.freeDeliveryThreshold {
+  background: #FEF3E8;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  color: #D97706;
+  border-left: 3px solid #F59E0B;
+}
+
+.freeDeliveryThreshold svg {
+  font-size: 0.9rem;
+  color: #F59E0B;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   DELIVERY CHARGE IN ORDER SUMMARY CARD
+   ============================================ */
+
+.orderSummaryDeliveryRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+  color: #5C4B3A;
+  border-bottom: 1px dashed #E8DCC8;
+}
+
+.orderSummaryDeliveryRow .free {
+  color: #10B981;
+  font-weight: 600;
+}
+
+.orderSummaryDeliveryRow .paid {
+  color: #D97706;
+  font-weight: 600;
+}
+
+/* ============================================
+   DELIVERY PROGRESS BAR (Optional)
+   ============================================ */
+
+.deliveryProgressContainer {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: #F8F2E8;
+  border-radius: 12px;
+}
+
+.deliveryProgressBar {
+  height: 6px;
+  background: #E8DCC8;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.deliveryProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #1F5B3A, #C89B3C);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.deliveryProgressText {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #7A6B5A;
+}
+
+.deliveryProgressText span:first-child {
+  color: #1F5B3A;
+  font-weight: 500;
+}
+
+.deliveryProgressText span:last-child {
+  color: #D97706;
+}
+
+/* ============================================
+   INVOICE DELIVERY CHARGE STYLES
+   ============================================ */
+
+.invoiceDeliveryRow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.invoiceDeliveryRow .deliveryFree {
+  color: #10B981;
+  font-weight: bold;
+}
+
+.invoiceDeliveryRow .deliveryPaid {
+  color: #D97706;
+  font-weight: bold;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .orderTotal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .deliveryNote,
+  .freeDeliveryNote {
+    font-size: 0.6rem;
+    margin-left: 0;
+  }
+  
+  .deliveryItem {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .deliveryItem svg {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobileOrderTotal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .mobileDeliveryNote,
+  .mobileDeliveryFree {
+    font-size: 0.55rem;
+    padding: 0.15rem 0.4rem;
+  }
+  
+  .freeDeliveryThreshold {
+    font-size: 0.65rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+/* ============================================
+   INVOICE DELIVERY STYLES (For print)
+   ============================================ */
+
+@media print {
+  .invoiceDeliveryRow {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .delivery-free {
+    color: #10B981 !important;
+  }
+  
+  .delivery-charge {
+    color: #D97706 !important;
+  }
+}
